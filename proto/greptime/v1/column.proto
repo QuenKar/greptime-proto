@@ -61,6 +61,7 @@ message Column {
     repeated int64 duration_millisecond_values = 28;
     repeated int64 duration_microsecond_values = 29;
     repeated int64 duration_nanosecond_values = 30;
+    repeated Decimal128 decimal_values = 31;
   }
   // The array of non-null values in this column.
   //

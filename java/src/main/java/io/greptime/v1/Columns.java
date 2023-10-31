@@ -767,6 +767,30 @@ public final class Columns {
        * @return The durationNanosecondValues at the given index.
        */
       long getDurationNanosecondValues(int index);
+
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      java.util.List<io.greptime.v1.Common.Decimal128> 
+          getDecimalValuesList();
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      io.greptime.v1.Common.Decimal128 getDecimalValues(int index);
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      int getDecimalValuesCount();
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      java.util.List<? extends io.greptime.v1.Common.Decimal128OrBuilder> 
+          getDecimalValuesOrBuilderList();
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      io.greptime.v1.Common.Decimal128OrBuilder getDecimalValuesOrBuilder(
+          int index);
     }
     /**
      * Protobuf type {@code greptime.v1.Column.Values}
@@ -811,6 +835,7 @@ public final class Columns {
         durationMillisecondValues_ = emptyLongList();
         durationMicrosecondValues_ = emptyLongList();
         durationNanosecondValues_ = emptyLongList();
+        decimalValues_ = java.util.Collections.emptyList();
       }
 
       @java.lang.Override
@@ -1437,6 +1462,15 @@ public final class Columns {
                 input.popLimit(limit);
                 break;
               }
+              case 250: {
+                if (!((mutable_bitField0_ & 0x40000000) != 0)) {
+                  decimalValues_ = new java.util.ArrayList<io.greptime.v1.Common.Decimal128>();
+                  mutable_bitField0_ |= 0x40000000;
+                }
+                decimalValues_.add(
+                    input.readMessage(io.greptime.v1.Common.Decimal128.parser(), extensionRegistry));
+                break;
+              }
               default: {
                 if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
@@ -1543,6 +1577,9 @@ public final class Columns {
           }
           if (((mutable_bitField0_ & 0x20000000) != 0)) {
             durationNanosecondValues_.makeImmutable(); // C
+          }
+          if (((mutable_bitField0_ & 0x40000000) != 0)) {
+            decimalValues_ = java.util.Collections.unmodifiableList(decimalValues_);
           }
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
@@ -2419,6 +2456,46 @@ public final class Columns {
       }
       private int durationNanosecondValuesMemoizedSerializedSize = -1;
 
+      public static final int DECIMAL_VALUES_FIELD_NUMBER = 31;
+      private java.util.List<io.greptime.v1.Common.Decimal128> decimalValues_;
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      @java.lang.Override
+      public java.util.List<io.greptime.v1.Common.Decimal128> getDecimalValuesList() {
+        return decimalValues_;
+      }
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      @java.lang.Override
+      public java.util.List<? extends io.greptime.v1.Common.Decimal128OrBuilder> 
+          getDecimalValuesOrBuilderList() {
+        return decimalValues_;
+      }
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      @java.lang.Override
+      public int getDecimalValuesCount() {
+        return decimalValues_.size();
+      }
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      @java.lang.Override
+      public io.greptime.v1.Common.Decimal128 getDecimalValues(int index) {
+        return decimalValues_.get(index);
+      }
+      /**
+       * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+       */
+      @java.lang.Override
+      public io.greptime.v1.Common.Decimal128OrBuilder getDecimalValuesOrBuilder(
+          int index) {
+        return decimalValues_.get(index);
+      }
+
       private byte memoizedIsInitialized = -1;
       @java.lang.Override
       public final boolean isInitialized() {
@@ -2631,6 +2708,9 @@ public final class Columns {
         }
         for (int i = 0; i < durationNanosecondValues_.size(); i++) {
           output.writeInt64NoTag(durationNanosecondValues_.getLong(i));
+        }
+        for (int i = 0; i < decimalValues_.size(); i++) {
+          output.writeMessage(31, decimalValues_.get(i));
         }
         unknownFields.writeTo(output);
       }
@@ -3031,6 +3111,10 @@ public final class Columns {
           }
           durationNanosecondValuesMemoizedSerializedSize = dataSize;
         }
+        for (int i = 0; i < decimalValues_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(31, decimalValues_.get(i));
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -3106,6 +3190,8 @@ public final class Columns {
             .equals(other.getDurationMicrosecondValuesList())) return false;
         if (!getDurationNanosecondValuesList()
             .equals(other.getDurationNanosecondValuesList())) return false;
+        if (!getDecimalValuesList()
+            .equals(other.getDecimalValuesList())) return false;
         if (!unknownFields.equals(other.unknownFields)) return false;
         return true;
       }
@@ -3237,6 +3323,10 @@ public final class Columns {
           hash = (37 * hash) + DURATION_NANOSECOND_VALUES_FIELD_NUMBER;
           hash = (53 * hash) + getDurationNanosecondValuesList().hashCode();
         }
+        if (getDecimalValuesCount() > 0) {
+          hash = (37 * hash) + DECIMAL_VALUES_FIELD_NUMBER;
+          hash = (53 * hash) + getDecimalValuesList().hashCode();
+        }
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -3366,6 +3456,7 @@ public final class Columns {
           if (com.google.protobuf.GeneratedMessageV3
                   .alwaysUseFieldBuilders) {
             getIntervalMonthDayNanoValuesFieldBuilder();
+            getDecimalValuesFieldBuilder();
           }
         }
         @java.lang.Override
@@ -3435,6 +3526,12 @@ public final class Columns {
           bitField0_ = (bitField0_ & ~0x10000000);
           durationNanosecondValues_ = emptyLongList();
           bitField0_ = (bitField0_ & ~0x20000000);
+          if (decimalValuesBuilder_ == null) {
+            decimalValues_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x40000000);
+          } else {
+            decimalValuesBuilder_.clear();
+          }
           return this;
         }
 
@@ -3616,6 +3713,15 @@ public final class Columns {
             bitField0_ = (bitField0_ & ~0x20000000);
           }
           result.durationNanosecondValues_ = durationNanosecondValues_;
+          if (decimalValuesBuilder_ == null) {
+            if (((bitField0_ & 0x40000000) != 0)) {
+              decimalValues_ = java.util.Collections.unmodifiableList(decimalValues_);
+              bitField0_ = (bitField0_ & ~0x40000000);
+            }
+            result.decimalValues_ = decimalValues_;
+          } else {
+            result.decimalValues_ = decimalValuesBuilder_.build();
+          }
           onBuilt();
           return result;
         }
@@ -3979,6 +4085,32 @@ public final class Columns {
               durationNanosecondValues_.addAll(other.durationNanosecondValues_);
             }
             onChanged();
+          }
+          if (decimalValuesBuilder_ == null) {
+            if (!other.decimalValues_.isEmpty()) {
+              if (decimalValues_.isEmpty()) {
+                decimalValues_ = other.decimalValues_;
+                bitField0_ = (bitField0_ & ~0x40000000);
+              } else {
+                ensureDecimalValuesIsMutable();
+                decimalValues_.addAll(other.decimalValues_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.decimalValues_.isEmpty()) {
+              if (decimalValuesBuilder_.isEmpty()) {
+                decimalValuesBuilder_.dispose();
+                decimalValuesBuilder_ = null;
+                decimalValues_ = other.decimalValues_;
+                bitField0_ = (bitField0_ & ~0x40000000);
+                decimalValuesBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getDecimalValuesFieldBuilder() : null;
+              } else {
+                decimalValuesBuilder_.addAllMessages(other.decimalValues_);
+              }
+            }
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -6577,6 +6709,246 @@ public final class Columns {
           onChanged();
           return this;
         }
+
+        private java.util.List<io.greptime.v1.Common.Decimal128> decimalValues_ =
+          java.util.Collections.emptyList();
+        private void ensureDecimalValuesIsMutable() {
+          if (!((bitField0_ & 0x40000000) != 0)) {
+            decimalValues_ = new java.util.ArrayList<io.greptime.v1.Common.Decimal128>(decimalValues_);
+            bitField0_ |= 0x40000000;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder> decimalValuesBuilder_;
+
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public java.util.List<io.greptime.v1.Common.Decimal128> getDecimalValuesList() {
+          if (decimalValuesBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(decimalValues_);
+          } else {
+            return decimalValuesBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public int getDecimalValuesCount() {
+          if (decimalValuesBuilder_ == null) {
+            return decimalValues_.size();
+          } else {
+            return decimalValuesBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public io.greptime.v1.Common.Decimal128 getDecimalValues(int index) {
+          if (decimalValuesBuilder_ == null) {
+            return decimalValues_.get(index);
+          } else {
+            return decimalValuesBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder setDecimalValues(
+            int index, io.greptime.v1.Common.Decimal128 value) {
+          if (decimalValuesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureDecimalValuesIsMutable();
+            decimalValues_.set(index, value);
+            onChanged();
+          } else {
+            decimalValuesBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder setDecimalValues(
+            int index, io.greptime.v1.Common.Decimal128.Builder builderForValue) {
+          if (decimalValuesBuilder_ == null) {
+            ensureDecimalValuesIsMutable();
+            decimalValues_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            decimalValuesBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder addDecimalValues(io.greptime.v1.Common.Decimal128 value) {
+          if (decimalValuesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureDecimalValuesIsMutable();
+            decimalValues_.add(value);
+            onChanged();
+          } else {
+            decimalValuesBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder addDecimalValues(
+            int index, io.greptime.v1.Common.Decimal128 value) {
+          if (decimalValuesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureDecimalValuesIsMutable();
+            decimalValues_.add(index, value);
+            onChanged();
+          } else {
+            decimalValuesBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder addDecimalValues(
+            io.greptime.v1.Common.Decimal128.Builder builderForValue) {
+          if (decimalValuesBuilder_ == null) {
+            ensureDecimalValuesIsMutable();
+            decimalValues_.add(builderForValue.build());
+            onChanged();
+          } else {
+            decimalValuesBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder addDecimalValues(
+            int index, io.greptime.v1.Common.Decimal128.Builder builderForValue) {
+          if (decimalValuesBuilder_ == null) {
+            ensureDecimalValuesIsMutable();
+            decimalValues_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            decimalValuesBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder addAllDecimalValues(
+            java.lang.Iterable<? extends io.greptime.v1.Common.Decimal128> values) {
+          if (decimalValuesBuilder_ == null) {
+            ensureDecimalValuesIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, decimalValues_);
+            onChanged();
+          } else {
+            decimalValuesBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder clearDecimalValues() {
+          if (decimalValuesBuilder_ == null) {
+            decimalValues_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x40000000);
+            onChanged();
+          } else {
+            decimalValuesBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public Builder removeDecimalValues(int index) {
+          if (decimalValuesBuilder_ == null) {
+            ensureDecimalValuesIsMutable();
+            decimalValues_.remove(index);
+            onChanged();
+          } else {
+            decimalValuesBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public io.greptime.v1.Common.Decimal128.Builder getDecimalValuesBuilder(
+            int index) {
+          return getDecimalValuesFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public io.greptime.v1.Common.Decimal128OrBuilder getDecimalValuesOrBuilder(
+            int index) {
+          if (decimalValuesBuilder_ == null) {
+            return decimalValues_.get(index);  } else {
+            return decimalValuesBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public java.util.List<? extends io.greptime.v1.Common.Decimal128OrBuilder> 
+             getDecimalValuesOrBuilderList() {
+          if (decimalValuesBuilder_ != null) {
+            return decimalValuesBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(decimalValues_);
+          }
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public io.greptime.v1.Common.Decimal128.Builder addDecimalValuesBuilder() {
+          return getDecimalValuesFieldBuilder().addBuilder(
+              io.greptime.v1.Common.Decimal128.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public io.greptime.v1.Common.Decimal128.Builder addDecimalValuesBuilder(
+            int index) {
+          return getDecimalValuesFieldBuilder().addBuilder(
+              index, io.greptime.v1.Common.Decimal128.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .greptime.v1.Decimal128 decimal_values = 31;</code>
+         */
+        public java.util.List<io.greptime.v1.Common.Decimal128.Builder> 
+             getDecimalValuesBuilderList() {
+          return getDecimalValuesFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder> 
+            getDecimalValuesFieldBuilder() {
+          if (decimalValuesBuilder_ == null) {
+            decimalValuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder>(
+                    decimalValues_,
+                    ((bitField0_ & 0x40000000) != 0),
+                    getParentForChildren(),
+                    isClean());
+            decimalValues_ = null;
+          }
+          return decimalValuesBuilder_;
+        }
         @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -7717,12 +8089,12 @@ public final class Columns {
   static {
     java.lang.String[] descriptorData = {
       "\n\030greptime/v1/column.proto\022\013greptime.v1\032" +
-      "\030greptime/v1/common.proto\"\256\010\n\006Column\022\023\n\013" +
+      "\030greptime/v1/common.proto\"\337\010\n\006Column\022\023\n\013" +
       "column_name\030\001 \001(\t\0220\n\rsemantic_type\030\002 \001(\016" +
       "2\031.greptime.v1.SemanticType\022*\n\006values\030\003 " +
       "\001(\0132\032.greptime.v1.Column.Values\022\021\n\tnull_" +
       "mask\030\004 \001(\014\022-\n\010datatype\030\005 \001(\0162\033.greptime." +
-      "v1.ColumnDataType\032\356\006\n\006Values\022\021\n\ti8_value" +
+      "v1.ColumnDataType\032\237\007\n\006Values\022\021\n\ti8_value" +
       "s\030\001 \003(\005\022\022\n\ni16_values\030\002 \003(\005\022\022\n\ni32_value" +
       "s\030\003 \003(\005\022\022\n\ni64_values\030\004 \003(\003\022\021\n\tu8_values" +
       "\030\005 \003(\r\022\022\n\nu16_values\030\006 \003(\r\022\022\n\nu32_values" +
@@ -7744,9 +8116,10 @@ public final class Columns {
       "duration_second_values\030\033 \003(\003\022#\n\033duration" +
       "_millisecond_values\030\034 \003(\003\022#\n\033duration_mi" +
       "crosecond_values\030\035 \003(\003\022\"\n\032duration_nanos" +
-      "econd_values\030\036 \003(\003BP\n\016io.greptime.v1B\007Co" +
-      "lumnsZ5github.com/GreptimeTeam/greptime-" +
-      "proto/go/greptime/v1b\006proto3"
+      "econd_values\030\036 \003(\003\022/\n\016decimal_values\030\037 \003" +
+      "(\0132\027.greptime.v1.Decimal128BP\n\016io.grepti" +
+      "me.v1B\007ColumnsZ5github.com/GreptimeTeam/" +
+      "greptime-proto/go/greptime/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7764,7 +8137,7 @@ public final class Columns {
     internal_static_greptime_v1_Column_Values_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_Column_Values_descriptor,
-        new java.lang.String[] { "I8Values", "I16Values", "I32Values", "I64Values", "U8Values", "U16Values", "U32Values", "U64Values", "F32Values", "F64Values", "BoolValues", "BinaryValues", "StringValues", "DateValues", "DatetimeValues", "TimestampSecondValues", "TimestampMillisecondValues", "TimestampMicrosecondValues", "TimestampNanosecondValues", "TimeSecondValues", "TimeMillisecondValues", "TimeMicrosecondValues", "TimeNanosecondValues", "IntervalYearMonthValues", "IntervalDayTimeValues", "IntervalMonthDayNanoValues", "DurationSecondValues", "DurationMillisecondValues", "DurationMicrosecondValues", "DurationNanosecondValues", });
+        new java.lang.String[] { "I8Values", "I16Values", "I32Values", "I64Values", "U8Values", "U16Values", "U32Values", "U64Values", "F32Values", "F64Values", "BoolValues", "BinaryValues", "StringValues", "DateValues", "DatetimeValues", "TimestampSecondValues", "TimestampMillisecondValues", "TimestampMicrosecondValues", "TimestampNanosecondValues", "TimeSecondValues", "TimeMillisecondValues", "TimeMicrosecondValues", "TimeNanosecondValues", "IntervalYearMonthValues", "IntervalDayTimeValues", "IntervalMonthDayNanoValues", "DurationSecondValues", "DurationMillisecondValues", "DurationMicrosecondValues", "DurationNanosecondValues", "DecimalValues", });
     io.greptime.v1.Common.getDescriptor();
   }
 

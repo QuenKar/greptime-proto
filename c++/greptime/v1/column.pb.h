@@ -215,6 +215,7 @@ class Column_Values final :
     kDurationMillisecondValuesFieldNumber = 28,
     kDurationMicrosecondValuesFieldNumber = 29,
     kDurationNanosecondValuesFieldNumber = 30,
+    kDecimalValuesFieldNumber = 31,
   };
   // repeated int32 i8_values = 1;
   int i8_values_size() const;
@@ -876,6 +877,24 @@ class Column_Values final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
       mutable_duration_nanosecond_values();
 
+  // repeated .greptime.v1.Decimal128 decimal_values = 31;
+  int decimal_values_size() const;
+  private:
+  int _internal_decimal_values_size() const;
+  public:
+  void clear_decimal_values();
+  ::greptime::v1::Decimal128* mutable_decimal_values(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::Decimal128 >*
+      mutable_decimal_values();
+  private:
+  const ::greptime::v1::Decimal128& _internal_decimal_values(int index) const;
+  ::greptime::v1::Decimal128* _internal_add_decimal_values();
+  public:
+  const ::greptime::v1::Decimal128& decimal_values(int index) const;
+  ::greptime::v1::Decimal128* add_decimal_values();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::Decimal128 >&
+      decimal_values() const;
+
   // @@protoc_insertion_point(class_scope:greptime.v1.Column.Values)
  private:
   class _Internal;
@@ -938,6 +957,7 @@ class Column_Values final :
     mutable std::atomic<int> _duration_microsecond_values_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > duration_nanosecond_values_;
     mutable std::atomic<int> _duration_nanosecond_values_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::Decimal128 > decimal_values_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2621,6 +2641,43 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
 Column_Values::mutable_duration_nanosecond_values() {
   // @@protoc_insertion_point(field_mutable_list:greptime.v1.Column.Values.duration_nanosecond_values)
   return _internal_mutable_duration_nanosecond_values();
+}
+
+// repeated .greptime.v1.Decimal128 decimal_values = 31;
+inline int Column_Values::_internal_decimal_values_size() const {
+  return _impl_.decimal_values_.size();
+}
+inline int Column_Values::decimal_values_size() const {
+  return _internal_decimal_values_size();
+}
+inline ::greptime::v1::Decimal128* Column_Values::mutable_decimal_values(int index) {
+  // @@protoc_insertion_point(field_mutable:greptime.v1.Column.Values.decimal_values)
+  return _impl_.decimal_values_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::Decimal128 >*
+Column_Values::mutable_decimal_values() {
+  // @@protoc_insertion_point(field_mutable_list:greptime.v1.Column.Values.decimal_values)
+  return &_impl_.decimal_values_;
+}
+inline const ::greptime::v1::Decimal128& Column_Values::_internal_decimal_values(int index) const {
+  return _impl_.decimal_values_.Get(index);
+}
+inline const ::greptime::v1::Decimal128& Column_Values::decimal_values(int index) const {
+  // @@protoc_insertion_point(field_get:greptime.v1.Column.Values.decimal_values)
+  return _internal_decimal_values(index);
+}
+inline ::greptime::v1::Decimal128* Column_Values::_internal_add_decimal_values() {
+  return _impl_.decimal_values_.Add();
+}
+inline ::greptime::v1::Decimal128* Column_Values::add_decimal_values() {
+  ::greptime::v1::Decimal128* _add = _internal_add_decimal_values();
+  // @@protoc_insertion_point(field_add:greptime.v1.Column.Values.decimal_values)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::Decimal128 >&
+Column_Values::decimal_values() const {
+  // @@protoc_insertion_point(field_list:greptime.v1.Column.Values.decimal_values)
+  return _impl_.decimal_values_;
 }
 
 // -------------------------------------------------------------------

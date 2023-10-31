@@ -145,6 +145,7 @@ const uint32_t TableStruct_greptime_2fv1_2frow_2eproto::offsets[] PROTOBUF_SECTI
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::greptime::v1::Value, _impl_.value_data_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -170,7 +171,7 @@ const char descriptor_table_protodef_greptime_2fv1_2frow_2eproto[] PROTOBUF_SECT
   "\0162\033.greptime.v1.ColumnDataType\0220\n\rsemant"
   "ic_type\030\003 \001(\0162\031.greptime.v1.SemanticType"
   "\")\n\003Row\022\"\n\006values\030\001 \003(\0132\022.greptime.v1.Va"
-  "lue\"\234\007\n\005Value\022\022\n\010i8_value\030\001 \001(\005H\000\022\023\n\ti16"
+  "lue\"\316\007\n\005Value\022\022\n\010i8_value\030\001 \001(\005H\000\022\023\n\ti16"
   "_value\030\002 \001(\005H\000\022\023\n\ti32_value\030\003 \001(\005H\000\022\023\n\ti"
   "64_value\030\004 \001(\003H\000\022\022\n\010u8_value\030\005 \001(\rH\000\022\023\n\t"
   "u16_value\030\006 \001(\rH\000\022\023\n\tu32_value\030\007 \001(\rH\000\022\023"
@@ -192,17 +193,18 @@ const char descriptor_table_protodef_greptime_2fv1_2frow_2eproto[] PROTOBUF_SECT
   "hDayNanoH\000\022\037\n\025duration_second_value\030\033 \001("
   "\003H\000\022$\n\032duration_millisecond_value\030\034 \001(\003H"
   "\000\022$\n\032duration_microsecond_value\030\035 \001(\003H\000\022"
-  "#\n\031duration_nanosecond_value\030\036 \001(\003H\000B\014\n\n"
-  "value_dataBP\n\016io.greptime.v1B\007RowDataZ5g"
-  "ithub.com/GreptimeTeam/greptime-proto/go"
-  "/greptime/v1b\006proto3"
+  "#\n\031duration_nanosecond_value\030\036 \001(\003H\000\0220\n\r"
+  "decimal_value\030\037 \001(\0132\027.greptime.v1.Decima"
+  "l128H\000B\014\n\nvalue_dataBP\n\016io.greptime.v1B\007"
+  "RowDataZ5github.com/GreptimeTeam/greptim"
+  "e-proto/go/greptime/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_greptime_2fv1_2frow_2eproto_deps[1] = {
   &::descriptor_table_greptime_2fv1_2fcommon_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_greptime_2fv1_2frow_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_greptime_2fv1_2frow_2eproto = {
-    false, false, 1340, descriptor_table_protodef_greptime_2fv1_2frow_2eproto,
+    false, false, 1390, descriptor_table_protodef_greptime_2fv1_2frow_2eproto,
     "greptime/v1/row.proto",
     &descriptor_table_greptime_2fv1_2frow_2eproto_once, descriptor_table_greptime_2fv1_2frow_2eproto_deps, 1, 4,
     schemas, file_default_instances, TableStruct_greptime_2fv1_2frow_2eproto::offsets,
@@ -896,11 +898,16 @@ void Row::InternalSwap(Row* other) {
 class Value::_Internal {
  public:
   static const ::greptime::v1::IntervalMonthDayNano& interval_month_day_nano_values(const Value* msg);
+  static const ::greptime::v1::Decimal128& decimal_value(const Value* msg);
 };
 
 const ::greptime::v1::IntervalMonthDayNano&
 Value::_Internal::interval_month_day_nano_values(const Value* msg) {
   return *msg->_impl_.value_data_.interval_month_day_nano_values_;
+}
+const ::greptime::v1::Decimal128&
+Value::_Internal::decimal_value(const Value* msg) {
+  return *msg->_impl_.value_data_.decimal_value_;
 }
 void Value::set_allocated_interval_month_day_nano_values(::greptime::v1::IntervalMonthDayNano* interval_month_day_nano_values) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -922,6 +929,30 @@ void Value::clear_interval_month_day_nano_values() {
   if (_internal_has_interval_month_day_nano_values()) {
     if (GetArenaForAllocation() == nullptr) {
       delete _impl_.value_data_.interval_month_day_nano_values_;
+    }
+    clear_has_value_data();
+  }
+}
+void Value::set_allocated_decimal_value(::greptime::v1::Decimal128* decimal_value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_value_data();
+  if (decimal_value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(decimal_value));
+    if (message_arena != submessage_arena) {
+      decimal_value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, decimal_value, submessage_arena);
+    }
+    set_has_decimal_value();
+    _impl_.value_data_.decimal_value_ = decimal_value;
+  }
+  // @@protoc_insertion_point(field_set_allocated:greptime.v1.Value.decimal_value)
+}
+void Value::clear_decimal_value() {
+  if (_internal_has_decimal_value()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.value_data_.decimal_value_;
     }
     clear_has_value_data();
   }
@@ -1062,6 +1093,11 @@ Value::Value(const Value& from)
     }
     case kDurationNanosecondValue: {
       _this->_internal_set_duration_nanosecond_value(from._internal_duration_nanosecond_value());
+      break;
+    }
+    case kDecimalValue: {
+      _this->_internal_mutable_decimal_value()->::greptime::v1::Decimal128::MergeFrom(
+          from._internal_decimal_value());
       break;
     }
     case VALUE_DATA_NOT_SET: {
@@ -1226,6 +1262,12 @@ void Value::clear_value_data() {
     }
     case kDurationNanosecondValue: {
       // No need to clear
+      break;
+    }
+    case kDecimalValue: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete _impl_.value_data_.decimal_value_;
+      }
       break;
     }
     case VALUE_DATA_NOT_SET: {
@@ -1495,6 +1537,14 @@ const char* Value::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
+      // .greptime.v1.Decimal128 decimal_value = 31;
+      case 31:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 250)) {
+          ptr = ctx->ParseMessage(_internal_mutable_decimal_value(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -1709,6 +1759,13 @@ uint8_t* Value::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(30, this->_internal_duration_nanosecond_value(), target);
   }
 
+  // .greptime.v1.Decimal128 decimal_value = 31;
+  if (_internal_has_decimal_value()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(31, _Internal::decimal_value(this),
+        _Internal::decimal_value(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1910,6 +1967,13 @@ size_t Value::ByteSizeLong() const {
           this->_internal_duration_nanosecond_value());
       break;
     }
+    // .greptime.v1.Decimal128 decimal_value = 31;
+    case kDecimalValue: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.value_data_.decimal_value_);
+      break;
+    }
     case VALUE_DATA_NOT_SET: {
       break;
     }
@@ -2052,6 +2116,11 @@ void Value::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF
     }
     case kDurationNanosecondValue: {
       _this->_internal_set_duration_nanosecond_value(from._internal_duration_nanosecond_value());
+      break;
+    }
+    case kDecimalValue: {
+      _this->_internal_mutable_decimal_value()->::greptime::v1::Decimal128::MergeFrom(
+          from._internal_decimal_value());
       break;
     }
     case VALUE_DATA_NOT_SET: {

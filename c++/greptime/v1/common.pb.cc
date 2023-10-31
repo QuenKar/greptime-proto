@@ -149,9 +149,24 @@ struct IntervalMonthDayNanoDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IntervalMonthDayNanoDefaultTypeInternal _IntervalMonthDayNano_default_instance_;
+PROTOBUF_CONSTEXPR Decimal128::Decimal128(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.hi_)*/int64_t{0}
+  , /*decltype(_impl_.lo_)*/int64_t{0}
+  , /*decltype(_impl_.precision_and_scale_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct Decimal128DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Decimal128DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Decimal128DefaultTypeInternal() {}
+  union {
+    Decimal128 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Decimal128DefaultTypeInternal _Decimal128_default_instance_;
 }  // namespace v1
 }  // namespace greptime
-static ::_pb::Metadata file_level_metadata_greptime_2fv1_2fcommon_2eproto[9];
+static ::_pb::Metadata file_level_metadata_greptime_2fv1_2fcommon_2eproto[10];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_greptime_2fv1_2fcommon_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_greptime_2fv1_2fcommon_2eproto = nullptr;
 
@@ -230,6 +245,15 @@ const uint32_t TableStruct_greptime_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::greptime::v1::IntervalMonthDayNano, _impl_.months_),
   PROTOBUF_FIELD_OFFSET(::greptime::v1::IntervalMonthDayNano, _impl_.days_),
   PROTOBUF_FIELD_OFFSET(::greptime::v1::IntervalMonthDayNano, _impl_.nanoseconds_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::Decimal128, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::Decimal128, _impl_.hi_),
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::Decimal128, _impl_.lo_),
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::Decimal128, _impl_.precision_and_scale_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::greptime::v1::RequestHeader)},
@@ -241,6 +265,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 51, -1, -1, sizeof(::greptime::v1::AffectedRows)},
   { 58, -1, -1, sizeof(::greptime::v1::FlightMetadata)},
   { 65, -1, -1, sizeof(::greptime::v1::IntervalMonthDayNano)},
+  { 74, -1, -1, sizeof(::greptime::v1::Decimal128)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -253,6 +278,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::greptime::v1::_AffectedRows_default_instance_._instance,
   &::greptime::v1::_FlightMetadata_default_instance_._instance,
   &::greptime::v1::_IntervalMonthDayNano_default_instance_._instance,
+  &::greptime::v1::_Decimal128_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_greptime_2fv1_2fcommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -271,31 +297,33 @@ const char descriptor_table_protodef_greptime_2fv1_2fcommon_2eproto[] PROTOBUF_S
   "\022\r\n\005value\030\001 \001(\r\"B\n\016FlightMetadata\0220\n\raff"
   "ected_rows\030\001 \001(\0132\031.greptime.v1.AffectedR"
   "ows\"I\n\024IntervalMonthDayNano\022\016\n\006months\030\001 "
-  "\001(\005\022\014\n\004days\030\002 \001(\005\022\023\n\013nanoseconds\030\003 \001(\003*1"
-  "\n\014SemanticType\022\007\n\003TAG\020\000\022\t\n\005FIELD\020\001\022\r\n\tTI"
-  "MESTAMP\020\002*\250\004\n\016ColumnDataType\022\013\n\007BOOLEAN\020"
-  "\000\022\010\n\004INT8\020\001\022\t\n\005INT16\020\002\022\t\n\005INT32\020\003\022\t\n\005INT"
-  "64\020\004\022\t\n\005UINT8\020\005\022\n\n\006UINT16\020\006\022\n\n\006UINT32\020\007\022"
-  "\n\n\006UINT64\020\010\022\013\n\007FLOAT32\020\t\022\013\n\007FLOAT64\020\n\022\n\n"
-  "\006BINARY\020\013\022\n\n\006STRING\020\014\022\010\n\004DATE\020\r\022\014\n\010DATET"
-  "IME\020\016\022\024\n\020TIMESTAMP_SECOND\020\017\022\031\n\025TIMESTAMP"
-  "_MILLISECOND\020\020\022\031\n\025TIMESTAMP_MICROSECOND\020"
-  "\021\022\030\n\024TIMESTAMP_NANOSECOND\020\022\022\017\n\013TIME_SECO"
-  "ND\020\023\022\024\n\020TIME_MILLISECOND\020\024\022\024\n\020TIME_MICRO"
-  "SECOND\020\025\022\023\n\017TIME_NANOSECOND\020\026\022\027\n\023INTERVA"
-  "L_YEAR_MONTH\020\027\022\025\n\021INTERVAL_DAY_TIME\020\030\022\033\n"
-  "\027INTERVAL_MONTH_DAY_NANO\020\031\022\023\n\017DURATION_S"
-  "ECOND\020\032\022\030\n\024DURATION_MILLISECOND\020\033\022\030\n\024DUR"
-  "ATION_MICROSECOND\020\034\022\027\n\023DURATION_NANOSECO"
-  "ND\020\035BO\n\016io.greptime.v1B\006CommonZ5github.c"
-  "om/GreptimeTeam/greptime-proto/go/grepti"
-  "me/v1b\006proto3"
+  "\001(\005\022\014\n\004days\030\002 \001(\005\022\023\n\013nanoseconds\030\003 \001(\003\"A"
+  "\n\nDecimal128\022\n\n\002hi\030\001 \001(\003\022\n\n\002lo\030\002 \001(\003\022\033\n\023"
+  "precision_and_scale\030\003 \001(\005*1\n\014SemanticTyp"
+  "e\022\007\n\003TAG\020\000\022\t\n\005FIELD\020\001\022\r\n\tTIMESTAMP\020\002*\270\004\n"
+  "\016ColumnDataType\022\013\n\007BOOLEAN\020\000\022\010\n\004INT8\020\001\022\t"
+  "\n\005INT16\020\002\022\t\n\005INT32\020\003\022\t\n\005INT64\020\004\022\t\n\005UINT8"
+  "\020\005\022\n\n\006UINT16\020\006\022\n\n\006UINT32\020\007\022\n\n\006UINT64\020\010\022\013"
+  "\n\007FLOAT32\020\t\022\013\n\007FLOAT64\020\n\022\n\n\006BINARY\020\013\022\n\n\006"
+  "STRING\020\014\022\010\n\004DATE\020\r\022\014\n\010DATETIME\020\016\022\024\n\020TIME"
+  "STAMP_SECOND\020\017\022\031\n\025TIMESTAMP_MILLISECOND\020"
+  "\020\022\031\n\025TIMESTAMP_MICROSECOND\020\021\022\030\n\024TIMESTAM"
+  "P_NANOSECOND\020\022\022\017\n\013TIME_SECOND\020\023\022\024\n\020TIME_"
+  "MILLISECOND\020\024\022\024\n\020TIME_MICROSECOND\020\025\022\023\n\017T"
+  "IME_NANOSECOND\020\026\022\027\n\023INTERVAL_YEAR_MONTH\020"
+  "\027\022\025\n\021INTERVAL_DAY_TIME\020\030\022\033\n\027INTERVAL_MON"
+  "TH_DAY_NANO\020\031\022\023\n\017DURATION_SECOND\020\032\022\030\n\024DU"
+  "RATION_MILLISECOND\020\033\022\030\n\024DURATION_MICROSE"
+  "COND\020\034\022\027\n\023DURATION_NANOSECOND\020\035\022\016\n\nDECIM"
+  "AL128\020\036BO\n\016io.greptime.v1B\006CommonZ5githu"
+  "b.com/GreptimeTeam/greptime-proto/go/gre"
+  "ptime/v1b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_greptime_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_greptime_2fv1_2fcommon_2eproto = {
-    false, false, 1333, descriptor_table_protodef_greptime_2fv1_2fcommon_2eproto,
+    false, false, 1416, descriptor_table_protodef_greptime_2fv1_2fcommon_2eproto,
     "greptime/v1/common.proto",
-    &descriptor_table_greptime_2fv1_2fcommon_2eproto_once, nullptr, 0, 9,
+    &descriptor_table_greptime_2fv1_2fcommon_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_greptime_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_greptime_2fv1_2fcommon_2eproto, file_level_enum_descriptors_greptime_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_greptime_2fv1_2fcommon_2eproto,
@@ -359,6 +387,7 @@ bool ColumnDataType_IsValid(int value) {
     case 27:
     case 28:
     case 29:
+    case 30:
       return true;
     default:
       return false;
@@ -2560,6 +2589,241 @@ void IntervalMonthDayNano::InternalSwap(IntervalMonthDayNano* other) {
       file_level_metadata_greptime_2fv1_2fcommon_2eproto[8]);
 }
 
+// ===================================================================
+
+class Decimal128::_Internal {
+ public:
+};
+
+Decimal128::Decimal128(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:greptime.v1.Decimal128)
+}
+Decimal128::Decimal128(const Decimal128& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Decimal128* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.hi_){}
+    , decltype(_impl_.lo_){}
+    , decltype(_impl_.precision_and_scale_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.hi_, &from._impl_.hi_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.precision_and_scale_) -
+    reinterpret_cast<char*>(&_impl_.hi_)) + sizeof(_impl_.precision_and_scale_));
+  // @@protoc_insertion_point(copy_constructor:greptime.v1.Decimal128)
+}
+
+inline void Decimal128::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.hi_){int64_t{0}}
+    , decltype(_impl_.lo_){int64_t{0}}
+    , decltype(_impl_.precision_and_scale_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+Decimal128::~Decimal128() {
+  // @@protoc_insertion_point(destructor:greptime.v1.Decimal128)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Decimal128::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void Decimal128::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void Decimal128::Clear() {
+// @@protoc_insertion_point(message_clear_start:greptime.v1.Decimal128)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.hi_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.precision_and_scale_) -
+      reinterpret_cast<char*>(&_impl_.hi_)) + sizeof(_impl_.precision_and_scale_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Decimal128::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 hi = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.hi_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 lo = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.lo_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 precision_and_scale = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.precision_and_scale_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Decimal128::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:greptime.v1.Decimal128)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 hi = 1;
+  if (this->_internal_hi() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_hi(), target);
+  }
+
+  // int64 lo = 2;
+  if (this->_internal_lo() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_lo(), target);
+  }
+
+  // int32 precision_and_scale = 3;
+  if (this->_internal_precision_and_scale() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_precision_and_scale(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:greptime.v1.Decimal128)
+  return target;
+}
+
+size_t Decimal128::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:greptime.v1.Decimal128)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 hi = 1;
+  if (this->_internal_hi() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_hi());
+  }
+
+  // int64 lo = 2;
+  if (this->_internal_lo() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_lo());
+  }
+
+  // int32 precision_and_scale = 3;
+  if (this->_internal_precision_and_scale() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_precision_and_scale());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Decimal128::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    Decimal128::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Decimal128::GetClassData() const { return &_class_data_; }
+
+
+void Decimal128::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Decimal128*>(&to_msg);
+  auto& from = static_cast<const Decimal128&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:greptime.v1.Decimal128)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_hi() != 0) {
+    _this->_internal_set_hi(from._internal_hi());
+  }
+  if (from._internal_lo() != 0) {
+    _this->_internal_set_lo(from._internal_lo());
+  }
+  if (from._internal_precision_and_scale() != 0) {
+    _this->_internal_set_precision_and_scale(from._internal_precision_and_scale());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Decimal128::CopyFrom(const Decimal128& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:greptime.v1.Decimal128)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Decimal128::IsInitialized() const {
+  return true;
+}
+
+void Decimal128::InternalSwap(Decimal128* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Decimal128, _impl_.precision_and_scale_)
+      + sizeof(Decimal128::_impl_.precision_and_scale_)
+      - PROTOBUF_FIELD_OFFSET(Decimal128, _impl_.hi_)>(
+          reinterpret_cast<char*>(&_impl_.hi_),
+          reinterpret_cast<char*>(&other->_impl_.hi_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Decimal128::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_greptime_2fv1_2fcommon_2eproto_getter, &descriptor_table_greptime_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_greptime_2fv1_2fcommon_2eproto[9]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace greptime
@@ -2599,6 +2863,10 @@ Arena::CreateMaybeMessage< ::greptime::v1::FlightMetadata >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::greptime::v1::IntervalMonthDayNano*
 Arena::CreateMaybeMessage< ::greptime::v1::IntervalMonthDayNano >(Arena* arena) {
   return Arena::CreateMessageInternal< ::greptime::v1::IntervalMonthDayNano >(arena);
+}
+template<> PROTOBUF_NOINLINE ::greptime::v1::Decimal128*
+Arena::CreateMaybeMessage< ::greptime::v1::Decimal128 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::greptime::v1::Decimal128 >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

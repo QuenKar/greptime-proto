@@ -98,10 +98,17 @@ enum ColumnDataType {
   DURATION_MILLISECOND = 27;
   DURATION_MICROSECOND = 28;
   DURATION_NANOSECOND = 29;
+  DECIMAL128 = 30;
 }
 
 message IntervalMonthDayNano {
   int32 months = 1;
   int32 days = 2;
   int64 nanoseconds = 3;
+}
+
+message Decimal128 {
+  int64 hi = 1;
+  int64 lo = 2;
+  int32 precision_and_scale = 3;
 }

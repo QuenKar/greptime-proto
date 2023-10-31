@@ -71,5 +71,6 @@ message Value {
     int64 duration_millisecond_value = 28;
     int64 duration_microsecond_value = 29;
     int64 duration_nanosecond_value = 30;
+    Decimal128 decimal_value = 31;
   }
 }
