@@ -3105,19 +3105,19 @@ public final class RowData {
     long getDurationNanosecondValue();
 
     /**
-     * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
-     * @return Whether the decimalValue field is set.
+     * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
+     * @return Whether the decimal128Value field is set.
      */
-    boolean hasDecimalValue();
+    boolean hasDecimal128Value();
     /**
-     * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
-     * @return The decimalValue.
+     * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
+     * @return The decimal128Value.
      */
-    io.greptime.v1.Common.Decimal128 getDecimalValue();
+    io.greptime.v1.Common.Decimal128 getDecimal128Value();
     /**
-     * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+     * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      */
-    io.greptime.v1.Common.Decimal128OrBuilder getDecimalValueOrBuilder();
+    io.greptime.v1.Common.Decimal128OrBuilder getDecimal128ValueOrBuilder();
 
     public io.greptime.v1.RowData.Value.ValueDataCase getValueDataCase();
   }
@@ -3409,7 +3409,7 @@ public final class RowData {
       DURATION_MILLISECOND_VALUE(28),
       DURATION_MICROSECOND_VALUE(29),
       DURATION_NANOSECOND_VALUE(30),
-      DECIMAL_VALUE(31),
+      DECIMAL128_VALUE(31),
       VALUEDATA_NOT_SET(0);
       private final int value;
       private ValueDataCase(int value) {
@@ -3457,7 +3457,7 @@ public final class RowData {
           case 28: return DURATION_MILLISECOND_VALUE;
           case 29: return DURATION_MICROSECOND_VALUE;
           case 30: return DURATION_NANOSECOND_VALUE;
-          case 31: return DECIMAL_VALUE;
+          case 31: return DECIMAL128_VALUE;
           case 0: return VALUEDATA_NOT_SET;
           default: return null;
         }
@@ -4144,31 +4144,31 @@ public final class RowData {
       return 0L;
     }
 
-    public static final int DECIMAL_VALUE_FIELD_NUMBER = 31;
+    public static final int DECIMAL128_VALUE_FIELD_NUMBER = 31;
     /**
-     * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
-     * @return Whether the decimalValue field is set.
+     * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
+     * @return Whether the decimal128Value field is set.
      */
     @java.lang.Override
-    public boolean hasDecimalValue() {
+    public boolean hasDecimal128Value() {
       return valueDataCase_ == 31;
     }
     /**
-     * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
-     * @return The decimalValue.
+     * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
+     * @return The decimal128Value.
      */
     @java.lang.Override
-    public io.greptime.v1.Common.Decimal128 getDecimalValue() {
+    public io.greptime.v1.Common.Decimal128 getDecimal128Value() {
       if (valueDataCase_ == 31) {
          return (io.greptime.v1.Common.Decimal128) valueData_;
       }
       return io.greptime.v1.Common.Decimal128.getDefaultInstance();
     }
     /**
-     * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+     * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      */
     @java.lang.Override
-    public io.greptime.v1.Common.Decimal128OrBuilder getDecimalValueOrBuilder() {
+    public io.greptime.v1.Common.Decimal128OrBuilder getDecimal128ValueOrBuilder() {
       if (valueDataCase_ == 31) {
          return (io.greptime.v1.Common.Decimal128) valueData_;
       }
@@ -4610,8 +4610,8 @@ public final class RowData {
               != other.getDurationNanosecondValue()) return false;
           break;
         case 31:
-          if (!getDecimalValue()
-              .equals(other.getDecimalValue())) return false;
+          if (!getDecimal128Value()
+              .equals(other.getDecimal128Value())) return false;
           break;
         case 0:
         default:
@@ -4768,8 +4768,8 @@ public final class RowData {
               getDurationNanosecondValue());
           break;
         case 31:
-          hash = (37 * hash) + DECIMAL_VALUE_FIELD_NUMBER;
-          hash = (53 * hash) + getDecimalValue().hashCode();
+          hash = (37 * hash) + DECIMAL128_VALUE_FIELD_NUMBER;
+          hash = (53 * hash) + getDecimal128Value().hashCode();
           break;
         case 0:
         default:
@@ -5030,10 +5030,10 @@ public final class RowData {
           result.valueData_ = valueData_;
         }
         if (valueDataCase_ == 31) {
-          if (decimalValueBuilder_ == null) {
+          if (decimal128ValueBuilder_ == null) {
             result.valueData_ = valueData_;
           } else {
-            result.valueData_ = decimalValueBuilder_.build();
+            result.valueData_ = decimal128ValueBuilder_.build();
           }
         }
         result.valueDataCase_ = valueDataCase_;
@@ -5208,8 +5208,8 @@ public final class RowData {
             setDurationNanosecondValue(other.getDurationNanosecondValue());
             break;
           }
-          case DECIMAL_VALUE: {
-            mergeDecimalValue(other.getDecimalValue());
+          case DECIMAL128_VALUE: {
+            mergeDecimal128Value(other.getDecimal128Value());
             break;
           }
           case VALUEDATA_NOT_SET: {
@@ -6651,68 +6651,68 @@ public final class RowData {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder> decimalValueBuilder_;
+          io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder> decimal128ValueBuilder_;
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
-       * @return Whether the decimalValue field is set.
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
+       * @return Whether the decimal128Value field is set.
        */
       @java.lang.Override
-      public boolean hasDecimalValue() {
+      public boolean hasDecimal128Value() {
         return valueDataCase_ == 31;
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
-       * @return The decimalValue.
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
+       * @return The decimal128Value.
        */
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128 getDecimalValue() {
-        if (decimalValueBuilder_ == null) {
+      public io.greptime.v1.Common.Decimal128 getDecimal128Value() {
+        if (decimal128ValueBuilder_ == null) {
           if (valueDataCase_ == 31) {
             return (io.greptime.v1.Common.Decimal128) valueData_;
           }
           return io.greptime.v1.Common.Decimal128.getDefaultInstance();
         } else {
           if (valueDataCase_ == 31) {
-            return decimalValueBuilder_.getMessage();
+            return decimal128ValueBuilder_.getMessage();
           }
           return io.greptime.v1.Common.Decimal128.getDefaultInstance();
         }
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
-      public Builder setDecimalValue(io.greptime.v1.Common.Decimal128 value) {
-        if (decimalValueBuilder_ == null) {
+      public Builder setDecimal128Value(io.greptime.v1.Common.Decimal128 value) {
+        if (decimal128ValueBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           valueData_ = value;
           onChanged();
         } else {
-          decimalValueBuilder_.setMessage(value);
+          decimal128ValueBuilder_.setMessage(value);
         }
         valueDataCase_ = 31;
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
-      public Builder setDecimalValue(
+      public Builder setDecimal128Value(
           io.greptime.v1.Common.Decimal128.Builder builderForValue) {
-        if (decimalValueBuilder_ == null) {
+        if (decimal128ValueBuilder_ == null) {
           valueData_ = builderForValue.build();
           onChanged();
         } else {
-          decimalValueBuilder_.setMessage(builderForValue.build());
+          decimal128ValueBuilder_.setMessage(builderForValue.build());
         }
         valueDataCase_ = 31;
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
-      public Builder mergeDecimalValue(io.greptime.v1.Common.Decimal128 value) {
-        if (decimalValueBuilder_ == null) {
+      public Builder mergeDecimal128Value(io.greptime.v1.Common.Decimal128 value) {
+        if (decimal128ValueBuilder_ == null) {
           if (valueDataCase_ == 31 &&
               valueData_ != io.greptime.v1.Common.Decimal128.getDefaultInstance()) {
             valueData_ = io.greptime.v1.Common.Decimal128.newBuilder((io.greptime.v1.Common.Decimal128) valueData_)
@@ -6723,19 +6723,19 @@ public final class RowData {
           onChanged();
         } else {
           if (valueDataCase_ == 31) {
-            decimalValueBuilder_.mergeFrom(value);
+            decimal128ValueBuilder_.mergeFrom(value);
           } else {
-            decimalValueBuilder_.setMessage(value);
+            decimal128ValueBuilder_.setMessage(value);
           }
         }
         valueDataCase_ = 31;
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
-      public Builder clearDecimalValue() {
-        if (decimalValueBuilder_ == null) {
+      public Builder clearDecimal128Value() {
+        if (decimal128ValueBuilder_ == null) {
           if (valueDataCase_ == 31) {
             valueDataCase_ = 0;
             valueData_ = null;
@@ -6746,23 +6746,23 @@ public final class RowData {
             valueDataCase_ = 0;
             valueData_ = null;
           }
-          decimalValueBuilder_.clear();
+          decimal128ValueBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
-      public io.greptime.v1.Common.Decimal128.Builder getDecimalValueBuilder() {
-        return getDecimalValueFieldBuilder().getBuilder();
+      public io.greptime.v1.Common.Decimal128.Builder getDecimal128ValueBuilder() {
+        return getDecimal128ValueFieldBuilder().getBuilder();
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128OrBuilder getDecimalValueOrBuilder() {
-        if ((valueDataCase_ == 31) && (decimalValueBuilder_ != null)) {
-          return decimalValueBuilder_.getMessageOrBuilder();
+      public io.greptime.v1.Common.Decimal128OrBuilder getDecimal128ValueOrBuilder() {
+        if ((valueDataCase_ == 31) && (decimal128ValueBuilder_ != null)) {
+          return decimal128ValueBuilder_.getMessageOrBuilder();
         } else {
           if (valueDataCase_ == 31) {
             return (io.greptime.v1.Common.Decimal128) valueData_;
@@ -6771,16 +6771,16 @@ public final class RowData {
         }
       }
       /**
-       * <code>.greptime.v1.Decimal128 decimal_value = 31;</code>
+       * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder> 
-          getDecimalValueFieldBuilder() {
-        if (decimalValueBuilder_ == null) {
+          getDecimal128ValueFieldBuilder() {
+        if (decimal128ValueBuilder_ == null) {
           if (!(valueDataCase_ == 31)) {
             valueData_ = io.greptime.v1.Common.Decimal128.getDefaultInstance();
           }
-          decimalValueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          decimal128ValueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder>(
                   (io.greptime.v1.Common.Decimal128) valueData_,
                   getParentForChildren(),
@@ -6789,7 +6789,7 @@ public final class RowData {
         }
         valueDataCase_ = 31;
         onChanged();;
-        return decimalValueBuilder_;
+        return decimal128ValueBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -6881,7 +6881,7 @@ public final class RowData {
       "\0162\033.greptime.v1.ColumnDataType\0220\n\rsemant" +
       "ic_type\030\003 \001(\0162\031.greptime.v1.SemanticType" +
       "\")\n\003Row\022\"\n\006values\030\001 \003(\0132\022.greptime.v1.Va" +
-      "lue\"\316\007\n\005Value\022\022\n\010i8_value\030\001 \001(\005H\000\022\023\n\ti16" +
+      "lue\"\321\007\n\005Value\022\022\n\010i8_value\030\001 \001(\005H\000\022\023\n\ti16" +
       "_value\030\002 \001(\005H\000\022\023\n\ti32_value\030\003 \001(\005H\000\022\023\n\ti" +
       "64_value\030\004 \001(\003H\000\022\022\n\010u8_value\030\005 \001(\rH\000\022\023\n\t" +
       "u16_value\030\006 \001(\rH\000\022\023\n\tu32_value\030\007 \001(\rH\000\022\023" +
@@ -6903,11 +6903,11 @@ public final class RowData {
       "hDayNanoH\000\022\037\n\025duration_second_value\030\033 \001(" +
       "\003H\000\022$\n\032duration_millisecond_value\030\034 \001(\003H" +
       "\000\022$\n\032duration_microsecond_value\030\035 \001(\003H\000\022" +
-      "#\n\031duration_nanosecond_value\030\036 \001(\003H\000\0220\n\r" +
-      "decimal_value\030\037 \001(\0132\027.greptime.v1.Decima" +
-      "l128H\000B\014\n\nvalue_dataBP\n\016io.greptime.v1B\007" +
-      "RowDataZ5github.com/GreptimeTeam/greptim" +
-      "e-proto/go/greptime/v1b\006proto3"
+      "#\n\031duration_nanosecond_value\030\036 \001(\003H\000\0223\n\020" +
+      "decimal128_value\030\037 \001(\0132\027.greptime.v1.Dec" +
+      "imal128H\000B\014\n\nvalue_dataBP\n\016io.greptime.v" +
+      "1B\007RowDataZ5github.com/GreptimeTeam/grep" +
+      "time-proto/go/greptime/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6937,7 +6937,7 @@ public final class RowData {
     internal_static_greptime_v1_Value_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_Value_descriptor,
-        new java.lang.String[] { "I8Value", "I16Value", "I32Value", "I64Value", "U8Value", "U16Value", "U32Value", "U64Value", "F32Value", "F64Value", "BoolValue", "BinaryValue", "StringValue", "DateValue", "DatetimeValue", "TimestampSecondValue", "TimestampMillisecondValue", "TimestampMicrosecondValue", "TimestampNanosecondValue", "TimeSecondValue", "TimeMillisecondValue", "TimeMicrosecondValue", "TimeNanosecondValue", "IntervalYearMonthValues", "IntervalDayTimeValues", "IntervalMonthDayNanoValues", "DurationSecondValue", "DurationMillisecondValue", "DurationMicrosecondValue", "DurationNanosecondValue", "DecimalValue", "ValueData", });
+        new java.lang.String[] { "I8Value", "I16Value", "I32Value", "I64Value", "U8Value", "U16Value", "U32Value", "U64Value", "F32Value", "F64Value", "BoolValue", "BinaryValue", "StringValue", "DateValue", "DatetimeValue", "TimestampSecondValue", "TimestampMillisecondValue", "TimestampMicrosecondValue", "TimestampNanosecondValue", "TimeSecondValue", "TimeMillisecondValue", "TimeMicrosecondValue", "TimeNanosecondValue", "IntervalYearMonthValues", "IntervalDayTimeValues", "IntervalMonthDayNanoValues", "DurationSecondValue", "DurationMillisecondValue", "DurationMicrosecondValue", "DurationNanosecondValue", "Decimal128Value", "ValueData", });
     io.greptime.v1.Common.getDescriptor();
   }
 

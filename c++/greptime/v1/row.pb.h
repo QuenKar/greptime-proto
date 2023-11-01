@@ -655,7 +655,7 @@ class Value final :
     kDurationMillisecondValue = 28,
     kDurationMicrosecondValue = 29,
     kDurationNanosecondValue = 30,
-    kDecimalValue = 31,
+    kDecimal128Value = 31,
     VALUE_DATA_NOT_SET = 0,
   };
 
@@ -767,7 +767,7 @@ class Value final :
     kDurationMillisecondValueFieldNumber = 28,
     kDurationMicrosecondValueFieldNumber = 29,
     kDurationNanosecondValueFieldNumber = 30,
-    kDecimalValueFieldNumber = 31,
+    kDecimal128ValueFieldNumber = 31,
   };
   // int32 i8_value = 1;
   bool has_i8_value() const;
@@ -1174,23 +1174,23 @@ class Value final :
   void _internal_set_duration_nanosecond_value(int64_t value);
   public:
 
-  // .greptime.v1.Decimal128 decimal_value = 31;
-  bool has_decimal_value() const;
+  // .greptime.v1.Decimal128 decimal128_value = 31;
+  bool has_decimal128_value() const;
   private:
-  bool _internal_has_decimal_value() const;
+  bool _internal_has_decimal128_value() const;
   public:
-  void clear_decimal_value();
-  const ::greptime::v1::Decimal128& decimal_value() const;
-  PROTOBUF_NODISCARD ::greptime::v1::Decimal128* release_decimal_value();
-  ::greptime::v1::Decimal128* mutable_decimal_value();
-  void set_allocated_decimal_value(::greptime::v1::Decimal128* decimal_value);
+  void clear_decimal128_value();
+  const ::greptime::v1::Decimal128& decimal128_value() const;
+  PROTOBUF_NODISCARD ::greptime::v1::Decimal128* release_decimal128_value();
+  ::greptime::v1::Decimal128* mutable_decimal128_value();
+  void set_allocated_decimal128_value(::greptime::v1::Decimal128* decimal128_value);
   private:
-  const ::greptime::v1::Decimal128& _internal_decimal_value() const;
-  ::greptime::v1::Decimal128* _internal_mutable_decimal_value();
+  const ::greptime::v1::Decimal128& _internal_decimal128_value() const;
+  ::greptime::v1::Decimal128* _internal_mutable_decimal128_value();
   public:
-  void unsafe_arena_set_allocated_decimal_value(
-      ::greptime::v1::Decimal128* decimal_value);
-  ::greptime::v1::Decimal128* unsafe_arena_release_decimal_value();
+  void unsafe_arena_set_allocated_decimal128_value(
+      ::greptime::v1::Decimal128* decimal128_value);
+  ::greptime::v1::Decimal128* unsafe_arena_release_decimal128_value();
 
   void clear_value_data();
   ValueDataCase value_data_case() const;
@@ -1227,7 +1227,7 @@ class Value final :
   void set_has_duration_millisecond_value();
   void set_has_duration_microsecond_value();
   void set_has_duration_nanosecond_value();
-  void set_has_decimal_value();
+  void set_has_decimal128_value();
 
   inline bool has_value_data() const;
   inline void clear_has_value_data();
@@ -1269,7 +1269,7 @@ class Value final :
       int64_t duration_millisecond_value_;
       int64_t duration_microsecond_value_;
       int64_t duration_nanosecond_value_;
-      ::greptime::v1::Decimal128* decimal_value_;
+      ::greptime::v1::Decimal128* decimal128_value_;
     } value_data_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     uint32_t _oneof_case_[1];
@@ -2757,69 +2757,69 @@ inline void Value::set_duration_nanosecond_value(int64_t value) {
   // @@protoc_insertion_point(field_set:greptime.v1.Value.duration_nanosecond_value)
 }
 
-// .greptime.v1.Decimal128 decimal_value = 31;
-inline bool Value::_internal_has_decimal_value() const {
-  return value_data_case() == kDecimalValue;
+// .greptime.v1.Decimal128 decimal128_value = 31;
+inline bool Value::_internal_has_decimal128_value() const {
+  return value_data_case() == kDecimal128Value;
 }
-inline bool Value::has_decimal_value() const {
-  return _internal_has_decimal_value();
+inline bool Value::has_decimal128_value() const {
+  return _internal_has_decimal128_value();
 }
-inline void Value::set_has_decimal_value() {
-  _impl_._oneof_case_[0] = kDecimalValue;
+inline void Value::set_has_decimal128_value() {
+  _impl_._oneof_case_[0] = kDecimal128Value;
 }
-inline ::greptime::v1::Decimal128* Value::release_decimal_value() {
-  // @@protoc_insertion_point(field_release:greptime.v1.Value.decimal_value)
-  if (_internal_has_decimal_value()) {
+inline ::greptime::v1::Decimal128* Value::release_decimal128_value() {
+  // @@protoc_insertion_point(field_release:greptime.v1.Value.decimal128_value)
+  if (_internal_has_decimal128_value()) {
     clear_has_value_data();
-    ::greptime::v1::Decimal128* temp = _impl_.value_data_.decimal_value_;
+    ::greptime::v1::Decimal128* temp = _impl_.value_data_.decimal128_value_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
-    _impl_.value_data_.decimal_value_ = nullptr;
+    _impl_.value_data_.decimal128_value_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline const ::greptime::v1::Decimal128& Value::_internal_decimal_value() const {
-  return _internal_has_decimal_value()
-      ? *_impl_.value_data_.decimal_value_
+inline const ::greptime::v1::Decimal128& Value::_internal_decimal128_value() const {
+  return _internal_has_decimal128_value()
+      ? *_impl_.value_data_.decimal128_value_
       : reinterpret_cast< ::greptime::v1::Decimal128&>(::greptime::v1::_Decimal128_default_instance_);
 }
-inline const ::greptime::v1::Decimal128& Value::decimal_value() const {
-  // @@protoc_insertion_point(field_get:greptime.v1.Value.decimal_value)
-  return _internal_decimal_value();
+inline const ::greptime::v1::Decimal128& Value::decimal128_value() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.Value.decimal128_value)
+  return _internal_decimal128_value();
 }
-inline ::greptime::v1::Decimal128* Value::unsafe_arena_release_decimal_value() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.Value.decimal_value)
-  if (_internal_has_decimal_value()) {
+inline ::greptime::v1::Decimal128* Value::unsafe_arena_release_decimal128_value() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.Value.decimal128_value)
+  if (_internal_has_decimal128_value()) {
     clear_has_value_data();
-    ::greptime::v1::Decimal128* temp = _impl_.value_data_.decimal_value_;
-    _impl_.value_data_.decimal_value_ = nullptr;
+    ::greptime::v1::Decimal128* temp = _impl_.value_data_.decimal128_value_;
+    _impl_.value_data_.decimal128_value_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Value::unsafe_arena_set_allocated_decimal_value(::greptime::v1::Decimal128* decimal_value) {
+inline void Value::unsafe_arena_set_allocated_decimal128_value(::greptime::v1::Decimal128* decimal128_value) {
   clear_value_data();
-  if (decimal_value) {
-    set_has_decimal_value();
-    _impl_.value_data_.decimal_value_ = decimal_value;
+  if (decimal128_value) {
+    set_has_decimal128_value();
+    _impl_.value_data_.decimal128_value_ = decimal128_value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.Value.decimal_value)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.Value.decimal128_value)
 }
-inline ::greptime::v1::Decimal128* Value::_internal_mutable_decimal_value() {
-  if (!_internal_has_decimal_value()) {
+inline ::greptime::v1::Decimal128* Value::_internal_mutable_decimal128_value() {
+  if (!_internal_has_decimal128_value()) {
     clear_value_data();
-    set_has_decimal_value();
-    _impl_.value_data_.decimal_value_ = CreateMaybeMessage< ::greptime::v1::Decimal128 >(GetArenaForAllocation());
+    set_has_decimal128_value();
+    _impl_.value_data_.decimal128_value_ = CreateMaybeMessage< ::greptime::v1::Decimal128 >(GetArenaForAllocation());
   }
-  return _impl_.value_data_.decimal_value_;
+  return _impl_.value_data_.decimal128_value_;
 }
-inline ::greptime::v1::Decimal128* Value::mutable_decimal_value() {
-  ::greptime::v1::Decimal128* _msg = _internal_mutable_decimal_value();
-  // @@protoc_insertion_point(field_mutable:greptime.v1.Value.decimal_value)
+inline ::greptime::v1::Decimal128* Value::mutable_decimal128_value() {
+  ::greptime::v1::Decimal128* _msg = _internal_mutable_decimal128_value();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.Value.decimal128_value)
   return _msg;
 }
 

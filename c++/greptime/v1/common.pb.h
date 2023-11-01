@@ -56,9 +56,15 @@ extern AuthHeaderDefaultTypeInternal _AuthHeader_default_instance_;
 class Basic;
 struct BasicDefaultTypeInternal;
 extern BasicDefaultTypeInternal _Basic_default_instance_;
+class DataTypeExtension;
+struct DataTypeExtensionDefaultTypeInternal;
+extern DataTypeExtensionDefaultTypeInternal _DataTypeExtension_default_instance_;
 class Decimal128;
 struct Decimal128DefaultTypeInternal;
 extern Decimal128DefaultTypeInternal _Decimal128_default_instance_;
+class Decimal128Type;
+struct Decimal128TypeDefaultTypeInternal;
+extern Decimal128TypeDefaultTypeInternal _Decimal128Type_default_instance_;
 class FlightMetadata;
 struct FlightMetadataDefaultTypeInternal;
 extern FlightMetadataDefaultTypeInternal _FlightMetadata_default_instance_;
@@ -83,7 +89,9 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::greptime::v1::AffectedRows* Arena::CreateMaybeMessage<::greptime::v1::AffectedRows>(Arena*);
 template<> ::greptime::v1::AuthHeader* Arena::CreateMaybeMessage<::greptime::v1::AuthHeader>(Arena*);
 template<> ::greptime::v1::Basic* Arena::CreateMaybeMessage<::greptime::v1::Basic>(Arena*);
+template<> ::greptime::v1::DataTypeExtension* Arena::CreateMaybeMessage<::greptime::v1::DataTypeExtension>(Arena*);
 template<> ::greptime::v1::Decimal128* Arena::CreateMaybeMessage<::greptime::v1::Decimal128>(Arena*);
+template<> ::greptime::v1::Decimal128Type* Arena::CreateMaybeMessage<::greptime::v1::Decimal128Type>(Arena*);
 template<> ::greptime::v1::FlightMetadata* Arena::CreateMaybeMessage<::greptime::v1::FlightMetadata>(Arena*);
 template<> ::greptime::v1::IntervalMonthDayNano* Arena::CreateMaybeMessage<::greptime::v1::IntervalMonthDayNano>(Arena*);
 template<> ::greptime::v1::RequestHeader* Arena::CreateMaybeMessage<::greptime::v1::RequestHeader>(Arena*);
@@ -1547,6 +1555,339 @@ class FlightMetadata final :
 };
 // -------------------------------------------------------------------
 
+class DataTypeExtension final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.DataTypeExtension) */ {
+ public:
+  inline DataTypeExtension() : DataTypeExtension(nullptr) {}
+  ~DataTypeExtension() override;
+  explicit PROTOBUF_CONSTEXPR DataTypeExtension(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DataTypeExtension(const DataTypeExtension& from);
+  DataTypeExtension(DataTypeExtension&& from) noexcept
+    : DataTypeExtension() {
+    *this = ::std::move(from);
+  }
+
+  inline DataTypeExtension& operator=(const DataTypeExtension& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DataTypeExtension& operator=(DataTypeExtension&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DataTypeExtension& default_instance() {
+    return *internal_default_instance();
+  }
+  enum TypeExtensionCase {
+    kDecimal128Type = 1,
+    TYPE_EXTENSION_NOT_SET = 0,
+  };
+
+  static inline const DataTypeExtension* internal_default_instance() {
+    return reinterpret_cast<const DataTypeExtension*>(
+               &_DataTypeExtension_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(DataTypeExtension& a, DataTypeExtension& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DataTypeExtension* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DataTypeExtension* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DataTypeExtension* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DataTypeExtension>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DataTypeExtension& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const DataTypeExtension& from) {
+    DataTypeExtension::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DataTypeExtension* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "greptime.v1.DataTypeExtension";
+  }
+  protected:
+  explicit DataTypeExtension(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDecimal128TypeFieldNumber = 1,
+  };
+  // .greptime.v1.Decimal128Type decimal128_type = 1;
+  bool has_decimal128_type() const;
+  private:
+  bool _internal_has_decimal128_type() const;
+  public:
+  void clear_decimal128_type();
+  const ::greptime::v1::Decimal128Type& decimal128_type() const;
+  PROTOBUF_NODISCARD ::greptime::v1::Decimal128Type* release_decimal128_type();
+  ::greptime::v1::Decimal128Type* mutable_decimal128_type();
+  void set_allocated_decimal128_type(::greptime::v1::Decimal128Type* decimal128_type);
+  private:
+  const ::greptime::v1::Decimal128Type& _internal_decimal128_type() const;
+  ::greptime::v1::Decimal128Type* _internal_mutable_decimal128_type();
+  public:
+  void unsafe_arena_set_allocated_decimal128_type(
+      ::greptime::v1::Decimal128Type* decimal128_type);
+  ::greptime::v1::Decimal128Type* unsafe_arena_release_decimal128_type();
+
+  void clear_type_extension();
+  TypeExtensionCase type_extension_case() const;
+  // @@protoc_insertion_point(class_scope:greptime.v1.DataTypeExtension)
+ private:
+  class _Internal;
+  void set_has_decimal128_type();
+
+  inline bool has_type_extension() const;
+  inline void clear_has_type_extension();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    union TypeExtensionUnion {
+      constexpr TypeExtensionUnion() : _constinit_{} {}
+        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+      ::greptime::v1::Decimal128Type* decimal128_type_;
+    } type_extension_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    uint32_t _oneof_case_[1];
+
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_greptime_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Decimal128Type final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.Decimal128Type) */ {
+ public:
+  inline Decimal128Type() : Decimal128Type(nullptr) {}
+  ~Decimal128Type() override;
+  explicit PROTOBUF_CONSTEXPR Decimal128Type(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Decimal128Type(const Decimal128Type& from);
+  Decimal128Type(Decimal128Type&& from) noexcept
+    : Decimal128Type() {
+    *this = ::std::move(from);
+  }
+
+  inline Decimal128Type& operator=(const Decimal128Type& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Decimal128Type& operator=(Decimal128Type&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Decimal128Type& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Decimal128Type* internal_default_instance() {
+    return reinterpret_cast<const Decimal128Type*>(
+               &_Decimal128Type_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(Decimal128Type& a, Decimal128Type& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Decimal128Type* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Decimal128Type* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Decimal128Type* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Decimal128Type>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Decimal128Type& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Decimal128Type& from) {
+    Decimal128Type::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Decimal128Type* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "greptime.v1.Decimal128Type";
+  }
+  protected:
+  explicit Decimal128Type(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPrecisionFieldNumber = 1,
+    kScaleFieldNumber = 2,
+  };
+  // int32 precision = 1;
+  void clear_precision();
+  int32_t precision() const;
+  void set_precision(int32_t value);
+  private:
+  int32_t _internal_precision() const;
+  void _internal_set_precision(int32_t value);
+  public:
+
+  // int32 scale = 2;
+  void clear_scale();
+  int32_t scale() const;
+  void set_scale(int32_t value);
+  private:
+  int32_t _internal_scale() const;
+  void _internal_set_scale(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:greptime.v1.Decimal128Type)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int32_t precision_;
+    int32_t scale_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_greptime_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class IntervalMonthDayNano final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.IntervalMonthDayNano) */ {
  public:
@@ -1595,7 +1936,7 @@ class IntervalMonthDayNano final :
                &_IntervalMonthDayNano_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(IntervalMonthDayNano& a, IntervalMonthDayNano& b) {
     a.Swap(&b);
@@ -1765,7 +2106,7 @@ class Decimal128 final :
                &_Decimal128_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(Decimal128& a, Decimal128& b) {
     a.Swap(&b);
@@ -2783,6 +3124,137 @@ inline void FlightMetadata::set_allocated_affected_rows(::greptime::v1::Affected
 
 // -------------------------------------------------------------------
 
+// DataTypeExtension
+
+// .greptime.v1.Decimal128Type decimal128_type = 1;
+inline bool DataTypeExtension::_internal_has_decimal128_type() const {
+  return type_extension_case() == kDecimal128Type;
+}
+inline bool DataTypeExtension::has_decimal128_type() const {
+  return _internal_has_decimal128_type();
+}
+inline void DataTypeExtension::set_has_decimal128_type() {
+  _impl_._oneof_case_[0] = kDecimal128Type;
+}
+inline void DataTypeExtension::clear_decimal128_type() {
+  if (_internal_has_decimal128_type()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.type_extension_.decimal128_type_;
+    }
+    clear_has_type_extension();
+  }
+}
+inline ::greptime::v1::Decimal128Type* DataTypeExtension::release_decimal128_type() {
+  // @@protoc_insertion_point(field_release:greptime.v1.DataTypeExtension.decimal128_type)
+  if (_internal_has_decimal128_type()) {
+    clear_has_type_extension();
+    ::greptime::v1::Decimal128Type* temp = _impl_.type_extension_.decimal128_type_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.type_extension_.decimal128_type_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::greptime::v1::Decimal128Type& DataTypeExtension::_internal_decimal128_type() const {
+  return _internal_has_decimal128_type()
+      ? *_impl_.type_extension_.decimal128_type_
+      : reinterpret_cast< ::greptime::v1::Decimal128Type&>(::greptime::v1::_Decimal128Type_default_instance_);
+}
+inline const ::greptime::v1::Decimal128Type& DataTypeExtension::decimal128_type() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.DataTypeExtension.decimal128_type)
+  return _internal_decimal128_type();
+}
+inline ::greptime::v1::Decimal128Type* DataTypeExtension::unsafe_arena_release_decimal128_type() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.DataTypeExtension.decimal128_type)
+  if (_internal_has_decimal128_type()) {
+    clear_has_type_extension();
+    ::greptime::v1::Decimal128Type* temp = _impl_.type_extension_.decimal128_type_;
+    _impl_.type_extension_.decimal128_type_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void DataTypeExtension::unsafe_arena_set_allocated_decimal128_type(::greptime::v1::Decimal128Type* decimal128_type) {
+  clear_type_extension();
+  if (decimal128_type) {
+    set_has_decimal128_type();
+    _impl_.type_extension_.decimal128_type_ = decimal128_type;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.DataTypeExtension.decimal128_type)
+}
+inline ::greptime::v1::Decimal128Type* DataTypeExtension::_internal_mutable_decimal128_type() {
+  if (!_internal_has_decimal128_type()) {
+    clear_type_extension();
+    set_has_decimal128_type();
+    _impl_.type_extension_.decimal128_type_ = CreateMaybeMessage< ::greptime::v1::Decimal128Type >(GetArenaForAllocation());
+  }
+  return _impl_.type_extension_.decimal128_type_;
+}
+inline ::greptime::v1::Decimal128Type* DataTypeExtension::mutable_decimal128_type() {
+  ::greptime::v1::Decimal128Type* _msg = _internal_mutable_decimal128_type();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.DataTypeExtension.decimal128_type)
+  return _msg;
+}
+
+inline bool DataTypeExtension::has_type_extension() const {
+  return type_extension_case() != TYPE_EXTENSION_NOT_SET;
+}
+inline void DataTypeExtension::clear_has_type_extension() {
+  _impl_._oneof_case_[0] = TYPE_EXTENSION_NOT_SET;
+}
+inline DataTypeExtension::TypeExtensionCase DataTypeExtension::type_extension_case() const {
+  return DataTypeExtension::TypeExtensionCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// Decimal128Type
+
+// int32 precision = 1;
+inline void Decimal128Type::clear_precision() {
+  _impl_.precision_ = 0;
+}
+inline int32_t Decimal128Type::_internal_precision() const {
+  return _impl_.precision_;
+}
+inline int32_t Decimal128Type::precision() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.Decimal128Type.precision)
+  return _internal_precision();
+}
+inline void Decimal128Type::_internal_set_precision(int32_t value) {
+  
+  _impl_.precision_ = value;
+}
+inline void Decimal128Type::set_precision(int32_t value) {
+  _internal_set_precision(value);
+  // @@protoc_insertion_point(field_set:greptime.v1.Decimal128Type.precision)
+}
+
+// int32 scale = 2;
+inline void Decimal128Type::clear_scale() {
+  _impl_.scale_ = 0;
+}
+inline int32_t Decimal128Type::_internal_scale() const {
+  return _impl_.scale_;
+}
+inline int32_t Decimal128Type::scale() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.Decimal128Type.scale)
+  return _internal_scale();
+}
+inline void Decimal128Type::_internal_set_scale(int32_t value) {
+  
+  _impl_.scale_ = value;
+}
+inline void Decimal128Type::set_scale(int32_t value) {
+  _internal_set_scale(value);
+  // @@protoc_insertion_point(field_set:greptime.v1.Decimal128Type.scale)
+}
+
+// -------------------------------------------------------------------
+
 // IntervalMonthDayNano
 
 // int32 months = 1;
@@ -2912,6 +3384,10 @@ inline void Decimal128::set_precision_and_scale(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
