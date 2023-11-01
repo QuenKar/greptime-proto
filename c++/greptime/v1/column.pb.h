@@ -1091,8 +1091,8 @@ class Column final :
     kColumnNameFieldNumber = 1,
     kNullMaskFieldNumber = 4,
     kValuesFieldNumber = 3,
-    kSemanticTypeFieldNumber = 2,
     kDatatypeFieldNumber = 5,
+    kSemanticTypeFieldNumber = 2,
   };
   // string column_name = 1;
   void clear_column_name();
@@ -1140,6 +1140,24 @@ class Column final :
       ::greptime::v1::Column_Values* values);
   ::greptime::v1::Column_Values* unsafe_arena_release_values();
 
+  // .greptime.v1.ColumnDataType datatype = 5;
+  bool has_datatype() const;
+  private:
+  bool _internal_has_datatype() const;
+  public:
+  void clear_datatype();
+  const ::greptime::v1::ColumnDataType& datatype() const;
+  PROTOBUF_NODISCARD ::greptime::v1::ColumnDataType* release_datatype();
+  ::greptime::v1::ColumnDataType* mutable_datatype();
+  void set_allocated_datatype(::greptime::v1::ColumnDataType* datatype);
+  private:
+  const ::greptime::v1::ColumnDataType& _internal_datatype() const;
+  ::greptime::v1::ColumnDataType* _internal_mutable_datatype();
+  public:
+  void unsafe_arena_set_allocated_datatype(
+      ::greptime::v1::ColumnDataType* datatype);
+  ::greptime::v1::ColumnDataType* unsafe_arena_release_datatype();
+
   // .greptime.v1.SemanticType semantic_type = 2;
   void clear_semantic_type();
   ::greptime::v1::SemanticType semantic_type() const;
@@ -1147,15 +1165,6 @@ class Column final :
   private:
   ::greptime::v1::SemanticType _internal_semantic_type() const;
   void _internal_set_semantic_type(::greptime::v1::SemanticType value);
-  public:
-
-  // .greptime.v1.ColumnDataType datatype = 5;
-  void clear_datatype();
-  ::greptime::v1::ColumnDataType datatype() const;
-  void set_datatype(::greptime::v1::ColumnDataType value);
-  private:
-  ::greptime::v1::ColumnDataType _internal_datatype() const;
-  void _internal_set_datatype(::greptime::v1::ColumnDataType value);
   public:
 
   // @@protoc_insertion_point(class_scope:greptime.v1.Column)
@@ -1169,8 +1178,8 @@ class Column final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr column_name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr null_mask_;
     ::greptime::v1::Column_Values* values_;
+    ::greptime::v1::ColumnDataType* datatype_;
     int semantic_type_;
-    int datatype_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2895,23 +2904,88 @@ inline void Column::set_allocated_null_mask(std::string* null_mask) {
 }
 
 // .greptime.v1.ColumnDataType datatype = 5;
-inline void Column::clear_datatype() {
-  _impl_.datatype_ = 0;
+inline bool Column::_internal_has_datatype() const {
+  return this != internal_default_instance() && _impl_.datatype_ != nullptr;
 }
-inline ::greptime::v1::ColumnDataType Column::_internal_datatype() const {
-  return static_cast< ::greptime::v1::ColumnDataType >(_impl_.datatype_);
+inline bool Column::has_datatype() const {
+  return _internal_has_datatype();
 }
-inline ::greptime::v1::ColumnDataType Column::datatype() const {
+inline const ::greptime::v1::ColumnDataType& Column::_internal_datatype() const {
+  const ::greptime::v1::ColumnDataType* p = _impl_.datatype_;
+  return p != nullptr ? *p : reinterpret_cast<const ::greptime::v1::ColumnDataType&>(
+      ::greptime::v1::_ColumnDataType_default_instance_);
+}
+inline const ::greptime::v1::ColumnDataType& Column::datatype() const {
   // @@protoc_insertion_point(field_get:greptime.v1.Column.datatype)
   return _internal_datatype();
 }
-inline void Column::_internal_set_datatype(::greptime::v1::ColumnDataType value) {
-  
-  _impl_.datatype_ = value;
+inline void Column::unsafe_arena_set_allocated_datatype(
+    ::greptime::v1::ColumnDataType* datatype) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.datatype_);
+  }
+  _impl_.datatype_ = datatype;
+  if (datatype) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.Column.datatype)
 }
-inline void Column::set_datatype(::greptime::v1::ColumnDataType value) {
-  _internal_set_datatype(value);
-  // @@protoc_insertion_point(field_set:greptime.v1.Column.datatype)
+inline ::greptime::v1::ColumnDataType* Column::release_datatype() {
+  
+  ::greptime::v1::ColumnDataType* temp = _impl_.datatype_;
+  _impl_.datatype_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::greptime::v1::ColumnDataType* Column::unsafe_arena_release_datatype() {
+  // @@protoc_insertion_point(field_release:greptime.v1.Column.datatype)
+  
+  ::greptime::v1::ColumnDataType* temp = _impl_.datatype_;
+  _impl_.datatype_ = nullptr;
+  return temp;
+}
+inline ::greptime::v1::ColumnDataType* Column::_internal_mutable_datatype() {
+  
+  if (_impl_.datatype_ == nullptr) {
+    auto* p = CreateMaybeMessage<::greptime::v1::ColumnDataType>(GetArenaForAllocation());
+    _impl_.datatype_ = p;
+  }
+  return _impl_.datatype_;
+}
+inline ::greptime::v1::ColumnDataType* Column::mutable_datatype() {
+  ::greptime::v1::ColumnDataType* _msg = _internal_mutable_datatype();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.Column.datatype)
+  return _msg;
+}
+inline void Column::set_allocated_datatype(::greptime::v1::ColumnDataType* datatype) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.datatype_);
+  }
+  if (datatype) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(datatype));
+    if (message_arena != submessage_arena) {
+      datatype = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, datatype, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.datatype_ = datatype;
+  // @@protoc_insertion_point(field_set_allocated:greptime.v1.Column.datatype)
 }
 
 #ifdef __GNUC__

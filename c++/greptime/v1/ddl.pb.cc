@@ -229,7 +229,7 @@ PROTOBUF_CONSTEXPR ColumnDef::ColumnDef(
     /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.default_constraint_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.comment_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.data_type_)*/0
+  , /*decltype(_impl_.data_type_)*/nullptr
   , /*decltype(_impl_.is_nullable_)*/false
   , /*decltype(_impl_.semantic_type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -501,7 +501,7 @@ const char descriptor_table_protodef_greptime_2fv1_2fddl_2eproto[] PROTOBUF_SECT
   "\0132\036.greptime.v1.AddColumnLocation\"\032\n\nDro"
   "pColumn\022\014\n\004name\030\001 \001(\t\"\025\n\007TableId\022\n\n\002id\030\001"
   " \001(\r\"\275\001\n\tColumnDef\022\014\n\004name\030\001 \001(\t\022.\n\tdata"
-  "_type\030\002 \001(\0162\033.greptime.v1.ColumnDataType"
+  "_type\030\002 \001(\0132\033.greptime.v1.ColumnDataType"
   "\022\023\n\013is_nullable\030\003 \001(\010\022\032\n\022default_constra"
   "int\030\004 \001(\014\0220\n\rsemantic_type\030\005 \001(\0162\031.grept"
   "ime.v1.SemanticType\022\017\n\007comment\030\006 \001(\t\"\230\001\n"
@@ -4428,8 +4428,19 @@ void TableId::InternalSwap(TableId* other) {
 
 class ColumnDef::_Internal {
  public:
+  static const ::greptime::v1::ColumnDataType& data_type(const ColumnDef* msg);
 };
 
+const ::greptime::v1::ColumnDataType&
+ColumnDef::_Internal::data_type(const ColumnDef* msg) {
+  return *msg->_impl_.data_type_;
+}
+void ColumnDef::clear_data_type() {
+  if (GetArenaForAllocation() == nullptr && _impl_.data_type_ != nullptr) {
+    delete _impl_.data_type_;
+  }
+  _impl_.data_type_ = nullptr;
+}
 ColumnDef::ColumnDef(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -4443,7 +4454,7 @@ ColumnDef::ColumnDef(const ColumnDef& from)
       decltype(_impl_.name_){}
     , decltype(_impl_.default_constraint_){}
     , decltype(_impl_.comment_){}
-    , decltype(_impl_.data_type_){}
+    , decltype(_impl_.data_type_){nullptr}
     , decltype(_impl_.is_nullable_){}
     , decltype(_impl_.semantic_type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -4473,9 +4484,12 @@ ColumnDef::ColumnDef(const ColumnDef& from)
     _this->_impl_.comment_.Set(from._internal_comment(), 
       _this->GetArenaForAllocation());
   }
-  ::memcpy(&_impl_.data_type_, &from._impl_.data_type_,
+  if (from._internal_has_data_type()) {
+    _this->_impl_.data_type_ = new ::greptime::v1::ColumnDataType(*from._impl_.data_type_);
+  }
+  ::memcpy(&_impl_.is_nullable_, &from._impl_.is_nullable_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.semantic_type_) -
-    reinterpret_cast<char*>(&_impl_.data_type_)) + sizeof(_impl_.semantic_type_));
+    reinterpret_cast<char*>(&_impl_.is_nullable_)) + sizeof(_impl_.semantic_type_));
   // @@protoc_insertion_point(copy_constructor:greptime.v1.ColumnDef)
 }
 
@@ -4487,7 +4501,7 @@ inline void ColumnDef::SharedCtor(
       decltype(_impl_.name_){}
     , decltype(_impl_.default_constraint_){}
     , decltype(_impl_.comment_){}
-    , decltype(_impl_.data_type_){0}
+    , decltype(_impl_.data_type_){nullptr}
     , decltype(_impl_.is_nullable_){false}
     , decltype(_impl_.semantic_type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -4520,6 +4534,7 @@ inline void ColumnDef::SharedDtor() {
   _impl_.name_.Destroy();
   _impl_.default_constraint_.Destroy();
   _impl_.comment_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.data_type_;
 }
 
 void ColumnDef::SetCachedSize(int size) const {
@@ -4535,9 +4550,13 @@ void ColumnDef::Clear() {
   _impl_.name_.ClearToEmpty();
   _impl_.default_constraint_.ClearToEmpty();
   _impl_.comment_.ClearToEmpty();
-  ::memset(&_impl_.data_type_, 0, static_cast<size_t>(
+  if (GetArenaForAllocation() == nullptr && _impl_.data_type_ != nullptr) {
+    delete _impl_.data_type_;
+  }
+  _impl_.data_type_ = nullptr;
+  ::memset(&_impl_.is_nullable_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.semantic_type_) -
-      reinterpret_cast<char*>(&_impl_.data_type_)) + sizeof(_impl_.semantic_type_));
+      reinterpret_cast<char*>(&_impl_.is_nullable_)) + sizeof(_impl_.semantic_type_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4559,10 +4578,9 @@ const char* ColumnDef::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
         continue;
       // .greptime.v1.ColumnDataType data_type = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_data_type(), ptr);
           CHK_(ptr);
-          _internal_set_data_type(static_cast<::greptime::v1::ColumnDataType>(val));
         } else
           goto handle_unusual;
         continue;
@@ -4642,10 +4660,10 @@ uint8_t* ColumnDef::_InternalSerialize(
   }
 
   // .greptime.v1.ColumnDataType data_type = 2;
-  if (this->_internal_data_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      2, this->_internal_data_type(), target);
+  if (this->_internal_has_data_type()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::data_type(this),
+        _Internal::data_type(this).GetCachedSize(), target, stream);
   }
 
   // bool is_nullable = 3;
@@ -4715,9 +4733,10 @@ size_t ColumnDef::ByteSizeLong() const {
   }
 
   // .greptime.v1.ColumnDataType data_type = 2;
-  if (this->_internal_data_type() != 0) {
+  if (this->_internal_has_data_type()) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_data_type());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.data_type_);
   }
 
   // bool is_nullable = 3;
@@ -4758,8 +4777,9 @@ void ColumnDef::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
   if (!from._internal_comment().empty()) {
     _this->_internal_set_comment(from._internal_comment());
   }
-  if (from._internal_data_type() != 0) {
-    _this->_internal_set_data_type(from._internal_data_type());
+  if (from._internal_has_data_type()) {
+    _this->_internal_mutable_data_type()->::greptime::v1::ColumnDataType::MergeFrom(
+        from._internal_data_type());
   }
   if (from._internal_is_nullable() != 0) {
     _this->_internal_set_is_nullable(from._internal_is_nullable());

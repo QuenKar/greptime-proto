@@ -1199,14 +1199,18 @@ public final class RowData {
 
     /**
      * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
-     * @return The enum numeric value on the wire for datatype.
+     * @return Whether the datatype field is set.
      */
-    int getDatatypeValue();
+    boolean hasDatatype();
     /**
      * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
      * @return The datatype.
      */
     io.greptime.v1.Common.ColumnDataType getDatatype();
+    /**
+     * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
+     */
+    io.greptime.v1.Common.ColumnDataTypeOrBuilder getDatatypeOrBuilder();
 
     /**
      * <code>.greptime.v1.SemanticType semantic_type = 3;</code>
@@ -1233,7 +1237,6 @@ public final class RowData {
     }
     private ColumnSchema() {
       columnName_ = "";
-      datatype_ = 0;
       semanticType_ = 0;
     }
 
@@ -1273,10 +1276,17 @@ public final class RowData {
               columnName_ = s;
               break;
             }
-            case 16: {
-              int rawValue = input.readEnum();
+            case 18: {
+              io.greptime.v1.Common.ColumnDataType.Builder subBuilder = null;
+              if (datatype_ != null) {
+                subBuilder = datatype_.toBuilder();
+              }
+              datatype_ = input.readMessage(io.greptime.v1.Common.ColumnDataType.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(datatype_);
+                datatype_ = subBuilder.buildPartial();
+              }
 
-              datatype_ = rawValue;
               break;
             }
             case 24: {
@@ -1358,22 +1368,29 @@ public final class RowData {
     }
 
     public static final int DATATYPE_FIELD_NUMBER = 2;
-    private int datatype_;
+    private io.greptime.v1.Common.ColumnDataType datatype_;
     /**
      * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
-     * @return The enum numeric value on the wire for datatype.
+     * @return Whether the datatype field is set.
      */
-    @java.lang.Override public int getDatatypeValue() {
-      return datatype_;
+    @java.lang.Override
+    public boolean hasDatatype() {
+      return datatype_ != null;
     }
     /**
      * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
      * @return The datatype.
      */
-    @java.lang.Override public io.greptime.v1.Common.ColumnDataType getDatatype() {
-      @SuppressWarnings("deprecation")
-      io.greptime.v1.Common.ColumnDataType result = io.greptime.v1.Common.ColumnDataType.valueOf(datatype_);
-      return result == null ? io.greptime.v1.Common.ColumnDataType.UNRECOGNIZED : result;
+    @java.lang.Override
+    public io.greptime.v1.Common.ColumnDataType getDatatype() {
+      return datatype_ == null ? io.greptime.v1.Common.ColumnDataType.getDefaultInstance() : datatype_;
+    }
+    /**
+     * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
+     */
+    @java.lang.Override
+    public io.greptime.v1.Common.ColumnDataTypeOrBuilder getDatatypeOrBuilder() {
+      return getDatatype();
     }
 
     public static final int SEMANTIC_TYPE_FIELD_NUMBER = 3;
@@ -1412,8 +1429,8 @@ public final class RowData {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(columnName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, columnName_);
       }
-      if (datatype_ != io.greptime.v1.Common.ColumnDataType.BOOLEAN.getNumber()) {
-        output.writeEnum(2, datatype_);
+      if (datatype_ != null) {
+        output.writeMessage(2, getDatatype());
       }
       if (semanticType_ != io.greptime.v1.Common.SemanticType.TAG.getNumber()) {
         output.writeEnum(3, semanticType_);
@@ -1430,9 +1447,9 @@ public final class RowData {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(columnName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, columnName_);
       }
-      if (datatype_ != io.greptime.v1.Common.ColumnDataType.BOOLEAN.getNumber()) {
+      if (datatype_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, datatype_);
+          .computeMessageSize(2, getDatatype());
       }
       if (semanticType_ != io.greptime.v1.Common.SemanticType.TAG.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1455,7 +1472,11 @@ public final class RowData {
 
       if (!getColumnName()
           .equals(other.getColumnName())) return false;
-      if (datatype_ != other.datatype_) return false;
+      if (hasDatatype() != other.hasDatatype()) return false;
+      if (hasDatatype()) {
+        if (!getDatatype()
+            .equals(other.getDatatype())) return false;
+      }
       if (semanticType_ != other.semanticType_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -1470,8 +1491,10 @@ public final class RowData {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + COLUMN_NAME_FIELD_NUMBER;
       hash = (53 * hash) + getColumnName().hashCode();
-      hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
-      hash = (53 * hash) + datatype_;
+      if (hasDatatype()) {
+        hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
+        hash = (53 * hash) + getDatatype().hashCode();
+      }
       hash = (37 * hash) + SEMANTIC_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + semanticType_;
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1609,8 +1632,12 @@ public final class RowData {
         super.clear();
         columnName_ = "";
 
-        datatype_ = 0;
-
+        if (datatypeBuilder_ == null) {
+          datatype_ = null;
+        } else {
+          datatype_ = null;
+          datatypeBuilder_ = null;
+        }
         semanticType_ = 0;
 
         return this;
@@ -1640,7 +1667,11 @@ public final class RowData {
       public io.greptime.v1.RowData.ColumnSchema buildPartial() {
         io.greptime.v1.RowData.ColumnSchema result = new io.greptime.v1.RowData.ColumnSchema(this);
         result.columnName_ = columnName_;
-        result.datatype_ = datatype_;
+        if (datatypeBuilder_ == null) {
+          result.datatype_ = datatype_;
+        } else {
+          result.datatype_ = datatypeBuilder_.build();
+        }
         result.semanticType_ = semanticType_;
         onBuilt();
         return result;
@@ -1694,8 +1725,8 @@ public final class RowData {
           columnName_ = other.columnName_;
           onChanged();
         }
-        if (other.datatype_ != 0) {
-          setDatatypeValue(other.getDatatypeValue());
+        if (other.hasDatatype()) {
+          mergeDatatype(other.getDatatype());
         }
         if (other.semanticType_ != 0) {
           setSemanticTypeValue(other.getSemanticTypeValue());
@@ -1805,58 +1836,123 @@ public final class RowData {
         return this;
       }
 
-      private int datatype_ = 0;
+      private io.greptime.v1.Common.ColumnDataType datatype_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.greptime.v1.Common.ColumnDataType, io.greptime.v1.Common.ColumnDataType.Builder, io.greptime.v1.Common.ColumnDataTypeOrBuilder> datatypeBuilder_;
       /**
        * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
-       * @return The enum numeric value on the wire for datatype.
+       * @return Whether the datatype field is set.
        */
-      @java.lang.Override public int getDatatypeValue() {
-        return datatype_;
-      }
-      /**
-       * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
-       * @param value The enum numeric value on the wire for datatype to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDatatypeValue(int value) {
-        
-        datatype_ = value;
-        onChanged();
-        return this;
+      public boolean hasDatatype() {
+        return datatypeBuilder_ != null || datatype_ != null;
       }
       /**
        * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
        * @return The datatype.
        */
-      @java.lang.Override
       public io.greptime.v1.Common.ColumnDataType getDatatype() {
-        @SuppressWarnings("deprecation")
-        io.greptime.v1.Common.ColumnDataType result = io.greptime.v1.Common.ColumnDataType.valueOf(datatype_);
-        return result == null ? io.greptime.v1.Common.ColumnDataType.UNRECOGNIZED : result;
+        if (datatypeBuilder_ == null) {
+          return datatype_ == null ? io.greptime.v1.Common.ColumnDataType.getDefaultInstance() : datatype_;
+        } else {
+          return datatypeBuilder_.getMessage();
+        }
       }
       /**
        * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
-       * @param value The datatype to set.
-       * @return This builder for chaining.
        */
       public Builder setDatatype(io.greptime.v1.Common.ColumnDataType value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (datatypeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          datatype_ = value;
+          onChanged();
+        } else {
+          datatypeBuilder_.setMessage(value);
         }
-        
-        datatype_ = value.getNumber();
-        onChanged();
+
         return this;
       }
       /**
        * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
-       * @return This builder for chaining.
+       */
+      public Builder setDatatype(
+          io.greptime.v1.Common.ColumnDataType.Builder builderForValue) {
+        if (datatypeBuilder_ == null) {
+          datatype_ = builderForValue.build();
+          onChanged();
+        } else {
+          datatypeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
+       */
+      public Builder mergeDatatype(io.greptime.v1.Common.ColumnDataType value) {
+        if (datatypeBuilder_ == null) {
+          if (datatype_ != null) {
+            datatype_ =
+              io.greptime.v1.Common.ColumnDataType.newBuilder(datatype_).mergeFrom(value).buildPartial();
+          } else {
+            datatype_ = value;
+          }
+          onChanged();
+        } else {
+          datatypeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
        */
       public Builder clearDatatype() {
-        
-        datatype_ = 0;
-        onChanged();
+        if (datatypeBuilder_ == null) {
+          datatype_ = null;
+          onChanged();
+        } else {
+          datatype_ = null;
+          datatypeBuilder_ = null;
+        }
+
         return this;
+      }
+      /**
+       * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
+       */
+      public io.greptime.v1.Common.ColumnDataType.Builder getDatatypeBuilder() {
+        
+        onChanged();
+        return getDatatypeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
+       */
+      public io.greptime.v1.Common.ColumnDataTypeOrBuilder getDatatypeOrBuilder() {
+        if (datatypeBuilder_ != null) {
+          return datatypeBuilder_.getMessageOrBuilder();
+        } else {
+          return datatype_ == null ?
+              io.greptime.v1.Common.ColumnDataType.getDefaultInstance() : datatype_;
+        }
+      }
+      /**
+       * <code>.greptime.v1.ColumnDataType datatype = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.greptime.v1.Common.ColumnDataType, io.greptime.v1.Common.ColumnDataType.Builder, io.greptime.v1.Common.ColumnDataTypeOrBuilder> 
+          getDatatypeFieldBuilder() {
+        if (datatypeBuilder_ == null) {
+          datatypeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.greptime.v1.Common.ColumnDataType, io.greptime.v1.Common.ColumnDataType.Builder, io.greptime.v1.Common.ColumnDataTypeOrBuilder>(
+                  getDatatype(),
+                  getParentForChildren(),
+                  isClean());
+          datatype_ = null;
+        }
+        return datatypeBuilder_;
       }
 
       private int semanticType_ = 0;
@@ -6878,7 +6974,7 @@ public final class RowData {
       "\030\001 \003(\0132\031.greptime.v1.ColumnSchema\022\036\n\004row" +
       "s\030\002 \003(\0132\020.greptime.v1.Row\"\204\001\n\014ColumnSche" +
       "ma\022\023\n\013column_name\030\001 \001(\t\022-\n\010datatype\030\002 \001(" +
-      "\0162\033.greptime.v1.ColumnDataType\0220\n\rsemant" +
+      "\0132\033.greptime.v1.ColumnDataType\0220\n\rsemant" +
       "ic_type\030\003 \001(\0162\031.greptime.v1.SemanticType" +
       "\")\n\003Row\022\"\n\006values\030\001 \003(\0132\022.greptime.v1.Va" +
       "lue\"\321\007\n\005Value\022\022\n\010i8_value\030\001 \001(\005H\000\022\023\n\ti16" +

@@ -953,12 +953,12 @@ type ColumnDef struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name              string         `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	DataType          ColumnDataType `protobuf:"varint,2,opt,name=data_type,json=dataType,proto3,enum=greptime.v1.ColumnDataType" json:"data_type,omitempty"`
-	IsNullable        bool           `protobuf:"varint,3,opt,name=is_nullable,json=isNullable,proto3" json:"is_nullable,omitempty"`
-	DefaultConstraint []byte         `protobuf:"bytes,4,opt,name=default_constraint,json=defaultConstraint,proto3" json:"default_constraint,omitempty"`
-	SemanticType      SemanticType   `protobuf:"varint,5,opt,name=semantic_type,json=semanticType,proto3,enum=greptime.v1.SemanticType" json:"semantic_type,omitempty"`
-	Comment           string         `protobuf:"bytes,6,opt,name=comment,proto3" json:"comment,omitempty"`
+	Name              string          `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	DataType          *ColumnDataType `protobuf:"bytes,2,opt,name=data_type,json=dataType,proto3" json:"data_type,omitempty"`
+	IsNullable        bool            `protobuf:"varint,3,opt,name=is_nullable,json=isNullable,proto3" json:"is_nullable,omitempty"`
+	DefaultConstraint []byte          `protobuf:"bytes,4,opt,name=default_constraint,json=defaultConstraint,proto3" json:"default_constraint,omitempty"`
+	SemanticType      SemanticType    `protobuf:"varint,5,opt,name=semantic_type,json=semanticType,proto3,enum=greptime.v1.SemanticType" json:"semantic_type,omitempty"`
+	Comment           string          `protobuf:"bytes,6,opt,name=comment,proto3" json:"comment,omitempty"`
 }
 
 func (x *ColumnDef) Reset() {
@@ -1000,11 +1000,11 @@ func (x *ColumnDef) GetName() string {
 	return ""
 }
 
-func (x *ColumnDef) GetDataType() ColumnDataType {
+func (x *ColumnDef) GetDataType() *ColumnDataType {
 	if x != nil {
 		return x.DataType
 	}
-	return ColumnDataType_BOOLEAN
+	return nil
 }
 
 func (x *ColumnDef) GetIsNullable() bool {
@@ -1234,7 +1234,7 @@ var file_greptime_v1_ddl_proto_rawDesc = []byte{
 	0x20, 0x01, 0x28, 0x0d, 0x52, 0x02, 0x69, 0x64, 0x22, 0x83, 0x02, 0x0a, 0x09, 0x43, 0x6f, 0x6c,
 	0x75, 0x6d, 0x6e, 0x44, 0x65, 0x66, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x38, 0x0a, 0x09, 0x64, 0x61,
-	0x74, 0x61, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e,
+	0x74, 0x61, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e,
 	0x67, 0x72, 0x65, 0x70, 0x74, 0x69, 0x6d, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6c, 0x75,
 	0x6d, 0x6e, 0x44, 0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65, 0x52, 0x08, 0x64, 0x61, 0x74, 0x61,
 	0x54, 0x79, 0x70, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x69, 0x73, 0x5f, 0x6e, 0x75, 0x6c, 0x6c, 0x61,
@@ -1299,7 +1299,7 @@ var file_greptime_v1_ddl_proto_goTypes = []interface{}{
 	(*AddColumnLocation)(nil),           // 14: greptime.v1.AddColumnLocation
 	nil,                                 // 15: greptime.v1.CreateTableExpr.TableOptionsEntry
 	nil,                                 // 16: greptime.v1.CreateDatabaseExpr.OptionsEntry
-	(ColumnDataType)(0),                 // 17: greptime.v1.ColumnDataType
+	(*ColumnDataType)(nil),              // 17: greptime.v1.ColumnDataType
 	(SemanticType)(0),                   // 18: greptime.v1.SemanticType
 }
 var file_greptime_v1_ddl_proto_depIdxs = []int32{

@@ -94,9 +94,9 @@ type ColumnSchema struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ColumnName   string         `protobuf:"bytes,1,opt,name=column_name,json=columnName,proto3" json:"column_name,omitempty"`
-	Datatype     ColumnDataType `protobuf:"varint,2,opt,name=datatype,proto3,enum=greptime.v1.ColumnDataType" json:"datatype,omitempty"`
-	SemanticType SemanticType   `protobuf:"varint,3,opt,name=semantic_type,json=semanticType,proto3,enum=greptime.v1.SemanticType" json:"semantic_type,omitempty"`
+	ColumnName   string          `protobuf:"bytes,1,opt,name=column_name,json=columnName,proto3" json:"column_name,omitempty"`
+	Datatype     *ColumnDataType `protobuf:"bytes,2,opt,name=datatype,proto3" json:"datatype,omitempty"`
+	SemanticType SemanticType    `protobuf:"varint,3,opt,name=semantic_type,json=semanticType,proto3,enum=greptime.v1.SemanticType" json:"semantic_type,omitempty"`
 }
 
 func (x *ColumnSchema) Reset() {
@@ -138,11 +138,11 @@ func (x *ColumnSchema) GetColumnName() string {
 	return ""
 }
 
-func (x *ColumnSchema) GetDatatype() ColumnDataType {
+func (x *ColumnSchema) GetDatatype() *ColumnDataType {
 	if x != nil {
 		return x.Datatype
 	}
-	return ColumnDataType_BOOLEAN
+	return nil
 }
 
 func (x *ColumnSchema) GetSemanticType() SemanticType {
@@ -703,7 +703,7 @@ var file_greptime_v1_row_proto_rawDesc = []byte{
 	0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x4e, 0x61, 0x6d,
 	0x65, 0x12, 0x37, 0x0a, 0x08, 0x64, 0x61, 0x74, 0x61, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x67, 0x72, 0x65, 0x70, 0x74, 0x69, 0x6d, 0x65, 0x2e, 0x76,
+	0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x72, 0x65, 0x70, 0x74, 0x69, 0x6d, 0x65, 0x2e, 0x76,
 	0x31, 0x2e, 0x43, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x44, 0x61, 0x74, 0x61, 0x54, 0x79, 0x70, 0x65,
 	0x52, 0x08, 0x64, 0x61, 0x74, 0x61, 0x74, 0x79, 0x70, 0x65, 0x12, 0x3e, 0x0a, 0x0d, 0x73, 0x65,
 	0x6d, 0x61, 0x6e, 0x74, 0x69, 0x63, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
@@ -834,7 +834,7 @@ var file_greptime_v1_row_proto_goTypes = []interface{}{
 	(*ColumnSchema)(nil),         // 1: greptime.v1.ColumnSchema
 	(*Row)(nil),                  // 2: greptime.v1.Row
 	(*Value)(nil),                // 3: greptime.v1.Value
-	(ColumnDataType)(0),          // 4: greptime.v1.ColumnDataType
+	(*ColumnDataType)(nil),       // 4: greptime.v1.ColumnDataType
 	(SemanticType)(0),            // 5: greptime.v1.SemanticType
 	(*IntervalMonthDayNano)(nil), // 6: greptime.v1.IntervalMonthDayNano
 	(*Decimal128)(nil),           // 7: greptime.v1.Decimal128

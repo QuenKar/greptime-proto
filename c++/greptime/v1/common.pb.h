@@ -56,6 +56,9 @@ extern AuthHeaderDefaultTypeInternal _AuthHeader_default_instance_;
 class Basic;
 struct BasicDefaultTypeInternal;
 extern BasicDefaultTypeInternal _Basic_default_instance_;
+class ColumnDataType;
+struct ColumnDataTypeDefaultTypeInternal;
+extern ColumnDataTypeDefaultTypeInternal _ColumnDataType_default_instance_;
 class DataTypeExtension;
 struct DataTypeExtensionDefaultTypeInternal;
 extern DataTypeExtensionDefaultTypeInternal _DataTypeExtension_default_instance_;
@@ -89,6 +92,7 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::greptime::v1::AffectedRows* Arena::CreateMaybeMessage<::greptime::v1::AffectedRows>(Arena*);
 template<> ::greptime::v1::AuthHeader* Arena::CreateMaybeMessage<::greptime::v1::AuthHeader>(Arena*);
 template<> ::greptime::v1::Basic* Arena::CreateMaybeMessage<::greptime::v1::Basic>(Arena*);
+template<> ::greptime::v1::ColumnDataType* Arena::CreateMaybeMessage<::greptime::v1::ColumnDataType>(Arena*);
 template<> ::greptime::v1::DataTypeExtension* Arena::CreateMaybeMessage<::greptime::v1::DataTypeExtension>(Arena*);
 template<> ::greptime::v1::Decimal128* Arena::CreateMaybeMessage<::greptime::v1::Decimal128>(Arena*);
 template<> ::greptime::v1::Decimal128Type* Arena::CreateMaybeMessage<::greptime::v1::Decimal128Type>(Arena*);
@@ -128,7 +132,7 @@ inline bool SemanticType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SemanticType>(
     SemanticType_descriptor(), name, value);
 }
-enum ColumnDataType : int {
+enum PrimitiveDataType : int {
   BOOLEAN = 0,
   INT8 = 1,
   INT16 = 2,
@@ -160,27 +164,27 @@ enum ColumnDataType : int {
   DURATION_MICROSECOND = 28,
   DURATION_NANOSECOND = 29,
   DECIMAL128 = 30,
-  ColumnDataType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  ColumnDataType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+  PrimitiveDataType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PrimitiveDataType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool ColumnDataType_IsValid(int value);
-constexpr ColumnDataType ColumnDataType_MIN = BOOLEAN;
-constexpr ColumnDataType ColumnDataType_MAX = DECIMAL128;
-constexpr int ColumnDataType_ARRAYSIZE = ColumnDataType_MAX + 1;
+bool PrimitiveDataType_IsValid(int value);
+constexpr PrimitiveDataType PrimitiveDataType_MIN = BOOLEAN;
+constexpr PrimitiveDataType PrimitiveDataType_MAX = DECIMAL128;
+constexpr int PrimitiveDataType_ARRAYSIZE = PrimitiveDataType_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ColumnDataType_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PrimitiveDataType_descriptor();
 template<typename T>
-inline const std::string& ColumnDataType_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, ColumnDataType>::value ||
+inline const std::string& PrimitiveDataType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PrimitiveDataType>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function ColumnDataType_Name.");
+    "Incorrect type passed to function PrimitiveDataType_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    ColumnDataType_descriptor(), enum_t_value);
+    PrimitiveDataType_descriptor(), enum_t_value);
 }
-inline bool ColumnDataType_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ColumnDataType* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ColumnDataType>(
-    ColumnDataType_descriptor(), name, value);
+inline bool PrimitiveDataType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PrimitiveDataType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PrimitiveDataType>(
+    PrimitiveDataType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -1555,6 +1559,197 @@ class FlightMetadata final :
 };
 // -------------------------------------------------------------------
 
+class ColumnDataType final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.ColumnDataType) */ {
+ public:
+  inline ColumnDataType() : ColumnDataType(nullptr) {}
+  ~ColumnDataType() override;
+  explicit PROTOBUF_CONSTEXPR ColumnDataType(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ColumnDataType(const ColumnDataType& from);
+  ColumnDataType(ColumnDataType&& from) noexcept
+    : ColumnDataType() {
+    *this = ::std::move(from);
+  }
+
+  inline ColumnDataType& operator=(const ColumnDataType& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ColumnDataType& operator=(ColumnDataType&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ColumnDataType& default_instance() {
+    return *internal_default_instance();
+  }
+  enum DataTypeCase {
+    kPrimitiveDataType = 1,
+    kComplexDataType = 2,
+    DATA_TYPE_NOT_SET = 0,
+  };
+
+  static inline const ColumnDataType* internal_default_instance() {
+    return reinterpret_cast<const ColumnDataType*>(
+               &_ColumnDataType_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(ColumnDataType& a, ColumnDataType& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ColumnDataType* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ColumnDataType* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ColumnDataType* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ColumnDataType>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ColumnDataType& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ColumnDataType& from) {
+    ColumnDataType::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ColumnDataType* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "greptime.v1.ColumnDataType";
+  }
+  protected:
+  explicit ColumnDataType(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPrimitiveDataTypeFieldNumber = 1,
+    kComplexDataTypeFieldNumber = 2,
+  };
+  // .greptime.v1.PrimitiveDataType primitive_data_type = 1;
+  bool has_primitive_data_type() const;
+  private:
+  bool _internal_has_primitive_data_type() const;
+  public:
+  void clear_primitive_data_type();
+  ::greptime::v1::PrimitiveDataType primitive_data_type() const;
+  void set_primitive_data_type(::greptime::v1::PrimitiveDataType value);
+  private:
+  ::greptime::v1::PrimitiveDataType _internal_primitive_data_type() const;
+  void _internal_set_primitive_data_type(::greptime::v1::PrimitiveDataType value);
+  public:
+
+  // .greptime.v1.DataTypeExtension complex_data_type = 2;
+  bool has_complex_data_type() const;
+  private:
+  bool _internal_has_complex_data_type() const;
+  public:
+  void clear_complex_data_type();
+  const ::greptime::v1::DataTypeExtension& complex_data_type() const;
+  PROTOBUF_NODISCARD ::greptime::v1::DataTypeExtension* release_complex_data_type();
+  ::greptime::v1::DataTypeExtension* mutable_complex_data_type();
+  void set_allocated_complex_data_type(::greptime::v1::DataTypeExtension* complex_data_type);
+  private:
+  const ::greptime::v1::DataTypeExtension& _internal_complex_data_type() const;
+  ::greptime::v1::DataTypeExtension* _internal_mutable_complex_data_type();
+  public:
+  void unsafe_arena_set_allocated_complex_data_type(
+      ::greptime::v1::DataTypeExtension* complex_data_type);
+  ::greptime::v1::DataTypeExtension* unsafe_arena_release_complex_data_type();
+
+  void clear_data_type();
+  DataTypeCase data_type_case() const;
+  // @@protoc_insertion_point(class_scope:greptime.v1.ColumnDataType)
+ private:
+  class _Internal;
+  void set_has_primitive_data_type();
+  void set_has_complex_data_type();
+
+  inline bool has_data_type() const;
+  inline void clear_has_data_type();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    union DataTypeUnion {
+      constexpr DataTypeUnion() : _constinit_{} {}
+        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+      int primitive_data_type_;
+      ::greptime::v1::DataTypeExtension* complex_data_type_;
+    } data_type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    uint32_t _oneof_case_[1];
+
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_greptime_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class DataTypeExtension final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.DataTypeExtension) */ {
  public:
@@ -1608,7 +1803,7 @@ class DataTypeExtension final :
                &_DataTypeExtension_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(DataTypeExtension& a, DataTypeExtension& b) {
     a.Swap(&b);
@@ -1777,7 +1972,7 @@ class Decimal128Type final :
                &_Decimal128Type_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Decimal128Type& a, Decimal128Type& b) {
     a.Swap(&b);
@@ -1936,7 +2131,7 @@ class IntervalMonthDayNano final :
                &_IntervalMonthDayNano_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(IntervalMonthDayNano& a, IntervalMonthDayNano& b) {
     a.Swap(&b);
@@ -2106,7 +2301,7 @@ class Decimal128 final :
                &_Decimal128_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(Decimal128& a, Decimal128& b) {
     a.Swap(&b);
@@ -3124,6 +3319,131 @@ inline void FlightMetadata::set_allocated_affected_rows(::greptime::v1::Affected
 
 // -------------------------------------------------------------------
 
+// ColumnDataType
+
+// .greptime.v1.PrimitiveDataType primitive_data_type = 1;
+inline bool ColumnDataType::_internal_has_primitive_data_type() const {
+  return data_type_case() == kPrimitiveDataType;
+}
+inline bool ColumnDataType::has_primitive_data_type() const {
+  return _internal_has_primitive_data_type();
+}
+inline void ColumnDataType::set_has_primitive_data_type() {
+  _impl_._oneof_case_[0] = kPrimitiveDataType;
+}
+inline void ColumnDataType::clear_primitive_data_type() {
+  if (_internal_has_primitive_data_type()) {
+    _impl_.data_type_.primitive_data_type_ = 0;
+    clear_has_data_type();
+  }
+}
+inline ::greptime::v1::PrimitiveDataType ColumnDataType::_internal_primitive_data_type() const {
+  if (_internal_has_primitive_data_type()) {
+    return static_cast< ::greptime::v1::PrimitiveDataType >(_impl_.data_type_.primitive_data_type_);
+  }
+  return static_cast< ::greptime::v1::PrimitiveDataType >(0);
+}
+inline ::greptime::v1::PrimitiveDataType ColumnDataType::primitive_data_type() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.ColumnDataType.primitive_data_type)
+  return _internal_primitive_data_type();
+}
+inline void ColumnDataType::_internal_set_primitive_data_type(::greptime::v1::PrimitiveDataType value) {
+  if (!_internal_has_primitive_data_type()) {
+    clear_data_type();
+    set_has_primitive_data_type();
+  }
+  _impl_.data_type_.primitive_data_type_ = value;
+}
+inline void ColumnDataType::set_primitive_data_type(::greptime::v1::PrimitiveDataType value) {
+  _internal_set_primitive_data_type(value);
+  // @@protoc_insertion_point(field_set:greptime.v1.ColumnDataType.primitive_data_type)
+}
+
+// .greptime.v1.DataTypeExtension complex_data_type = 2;
+inline bool ColumnDataType::_internal_has_complex_data_type() const {
+  return data_type_case() == kComplexDataType;
+}
+inline bool ColumnDataType::has_complex_data_type() const {
+  return _internal_has_complex_data_type();
+}
+inline void ColumnDataType::set_has_complex_data_type() {
+  _impl_._oneof_case_[0] = kComplexDataType;
+}
+inline void ColumnDataType::clear_complex_data_type() {
+  if (_internal_has_complex_data_type()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.data_type_.complex_data_type_;
+    }
+    clear_has_data_type();
+  }
+}
+inline ::greptime::v1::DataTypeExtension* ColumnDataType::release_complex_data_type() {
+  // @@protoc_insertion_point(field_release:greptime.v1.ColumnDataType.complex_data_type)
+  if (_internal_has_complex_data_type()) {
+    clear_has_data_type();
+    ::greptime::v1::DataTypeExtension* temp = _impl_.data_type_.complex_data_type_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.data_type_.complex_data_type_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::greptime::v1::DataTypeExtension& ColumnDataType::_internal_complex_data_type() const {
+  return _internal_has_complex_data_type()
+      ? *_impl_.data_type_.complex_data_type_
+      : reinterpret_cast< ::greptime::v1::DataTypeExtension&>(::greptime::v1::_DataTypeExtension_default_instance_);
+}
+inline const ::greptime::v1::DataTypeExtension& ColumnDataType::complex_data_type() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.ColumnDataType.complex_data_type)
+  return _internal_complex_data_type();
+}
+inline ::greptime::v1::DataTypeExtension* ColumnDataType::unsafe_arena_release_complex_data_type() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.ColumnDataType.complex_data_type)
+  if (_internal_has_complex_data_type()) {
+    clear_has_data_type();
+    ::greptime::v1::DataTypeExtension* temp = _impl_.data_type_.complex_data_type_;
+    _impl_.data_type_.complex_data_type_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void ColumnDataType::unsafe_arena_set_allocated_complex_data_type(::greptime::v1::DataTypeExtension* complex_data_type) {
+  clear_data_type();
+  if (complex_data_type) {
+    set_has_complex_data_type();
+    _impl_.data_type_.complex_data_type_ = complex_data_type;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.ColumnDataType.complex_data_type)
+}
+inline ::greptime::v1::DataTypeExtension* ColumnDataType::_internal_mutable_complex_data_type() {
+  if (!_internal_has_complex_data_type()) {
+    clear_data_type();
+    set_has_complex_data_type();
+    _impl_.data_type_.complex_data_type_ = CreateMaybeMessage< ::greptime::v1::DataTypeExtension >(GetArenaForAllocation());
+  }
+  return _impl_.data_type_.complex_data_type_;
+}
+inline ::greptime::v1::DataTypeExtension* ColumnDataType::mutable_complex_data_type() {
+  ::greptime::v1::DataTypeExtension* _msg = _internal_mutable_complex_data_type();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.ColumnDataType.complex_data_type)
+  return _msg;
+}
+
+inline bool ColumnDataType::has_data_type() const {
+  return data_type_case() != DATA_TYPE_NOT_SET;
+}
+inline void ColumnDataType::clear_has_data_type() {
+  _impl_._oneof_case_[0] = DATA_TYPE_NOT_SET;
+}
+inline ColumnDataType::DataTypeCase ColumnDataType::data_type_case() const {
+  return ColumnDataType::DataTypeCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
 // DataTypeExtension
 
 // .greptime.v1.Decimal128Type decimal128_type = 1;
@@ -3406,6 +3726,8 @@ inline void Decimal128::set_precision_and_scale(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -3419,10 +3741,10 @@ template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::greptime::v1::SemanticType>() {
   return ::greptime::v1::SemanticType_descriptor();
 }
-template <> struct is_proto_enum< ::greptime::v1::ColumnDataType> : ::std::true_type {};
+template <> struct is_proto_enum< ::greptime::v1::PrimitiveDataType> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::greptime::v1::ColumnDataType>() {
-  return ::greptime::v1::ColumnDataType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::greptime::v1::PrimitiveDataType>() {
+  return ::greptime::v1::PrimitiveDataType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

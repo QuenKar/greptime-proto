@@ -67,7 +67,14 @@ enum SemanticType {
   TIMESTAMP = 2;
 }
 
-enum ColumnDataType {
+message ColumnDataType {
+  oneof data_type {
+    PrimitiveDataType primitive_data_type = 1;
+    DataTypeExtension complex_data_type = 2;
+  }
+}
+
+enum PrimitiveDataType {
   BOOLEAN = 0;
   INT8 = 1;
   INT16 = 2;
