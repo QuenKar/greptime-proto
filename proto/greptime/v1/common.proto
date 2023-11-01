@@ -68,13 +68,11 @@ enum SemanticType {
 }
 
 message ColumnDataType {
-  oneof data_type {
-    PrimitiveDataType primitive_data_type = 1;
-    DataTypeExtension complex_data_type = 2;
-  }
+  DataType data_type = 1;
+  DataTypeExtension type_extension = 2;
 }
 
-enum PrimitiveDataType {
+enum DataType {
   BOOLEAN = 0;
   INT8 = 1;
   INT16 = 2;
@@ -109,10 +107,10 @@ enum PrimitiveDataType {
 }
 
 message DataTypeExtension {
-  oneof type_extension { Decimal128Type decimal128_type = 1; }
+  oneof type_extension { DecimalTypeExtension decimal_type_extension = 1; }
 }
 
-message Decimal128Type {
+message DecimalTypeExtension {
   int32 precision = 1;
   int32 scale = 2;
 }

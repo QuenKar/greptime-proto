@@ -132,9 +132,9 @@ public final class Common {
   }
 
   /**
-   * Protobuf enum {@code greptime.v1.PrimitiveDataType}
+   * Protobuf enum {@code greptime.v1.DataType}
    */
-  public enum PrimitiveDataType
+  public enum DataType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>BOOLEAN = 0;</code>
@@ -403,7 +403,7 @@ public final class Common {
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static PrimitiveDataType valueOf(int value) {
+    public static DataType valueOf(int value) {
       return forNumber(value);
     }
 
@@ -411,7 +411,7 @@ public final class Common {
      * @param value The numeric wire value of the corresponding enum entry.
      * @return The enum associated with the given numeric wire value.
      */
-    public static PrimitiveDataType forNumber(int value) {
+    public static DataType forNumber(int value) {
       switch (value) {
         case 0: return BOOLEAN;
         case 1: return INT8;
@@ -448,15 +448,15 @@ public final class Common {
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<PrimitiveDataType>
+    public static com.google.protobuf.Internal.EnumLiteMap<DataType>
         internalGetValueMap() {
       return internalValueMap;
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
-        PrimitiveDataType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<PrimitiveDataType>() {
-            public PrimitiveDataType findValueByNumber(int number) {
-              return PrimitiveDataType.forNumber(number);
+        DataType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<DataType>() {
+            public DataType findValueByNumber(int number) {
+              return DataType.forNumber(number);
             }
           };
 
@@ -477,9 +477,9 @@ public final class Common {
       return io.greptime.v1.Common.getDescriptor().getEnumTypes().get(1);
     }
 
-    private static final PrimitiveDataType[] VALUES = values();
+    private static final DataType[] VALUES = values();
 
-    public static PrimitiveDataType valueOf(
+    public static DataType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -493,11 +493,11 @@ public final class Common {
 
     private final int value;
 
-    private PrimitiveDataType(int value) {
+    private DataType(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:greptime.v1.PrimitiveDataType)
+    // @@protoc_insertion_point(enum_scope:greptime.v1.DataType)
   }
 
   public interface RequestHeaderOrBuilder extends
@@ -6565,37 +6565,30 @@ public final class Common {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-     * @return Whether the primitiveDataType field is set.
+     * <code>.greptime.v1.DataType data_type = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
      */
-    boolean hasPrimitiveDataType();
+    int getDataTypeValue();
     /**
-     * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-     * @return The enum numeric value on the wire for primitiveDataType.
+     * <code>.greptime.v1.DataType data_type = 1;</code>
+     * @return The dataType.
      */
-    int getPrimitiveDataTypeValue();
-    /**
-     * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-     * @return The primitiveDataType.
-     */
-    io.greptime.v1.Common.PrimitiveDataType getPrimitiveDataType();
+    io.greptime.v1.Common.DataType getDataType();
 
     /**
-     * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
-     * @return Whether the complexDataType field is set.
+     * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
+     * @return Whether the typeExtension field is set.
      */
-    boolean hasComplexDataType();
+    boolean hasTypeExtension();
     /**
-     * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
-     * @return The complexDataType.
+     * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
+     * @return The typeExtension.
      */
-    io.greptime.v1.Common.DataTypeExtension getComplexDataType();
+    io.greptime.v1.Common.DataTypeExtension getTypeExtension();
     /**
-     * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+     * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
      */
-    io.greptime.v1.Common.DataTypeExtensionOrBuilder getComplexDataTypeOrBuilder();
-
-    public io.greptime.v1.Common.ColumnDataType.DataTypeCase getDataTypeCase();
+    io.greptime.v1.Common.DataTypeExtensionOrBuilder getTypeExtensionOrBuilder();
   }
   /**
    * Protobuf type {@code greptime.v1.ColumnDataType}
@@ -6610,6 +6603,7 @@ public final class Common {
       super(builder);
     }
     private ColumnDataType() {
+      dataType_ = 0;
     }
 
     @java.lang.Override
@@ -6644,22 +6638,21 @@ public final class Common {
               break;
             case 8: {
               int rawValue = input.readEnum();
-              dataTypeCase_ = 1;
+
               dataType_ = rawValue;
               break;
             }
             case 18: {
               io.greptime.v1.Common.DataTypeExtension.Builder subBuilder = null;
-              if (dataTypeCase_ == 2) {
-                subBuilder = ((io.greptime.v1.Common.DataTypeExtension) dataType_).toBuilder();
+              if (typeExtension_ != null) {
+                subBuilder = typeExtension_.toBuilder();
               }
-              dataType_ =
-                  input.readMessage(io.greptime.v1.Common.DataTypeExtension.parser(), extensionRegistry);
+              typeExtension_ = input.readMessage(io.greptime.v1.Common.DataTypeExtension.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((io.greptime.v1.Common.DataTypeExtension) dataType_);
-                dataType_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(typeExtension_);
+                typeExtension_ = subBuilder.buildPartial();
               }
-              dataTypeCase_ = 2;
+
               break;
             }
             default: {
@@ -6696,108 +6689,49 @@ public final class Common {
               io.greptime.v1.Common.ColumnDataType.class, io.greptime.v1.Common.ColumnDataType.Builder.class);
     }
 
-    private int dataTypeCase_ = 0;
-    private java.lang.Object dataType_;
-    public enum DataTypeCase
-        implements com.google.protobuf.Internal.EnumLite,
-            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      PRIMITIVE_DATA_TYPE(1),
-      COMPLEX_DATA_TYPE(2),
-      DATATYPE_NOT_SET(0);
-      private final int value;
-      private DataTypeCase(int value) {
-        this.value = value;
-      }
-      /**
-       * @param value The number of the enum to look for.
-       * @return The enum associated with the given number.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static DataTypeCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static DataTypeCase forNumber(int value) {
-        switch (value) {
-          case 1: return PRIMITIVE_DATA_TYPE;
-          case 2: return COMPLEX_DATA_TYPE;
-          case 0: return DATATYPE_NOT_SET;
-          default: return null;
-        }
-      }
-      public int getNumber() {
-        return this.value;
-      }
-    };
-
-    public DataTypeCase
-    getDataTypeCase() {
-      return DataTypeCase.forNumber(
-          dataTypeCase_);
-    }
-
-    public static final int PRIMITIVE_DATA_TYPE_FIELD_NUMBER = 1;
+    public static final int DATA_TYPE_FIELD_NUMBER = 1;
+    private int dataType_;
     /**
-     * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-     * @return Whether the primitiveDataType field is set.
+     * <code>.greptime.v1.DataType data_type = 1;</code>
+     * @return The enum numeric value on the wire for dataType.
      */
-    public boolean hasPrimitiveDataType() {
-      return dataTypeCase_ == 1;
+    @java.lang.Override public int getDataTypeValue() {
+      return dataType_;
     }
     /**
-     * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-     * @return The enum numeric value on the wire for primitiveDataType.
+     * <code>.greptime.v1.DataType data_type = 1;</code>
+     * @return The dataType.
      */
-    public int getPrimitiveDataTypeValue() {
-      if (dataTypeCase_ == 1) {
-        return (java.lang.Integer) dataType_;
-      }
-      return 0;
-    }
-    /**
-     * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-     * @return The primitiveDataType.
-     */
-    public io.greptime.v1.Common.PrimitiveDataType getPrimitiveDataType() {
-      if (dataTypeCase_ == 1) {
-        @SuppressWarnings("deprecation")
-        io.greptime.v1.Common.PrimitiveDataType result = io.greptime.v1.Common.PrimitiveDataType.valueOf(
-            (java.lang.Integer) dataType_);
-        return result == null ? io.greptime.v1.Common.PrimitiveDataType.UNRECOGNIZED : result;
-      }
-      return io.greptime.v1.Common.PrimitiveDataType.BOOLEAN;
+    @java.lang.Override public io.greptime.v1.Common.DataType getDataType() {
+      @SuppressWarnings("deprecation")
+      io.greptime.v1.Common.DataType result = io.greptime.v1.Common.DataType.valueOf(dataType_);
+      return result == null ? io.greptime.v1.Common.DataType.UNRECOGNIZED : result;
     }
 
-    public static final int COMPLEX_DATA_TYPE_FIELD_NUMBER = 2;
+    public static final int TYPE_EXTENSION_FIELD_NUMBER = 2;
+    private io.greptime.v1.Common.DataTypeExtension typeExtension_;
     /**
-     * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
-     * @return Whether the complexDataType field is set.
+     * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
+     * @return Whether the typeExtension field is set.
      */
     @java.lang.Override
-    public boolean hasComplexDataType() {
-      return dataTypeCase_ == 2;
+    public boolean hasTypeExtension() {
+      return typeExtension_ != null;
     }
     /**
-     * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
-     * @return The complexDataType.
+     * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
+     * @return The typeExtension.
      */
     @java.lang.Override
-    public io.greptime.v1.Common.DataTypeExtension getComplexDataType() {
-      if (dataTypeCase_ == 2) {
-         return (io.greptime.v1.Common.DataTypeExtension) dataType_;
-      }
-      return io.greptime.v1.Common.DataTypeExtension.getDefaultInstance();
+    public io.greptime.v1.Common.DataTypeExtension getTypeExtension() {
+      return typeExtension_ == null ? io.greptime.v1.Common.DataTypeExtension.getDefaultInstance() : typeExtension_;
     }
     /**
-     * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+     * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
      */
     @java.lang.Override
-    public io.greptime.v1.Common.DataTypeExtensionOrBuilder getComplexDataTypeOrBuilder() {
-      if (dataTypeCase_ == 2) {
-         return (io.greptime.v1.Common.DataTypeExtension) dataType_;
-      }
-      return io.greptime.v1.Common.DataTypeExtension.getDefaultInstance();
+    public io.greptime.v1.Common.DataTypeExtensionOrBuilder getTypeExtensionOrBuilder() {
+      return getTypeExtension();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -6814,11 +6748,11 @@ public final class Common {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (dataTypeCase_ == 1) {
-        output.writeEnum(1, ((java.lang.Integer) dataType_));
+      if (dataType_ != io.greptime.v1.Common.DataType.BOOLEAN.getNumber()) {
+        output.writeEnum(1, dataType_);
       }
-      if (dataTypeCase_ == 2) {
-        output.writeMessage(2, (io.greptime.v1.Common.DataTypeExtension) dataType_);
+      if (typeExtension_ != null) {
+        output.writeMessage(2, getTypeExtension());
       }
       unknownFields.writeTo(output);
     }
@@ -6829,13 +6763,13 @@ public final class Common {
       if (size != -1) return size;
 
       size = 0;
-      if (dataTypeCase_ == 1) {
+      if (dataType_ != io.greptime.v1.Common.DataType.BOOLEAN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, ((java.lang.Integer) dataType_));
+          .computeEnumSize(1, dataType_);
       }
-      if (dataTypeCase_ == 2) {
+      if (typeExtension_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (io.greptime.v1.Common.DataTypeExtension) dataType_);
+          .computeMessageSize(2, getTypeExtension());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6852,18 +6786,11 @@ public final class Common {
       }
       io.greptime.v1.Common.ColumnDataType other = (io.greptime.v1.Common.ColumnDataType) obj;
 
-      if (!getDataTypeCase().equals(other.getDataTypeCase())) return false;
-      switch (dataTypeCase_) {
-        case 1:
-          if (getPrimitiveDataTypeValue()
-              != other.getPrimitiveDataTypeValue()) return false;
-          break;
-        case 2:
-          if (!getComplexDataType()
-              .equals(other.getComplexDataType())) return false;
-          break;
-        case 0:
-        default:
+      if (dataType_ != other.dataType_) return false;
+      if (hasTypeExtension() != other.hasTypeExtension()) return false;
+      if (hasTypeExtension()) {
+        if (!getTypeExtension()
+            .equals(other.getTypeExtension())) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -6876,17 +6803,11 @@ public final class Common {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      switch (dataTypeCase_) {
-        case 1:
-          hash = (37 * hash) + PRIMITIVE_DATA_TYPE_FIELD_NUMBER;
-          hash = (53 * hash) + getPrimitiveDataTypeValue();
-          break;
-        case 2:
-          hash = (37 * hash) + COMPLEX_DATA_TYPE_FIELD_NUMBER;
-          hash = (53 * hash) + getComplexDataType().hashCode();
-          break;
-        case 0:
-        default:
+      hash = (37 * hash) + DATA_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + dataType_;
+      if (hasTypeExtension()) {
+        hash = (37 * hash) + TYPE_EXTENSION_FIELD_NUMBER;
+        hash = (53 * hash) + getTypeExtension().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -7021,8 +6942,14 @@ public final class Common {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        dataTypeCase_ = 0;
-        dataType_ = null;
+        dataType_ = 0;
+
+        if (typeExtensionBuilder_ == null) {
+          typeExtension_ = null;
+        } else {
+          typeExtension_ = null;
+          typeExtensionBuilder_ = null;
+        }
         return this;
       }
 
@@ -7049,17 +6976,12 @@ public final class Common {
       @java.lang.Override
       public io.greptime.v1.Common.ColumnDataType buildPartial() {
         io.greptime.v1.Common.ColumnDataType result = new io.greptime.v1.Common.ColumnDataType(this);
-        if (dataTypeCase_ == 1) {
-          result.dataType_ = dataType_;
+        result.dataType_ = dataType_;
+        if (typeExtensionBuilder_ == null) {
+          result.typeExtension_ = typeExtension_;
+        } else {
+          result.typeExtension_ = typeExtensionBuilder_.build();
         }
-        if (dataTypeCase_ == 2) {
-          if (complexDataTypeBuilder_ == null) {
-            result.dataType_ = dataType_;
-          } else {
-            result.dataType_ = complexDataTypeBuilder_.build();
-          }
-        }
-        result.dataTypeCase_ = dataTypeCase_;
         onBuilt();
         return result;
       }
@@ -7108,18 +7030,11 @@ public final class Common {
 
       public Builder mergeFrom(io.greptime.v1.Common.ColumnDataType other) {
         if (other == io.greptime.v1.Common.ColumnDataType.getDefaultInstance()) return this;
-        switch (other.getDataTypeCase()) {
-          case PRIMITIVE_DATA_TYPE: {
-            setPrimitiveDataTypeValue(other.getPrimitiveDataTypeValue());
-            break;
-          }
-          case COMPLEX_DATA_TYPE: {
-            mergeComplexDataType(other.getComplexDataType());
-            break;
-          }
-          case DATATYPE_NOT_SET: {
-            break;
-          }
+        if (other.dataType_ != 0) {
+          setDataTypeValue(other.getDataTypeValue());
+        }
+        if (other.hasTypeExtension()) {
+          mergeTypeExtension(other.getTypeExtension());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -7149,233 +7064,178 @@ public final class Common {
         }
         return this;
       }
-      private int dataTypeCase_ = 0;
-      private java.lang.Object dataType_;
-      public DataTypeCase
-          getDataTypeCase() {
-        return DataTypeCase.forNumber(
-            dataTypeCase_);
-      }
 
-      public Builder clearDataType() {
-        dataTypeCase_ = 0;
-        dataType_ = null;
-        onChanged();
-        return this;
-      }
-
-
+      private int dataType_ = 0;
       /**
-       * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-       * @return Whether the primitiveDataType field is set.
+       * <code>.greptime.v1.DataType data_type = 1;</code>
+       * @return The enum numeric value on the wire for dataType.
        */
-      @java.lang.Override
-      public boolean hasPrimitiveDataType() {
-        return dataTypeCase_ == 1;
+      @java.lang.Override public int getDataTypeValue() {
+        return dataType_;
       }
       /**
-       * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-       * @return The enum numeric value on the wire for primitiveDataType.
-       */
-      @java.lang.Override
-      public int getPrimitiveDataTypeValue() {
-        if (dataTypeCase_ == 1) {
-          return ((java.lang.Integer) dataType_).intValue();
-        }
-        return 0;
-      }
-      /**
-       * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-       * @param value The enum numeric value on the wire for primitiveDataType to set.
+       * <code>.greptime.v1.DataType data_type = 1;</code>
+       * @param value The enum numeric value on the wire for dataType to set.
        * @return This builder for chaining.
        */
-      public Builder setPrimitiveDataTypeValue(int value) {
-        dataTypeCase_ = 1;
+      public Builder setDataTypeValue(int value) {
+        
         dataType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-       * @return The primitiveDataType.
+       * <code>.greptime.v1.DataType data_type = 1;</code>
+       * @return The dataType.
        */
       @java.lang.Override
-      public io.greptime.v1.Common.PrimitiveDataType getPrimitiveDataType() {
-        if (dataTypeCase_ == 1) {
-          @SuppressWarnings("deprecation")
-          io.greptime.v1.Common.PrimitiveDataType result = io.greptime.v1.Common.PrimitiveDataType.valueOf(
-              (java.lang.Integer) dataType_);
-          return result == null ? io.greptime.v1.Common.PrimitiveDataType.UNRECOGNIZED : result;
-        }
-        return io.greptime.v1.Common.PrimitiveDataType.BOOLEAN;
+      public io.greptime.v1.Common.DataType getDataType() {
+        @SuppressWarnings("deprecation")
+        io.greptime.v1.Common.DataType result = io.greptime.v1.Common.DataType.valueOf(dataType_);
+        return result == null ? io.greptime.v1.Common.DataType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
-       * @param value The primitiveDataType to set.
+       * <code>.greptime.v1.DataType data_type = 1;</code>
+       * @param value The dataType to set.
        * @return This builder for chaining.
        */
-      public Builder setPrimitiveDataType(io.greptime.v1.Common.PrimitiveDataType value) {
+      public Builder setDataType(io.greptime.v1.Common.DataType value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        dataTypeCase_ = 1;
+        
         dataType_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>.greptime.v1.PrimitiveDataType primitive_data_type = 1;</code>
+       * <code>.greptime.v1.DataType data_type = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPrimitiveDataType() {
-        if (dataTypeCase_ == 1) {
-          dataTypeCase_ = 0;
-          dataType_ = null;
-          onChanged();
-        }
+      public Builder clearDataType() {
+        
+        dataType_ = 0;
+        onChanged();
         return this;
       }
 
+      private io.greptime.v1.Common.DataTypeExtension typeExtension_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          io.greptime.v1.Common.DataTypeExtension, io.greptime.v1.Common.DataTypeExtension.Builder, io.greptime.v1.Common.DataTypeExtensionOrBuilder> complexDataTypeBuilder_;
+          io.greptime.v1.Common.DataTypeExtension, io.greptime.v1.Common.DataTypeExtension.Builder, io.greptime.v1.Common.DataTypeExtensionOrBuilder> typeExtensionBuilder_;
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
-       * @return Whether the complexDataType field is set.
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
+       * @return Whether the typeExtension field is set.
        */
-      @java.lang.Override
-      public boolean hasComplexDataType() {
-        return dataTypeCase_ == 2;
+      public boolean hasTypeExtension() {
+        return typeExtensionBuilder_ != null || typeExtension_ != null;
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
-       * @return The complexDataType.
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
+       * @return The typeExtension.
        */
-      @java.lang.Override
-      public io.greptime.v1.Common.DataTypeExtension getComplexDataType() {
-        if (complexDataTypeBuilder_ == null) {
-          if (dataTypeCase_ == 2) {
-            return (io.greptime.v1.Common.DataTypeExtension) dataType_;
-          }
-          return io.greptime.v1.Common.DataTypeExtension.getDefaultInstance();
+      public io.greptime.v1.Common.DataTypeExtension getTypeExtension() {
+        if (typeExtensionBuilder_ == null) {
+          return typeExtension_ == null ? io.greptime.v1.Common.DataTypeExtension.getDefaultInstance() : typeExtension_;
         } else {
-          if (dataTypeCase_ == 2) {
-            return complexDataTypeBuilder_.getMessage();
-          }
-          return io.greptime.v1.Common.DataTypeExtension.getDefaultInstance();
+          return typeExtensionBuilder_.getMessage();
         }
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
-      public Builder setComplexDataType(io.greptime.v1.Common.DataTypeExtension value) {
-        if (complexDataTypeBuilder_ == null) {
+      public Builder setTypeExtension(io.greptime.v1.Common.DataTypeExtension value) {
+        if (typeExtensionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          dataType_ = value;
+          typeExtension_ = value;
           onChanged();
         } else {
-          complexDataTypeBuilder_.setMessage(value);
+          typeExtensionBuilder_.setMessage(value);
         }
-        dataTypeCase_ = 2;
+
         return this;
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
-      public Builder setComplexDataType(
+      public Builder setTypeExtension(
           io.greptime.v1.Common.DataTypeExtension.Builder builderForValue) {
-        if (complexDataTypeBuilder_ == null) {
-          dataType_ = builderForValue.build();
+        if (typeExtensionBuilder_ == null) {
+          typeExtension_ = builderForValue.build();
           onChanged();
         } else {
-          complexDataTypeBuilder_.setMessage(builderForValue.build());
+          typeExtensionBuilder_.setMessage(builderForValue.build());
         }
-        dataTypeCase_ = 2;
+
         return this;
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
-      public Builder mergeComplexDataType(io.greptime.v1.Common.DataTypeExtension value) {
-        if (complexDataTypeBuilder_ == null) {
-          if (dataTypeCase_ == 2 &&
-              dataType_ != io.greptime.v1.Common.DataTypeExtension.getDefaultInstance()) {
-            dataType_ = io.greptime.v1.Common.DataTypeExtension.newBuilder((io.greptime.v1.Common.DataTypeExtension) dataType_)
-                .mergeFrom(value).buildPartial();
+      public Builder mergeTypeExtension(io.greptime.v1.Common.DataTypeExtension value) {
+        if (typeExtensionBuilder_ == null) {
+          if (typeExtension_ != null) {
+            typeExtension_ =
+              io.greptime.v1.Common.DataTypeExtension.newBuilder(typeExtension_).mergeFrom(value).buildPartial();
           } else {
-            dataType_ = value;
+            typeExtension_ = value;
           }
           onChanged();
         } else {
-          if (dataTypeCase_ == 2) {
-            complexDataTypeBuilder_.mergeFrom(value);
-          } else {
-            complexDataTypeBuilder_.setMessage(value);
-          }
+          typeExtensionBuilder_.mergeFrom(value);
         }
-        dataTypeCase_ = 2;
+
         return this;
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
-      public Builder clearComplexDataType() {
-        if (complexDataTypeBuilder_ == null) {
-          if (dataTypeCase_ == 2) {
-            dataTypeCase_ = 0;
-            dataType_ = null;
-            onChanged();
-          }
+      public Builder clearTypeExtension() {
+        if (typeExtensionBuilder_ == null) {
+          typeExtension_ = null;
+          onChanged();
         } else {
-          if (dataTypeCase_ == 2) {
-            dataTypeCase_ = 0;
-            dataType_ = null;
-          }
-          complexDataTypeBuilder_.clear();
+          typeExtension_ = null;
+          typeExtensionBuilder_ = null;
         }
+
         return this;
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
-      public io.greptime.v1.Common.DataTypeExtension.Builder getComplexDataTypeBuilder() {
-        return getComplexDataTypeFieldBuilder().getBuilder();
+      public io.greptime.v1.Common.DataTypeExtension.Builder getTypeExtensionBuilder() {
+        
+        onChanged();
+        return getTypeExtensionFieldBuilder().getBuilder();
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
-      @java.lang.Override
-      public io.greptime.v1.Common.DataTypeExtensionOrBuilder getComplexDataTypeOrBuilder() {
-        if ((dataTypeCase_ == 2) && (complexDataTypeBuilder_ != null)) {
-          return complexDataTypeBuilder_.getMessageOrBuilder();
+      public io.greptime.v1.Common.DataTypeExtensionOrBuilder getTypeExtensionOrBuilder() {
+        if (typeExtensionBuilder_ != null) {
+          return typeExtensionBuilder_.getMessageOrBuilder();
         } else {
-          if (dataTypeCase_ == 2) {
-            return (io.greptime.v1.Common.DataTypeExtension) dataType_;
-          }
-          return io.greptime.v1.Common.DataTypeExtension.getDefaultInstance();
+          return typeExtension_ == null ?
+              io.greptime.v1.Common.DataTypeExtension.getDefaultInstance() : typeExtension_;
         }
       }
       /**
-       * <code>.greptime.v1.DataTypeExtension complex_data_type = 2;</code>
+       * <code>.greptime.v1.DataTypeExtension type_extension = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           io.greptime.v1.Common.DataTypeExtension, io.greptime.v1.Common.DataTypeExtension.Builder, io.greptime.v1.Common.DataTypeExtensionOrBuilder> 
-          getComplexDataTypeFieldBuilder() {
-        if (complexDataTypeBuilder_ == null) {
-          if (!(dataTypeCase_ == 2)) {
-            dataType_ = io.greptime.v1.Common.DataTypeExtension.getDefaultInstance();
-          }
-          complexDataTypeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          getTypeExtensionFieldBuilder() {
+        if (typeExtensionBuilder_ == null) {
+          typeExtensionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               io.greptime.v1.Common.DataTypeExtension, io.greptime.v1.Common.DataTypeExtension.Builder, io.greptime.v1.Common.DataTypeExtensionOrBuilder>(
-                  (io.greptime.v1.Common.DataTypeExtension) dataType_,
+                  getTypeExtension(),
                   getParentForChildren(),
                   isClean());
-          dataType_ = null;
+          typeExtension_ = null;
         }
-        dataTypeCase_ = 2;
-        onChanged();;
-        return complexDataTypeBuilder_;
+        return typeExtensionBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -7435,19 +7295,19 @@ public final class Common {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
-     * @return Whether the decimal128Type field is set.
+     * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
+     * @return Whether the decimalTypeExtension field is set.
      */
-    boolean hasDecimal128Type();
+    boolean hasDecimalTypeExtension();
     /**
-     * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
-     * @return The decimal128Type.
+     * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
+     * @return The decimalTypeExtension.
      */
-    io.greptime.v1.Common.Decimal128Type getDecimal128Type();
+    io.greptime.v1.Common.DecimalTypeExtension getDecimalTypeExtension();
     /**
-     * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+     * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
      */
-    io.greptime.v1.Common.Decimal128TypeOrBuilder getDecimal128TypeOrBuilder();
+    io.greptime.v1.Common.DecimalTypeExtensionOrBuilder getDecimalTypeExtensionOrBuilder();
 
     public io.greptime.v1.Common.DataTypeExtension.TypeExtensionCase getTypeExtensionCase();
   }
@@ -7497,14 +7357,14 @@ public final class Common {
               done = true;
               break;
             case 10: {
-              io.greptime.v1.Common.Decimal128Type.Builder subBuilder = null;
+              io.greptime.v1.Common.DecimalTypeExtension.Builder subBuilder = null;
               if (typeExtensionCase_ == 1) {
-                subBuilder = ((io.greptime.v1.Common.Decimal128Type) typeExtension_).toBuilder();
+                subBuilder = ((io.greptime.v1.Common.DecimalTypeExtension) typeExtension_).toBuilder();
               }
               typeExtension_ =
-                  input.readMessage(io.greptime.v1.Common.Decimal128Type.parser(), extensionRegistry);
+                  input.readMessage(io.greptime.v1.Common.DecimalTypeExtension.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((io.greptime.v1.Common.Decimal128Type) typeExtension_);
+                subBuilder.mergeFrom((io.greptime.v1.Common.DecimalTypeExtension) typeExtension_);
                 typeExtension_ = subBuilder.buildPartial();
               }
               typeExtensionCase_ = 1;
@@ -7549,7 +7409,7 @@ public final class Common {
     public enum TypeExtensionCase
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      DECIMAL128_TYPE(1),
+      DECIMAL_TYPE_EXTENSION(1),
       TYPEEXTENSION_NOT_SET(0);
       private final int value;
       private TypeExtensionCase(int value) {
@@ -7567,7 +7427,7 @@ public final class Common {
 
       public static TypeExtensionCase forNumber(int value) {
         switch (value) {
-          case 1: return DECIMAL128_TYPE;
+          case 1: return DECIMAL_TYPE_EXTENSION;
           case 0: return TYPEEXTENSION_NOT_SET;
           default: return null;
         }
@@ -7583,35 +7443,35 @@ public final class Common {
           typeExtensionCase_);
     }
 
-    public static final int DECIMAL128_TYPE_FIELD_NUMBER = 1;
+    public static final int DECIMAL_TYPE_EXTENSION_FIELD_NUMBER = 1;
     /**
-     * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
-     * @return Whether the decimal128Type field is set.
+     * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
+     * @return Whether the decimalTypeExtension field is set.
      */
     @java.lang.Override
-    public boolean hasDecimal128Type() {
+    public boolean hasDecimalTypeExtension() {
       return typeExtensionCase_ == 1;
     }
     /**
-     * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
-     * @return The decimal128Type.
+     * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
+     * @return The decimalTypeExtension.
      */
     @java.lang.Override
-    public io.greptime.v1.Common.Decimal128Type getDecimal128Type() {
+    public io.greptime.v1.Common.DecimalTypeExtension getDecimalTypeExtension() {
       if (typeExtensionCase_ == 1) {
-         return (io.greptime.v1.Common.Decimal128Type) typeExtension_;
+         return (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_;
       }
-      return io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+      return io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
     }
     /**
-     * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+     * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
      */
     @java.lang.Override
-    public io.greptime.v1.Common.Decimal128TypeOrBuilder getDecimal128TypeOrBuilder() {
+    public io.greptime.v1.Common.DecimalTypeExtensionOrBuilder getDecimalTypeExtensionOrBuilder() {
       if (typeExtensionCase_ == 1) {
-         return (io.greptime.v1.Common.Decimal128Type) typeExtension_;
+         return (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_;
       }
-      return io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+      return io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -7629,7 +7489,7 @@ public final class Common {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (typeExtensionCase_ == 1) {
-        output.writeMessage(1, (io.greptime.v1.Common.Decimal128Type) typeExtension_);
+        output.writeMessage(1, (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_);
       }
       unknownFields.writeTo(output);
     }
@@ -7642,7 +7502,7 @@ public final class Common {
       size = 0;
       if (typeExtensionCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (io.greptime.v1.Common.Decimal128Type) typeExtension_);
+          .computeMessageSize(1, (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -7662,8 +7522,8 @@ public final class Common {
       if (!getTypeExtensionCase().equals(other.getTypeExtensionCase())) return false;
       switch (typeExtensionCase_) {
         case 1:
-          if (!getDecimal128Type()
-              .equals(other.getDecimal128Type())) return false;
+          if (!getDecimalTypeExtension()
+              .equals(other.getDecimalTypeExtension())) return false;
           break;
         case 0:
         default:
@@ -7681,8 +7541,8 @@ public final class Common {
       hash = (19 * hash) + getDescriptor().hashCode();
       switch (typeExtensionCase_) {
         case 1:
-          hash = (37 * hash) + DECIMAL128_TYPE_FIELD_NUMBER;
-          hash = (53 * hash) + getDecimal128Type().hashCode();
+          hash = (37 * hash) + DECIMAL_TYPE_EXTENSION_FIELD_NUMBER;
+          hash = (53 * hash) + getDecimalTypeExtension().hashCode();
           break;
         case 0:
         default:
@@ -7849,10 +7709,10 @@ public final class Common {
       public io.greptime.v1.Common.DataTypeExtension buildPartial() {
         io.greptime.v1.Common.DataTypeExtension result = new io.greptime.v1.Common.DataTypeExtension(this);
         if (typeExtensionCase_ == 1) {
-          if (decimal128TypeBuilder_ == null) {
+          if (decimalTypeExtensionBuilder_ == null) {
             result.typeExtension_ = typeExtension_;
           } else {
-            result.typeExtension_ = decimal128TypeBuilder_.build();
+            result.typeExtension_ = decimalTypeExtensionBuilder_.build();
           }
         }
         result.typeExtensionCase_ = typeExtensionCase_;
@@ -7905,8 +7765,8 @@ public final class Common {
       public Builder mergeFrom(io.greptime.v1.Common.DataTypeExtension other) {
         if (other == io.greptime.v1.Common.DataTypeExtension.getDefaultInstance()) return this;
         switch (other.getTypeExtensionCase()) {
-          case DECIMAL128_TYPE: {
-            mergeDecimal128Type(other.getDecimal128Type());
+          case DECIMAL_TYPE_EXTENSION: {
+            mergeDecimalTypeExtension(other.getDecimalTypeExtension());
             break;
           }
           case TYPEEXTENSION_NOT_SET: {
@@ -7958,71 +7818,71 @@ public final class Common {
 
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          io.greptime.v1.Common.Decimal128Type, io.greptime.v1.Common.Decimal128Type.Builder, io.greptime.v1.Common.Decimal128TypeOrBuilder> decimal128TypeBuilder_;
+          io.greptime.v1.Common.DecimalTypeExtension, io.greptime.v1.Common.DecimalTypeExtension.Builder, io.greptime.v1.Common.DecimalTypeExtensionOrBuilder> decimalTypeExtensionBuilder_;
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
-       * @return Whether the decimal128Type field is set.
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
+       * @return Whether the decimalTypeExtension field is set.
        */
       @java.lang.Override
-      public boolean hasDecimal128Type() {
+      public boolean hasDecimalTypeExtension() {
         return typeExtensionCase_ == 1;
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
-       * @return The decimal128Type.
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
+       * @return The decimalTypeExtension.
        */
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128Type getDecimal128Type() {
-        if (decimal128TypeBuilder_ == null) {
+      public io.greptime.v1.Common.DecimalTypeExtension getDecimalTypeExtension() {
+        if (decimalTypeExtensionBuilder_ == null) {
           if (typeExtensionCase_ == 1) {
-            return (io.greptime.v1.Common.Decimal128Type) typeExtension_;
+            return (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_;
           }
-          return io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+          return io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
         } else {
           if (typeExtensionCase_ == 1) {
-            return decimal128TypeBuilder_.getMessage();
+            return decimalTypeExtensionBuilder_.getMessage();
           }
-          return io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+          return io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
         }
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
-      public Builder setDecimal128Type(io.greptime.v1.Common.Decimal128Type value) {
-        if (decimal128TypeBuilder_ == null) {
+      public Builder setDecimalTypeExtension(io.greptime.v1.Common.DecimalTypeExtension value) {
+        if (decimalTypeExtensionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           typeExtension_ = value;
           onChanged();
         } else {
-          decimal128TypeBuilder_.setMessage(value);
+          decimalTypeExtensionBuilder_.setMessage(value);
         }
         typeExtensionCase_ = 1;
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
-      public Builder setDecimal128Type(
-          io.greptime.v1.Common.Decimal128Type.Builder builderForValue) {
-        if (decimal128TypeBuilder_ == null) {
+      public Builder setDecimalTypeExtension(
+          io.greptime.v1.Common.DecimalTypeExtension.Builder builderForValue) {
+        if (decimalTypeExtensionBuilder_ == null) {
           typeExtension_ = builderForValue.build();
           onChanged();
         } else {
-          decimal128TypeBuilder_.setMessage(builderForValue.build());
+          decimalTypeExtensionBuilder_.setMessage(builderForValue.build());
         }
         typeExtensionCase_ = 1;
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
-      public Builder mergeDecimal128Type(io.greptime.v1.Common.Decimal128Type value) {
-        if (decimal128TypeBuilder_ == null) {
+      public Builder mergeDecimalTypeExtension(io.greptime.v1.Common.DecimalTypeExtension value) {
+        if (decimalTypeExtensionBuilder_ == null) {
           if (typeExtensionCase_ == 1 &&
-              typeExtension_ != io.greptime.v1.Common.Decimal128Type.getDefaultInstance()) {
-            typeExtension_ = io.greptime.v1.Common.Decimal128Type.newBuilder((io.greptime.v1.Common.Decimal128Type) typeExtension_)
+              typeExtension_ != io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance()) {
+            typeExtension_ = io.greptime.v1.Common.DecimalTypeExtension.newBuilder((io.greptime.v1.Common.DecimalTypeExtension) typeExtension_)
                 .mergeFrom(value).buildPartial();
           } else {
             typeExtension_ = value;
@@ -8030,19 +7890,19 @@ public final class Common {
           onChanged();
         } else {
           if (typeExtensionCase_ == 1) {
-            decimal128TypeBuilder_.mergeFrom(value);
+            decimalTypeExtensionBuilder_.mergeFrom(value);
           } else {
-            decimal128TypeBuilder_.setMessage(value);
+            decimalTypeExtensionBuilder_.setMessage(value);
           }
         }
         typeExtensionCase_ = 1;
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
-      public Builder clearDecimal128Type() {
-        if (decimal128TypeBuilder_ == null) {
+      public Builder clearDecimalTypeExtension() {
+        if (decimalTypeExtensionBuilder_ == null) {
           if (typeExtensionCase_ == 1) {
             typeExtensionCase_ = 0;
             typeExtension_ = null;
@@ -8053,50 +7913,50 @@ public final class Common {
             typeExtensionCase_ = 0;
             typeExtension_ = null;
           }
-          decimal128TypeBuilder_.clear();
+          decimalTypeExtensionBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
-      public io.greptime.v1.Common.Decimal128Type.Builder getDecimal128TypeBuilder() {
-        return getDecimal128TypeFieldBuilder().getBuilder();
+      public io.greptime.v1.Common.DecimalTypeExtension.Builder getDecimalTypeExtensionBuilder() {
+        return getDecimalTypeExtensionFieldBuilder().getBuilder();
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128TypeOrBuilder getDecimal128TypeOrBuilder() {
-        if ((typeExtensionCase_ == 1) && (decimal128TypeBuilder_ != null)) {
-          return decimal128TypeBuilder_.getMessageOrBuilder();
+      public io.greptime.v1.Common.DecimalTypeExtensionOrBuilder getDecimalTypeExtensionOrBuilder() {
+        if ((typeExtensionCase_ == 1) && (decimalTypeExtensionBuilder_ != null)) {
+          return decimalTypeExtensionBuilder_.getMessageOrBuilder();
         } else {
           if (typeExtensionCase_ == 1) {
-            return (io.greptime.v1.Common.Decimal128Type) typeExtension_;
+            return (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_;
           }
-          return io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+          return io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
         }
       }
       /**
-       * <code>.greptime.v1.Decimal128Type decimal128_type = 1;</code>
+       * <code>.greptime.v1.DecimalTypeExtension decimal_type_extension = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          io.greptime.v1.Common.Decimal128Type, io.greptime.v1.Common.Decimal128Type.Builder, io.greptime.v1.Common.Decimal128TypeOrBuilder> 
-          getDecimal128TypeFieldBuilder() {
-        if (decimal128TypeBuilder_ == null) {
+          io.greptime.v1.Common.DecimalTypeExtension, io.greptime.v1.Common.DecimalTypeExtension.Builder, io.greptime.v1.Common.DecimalTypeExtensionOrBuilder> 
+          getDecimalTypeExtensionFieldBuilder() {
+        if (decimalTypeExtensionBuilder_ == null) {
           if (!(typeExtensionCase_ == 1)) {
-            typeExtension_ = io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+            typeExtension_ = io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
           }
-          decimal128TypeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.greptime.v1.Common.Decimal128Type, io.greptime.v1.Common.Decimal128Type.Builder, io.greptime.v1.Common.Decimal128TypeOrBuilder>(
-                  (io.greptime.v1.Common.Decimal128Type) typeExtension_,
+          decimalTypeExtensionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.greptime.v1.Common.DecimalTypeExtension, io.greptime.v1.Common.DecimalTypeExtension.Builder, io.greptime.v1.Common.DecimalTypeExtensionOrBuilder>(
+                  (io.greptime.v1.Common.DecimalTypeExtension) typeExtension_,
                   getParentForChildren(),
                   isClean());
           typeExtension_ = null;
         }
         typeExtensionCase_ = 1;
         onChanged();;
-        return decimal128TypeBuilder_;
+        return decimalTypeExtensionBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -8151,8 +8011,8 @@ public final class Common {
 
   }
 
-  public interface Decimal128TypeOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:greptime.v1.Decimal128Type)
+  public interface DecimalTypeExtensionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:greptime.v1.DecimalTypeExtension)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -8168,25 +8028,25 @@ public final class Common {
     int getScale();
   }
   /**
-   * Protobuf type {@code greptime.v1.Decimal128Type}
+   * Protobuf type {@code greptime.v1.DecimalTypeExtension}
    */
-  public static final class Decimal128Type extends
+  public static final class DecimalTypeExtension extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:greptime.v1.Decimal128Type)
-      Decimal128TypeOrBuilder {
+      // @@protoc_insertion_point(message_implements:greptime.v1.DecimalTypeExtension)
+      DecimalTypeExtensionOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Decimal128Type.newBuilder() to construct.
-    private Decimal128Type(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use DecimalTypeExtension.newBuilder() to construct.
+    private DecimalTypeExtension(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Decimal128Type() {
+    private DecimalTypeExtension() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new Decimal128Type();
+      return new DecimalTypeExtension();
     }
 
     @java.lang.Override
@@ -8194,7 +8054,7 @@ public final class Common {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Decimal128Type(
+    private DecimalTypeExtension(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8245,15 +8105,15 @@ public final class Common {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.greptime.v1.Common.internal_static_greptime_v1_Decimal128Type_descriptor;
+      return io.greptime.v1.Common.internal_static_greptime_v1_DecimalTypeExtension_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.greptime.v1.Common.internal_static_greptime_v1_Decimal128Type_fieldAccessorTable
+      return io.greptime.v1.Common.internal_static_greptime_v1_DecimalTypeExtension_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.greptime.v1.Common.Decimal128Type.class, io.greptime.v1.Common.Decimal128Type.Builder.class);
+              io.greptime.v1.Common.DecimalTypeExtension.class, io.greptime.v1.Common.DecimalTypeExtension.Builder.class);
     }
 
     public static final int PRECISION_FIELD_NUMBER = 1;
@@ -8325,10 +8185,10 @@ public final class Common {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof io.greptime.v1.Common.Decimal128Type)) {
+      if (!(obj instanceof io.greptime.v1.Common.DecimalTypeExtension)) {
         return super.equals(obj);
       }
-      io.greptime.v1.Common.Decimal128Type other = (io.greptime.v1.Common.Decimal128Type) obj;
+      io.greptime.v1.Common.DecimalTypeExtension other = (io.greptime.v1.Common.DecimalTypeExtension) obj;
 
       if (getPrecision()
           != other.getPrecision()) return false;
@@ -8354,69 +8214,69 @@ public final class Common {
       return hash;
     }
 
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(byte[] data)
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(java.io.InputStream input)
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseDelimitedFrom(java.io.InputStream input)
+    public static io.greptime.v1.Common.DecimalTypeExtension parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseDelimitedFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static io.greptime.v1.Common.Decimal128Type parseFrom(
+    public static io.greptime.v1.Common.DecimalTypeExtension parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -8429,7 +8289,7 @@ public final class Common {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(io.greptime.v1.Common.Decimal128Type prototype) {
+    public static Builder newBuilder(io.greptime.v1.Common.DecimalTypeExtension prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -8445,26 +8305,26 @@ public final class Common {
       return builder;
     }
     /**
-     * Protobuf type {@code greptime.v1.Decimal128Type}
+     * Protobuf type {@code greptime.v1.DecimalTypeExtension}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:greptime.v1.Decimal128Type)
-        io.greptime.v1.Common.Decimal128TypeOrBuilder {
+        // @@protoc_insertion_point(builder_implements:greptime.v1.DecimalTypeExtension)
+        io.greptime.v1.Common.DecimalTypeExtensionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return io.greptime.v1.Common.internal_static_greptime_v1_Decimal128Type_descriptor;
+        return io.greptime.v1.Common.internal_static_greptime_v1_DecimalTypeExtension_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return io.greptime.v1.Common.internal_static_greptime_v1_Decimal128Type_fieldAccessorTable
+        return io.greptime.v1.Common.internal_static_greptime_v1_DecimalTypeExtension_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                io.greptime.v1.Common.Decimal128Type.class, io.greptime.v1.Common.Decimal128Type.Builder.class);
+                io.greptime.v1.Common.DecimalTypeExtension.class, io.greptime.v1.Common.DecimalTypeExtension.Builder.class);
       }
 
-      // Construct using io.greptime.v1.Common.Decimal128Type.newBuilder()
+      // Construct using io.greptime.v1.Common.DecimalTypeExtension.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8492,17 +8352,17 @@ public final class Common {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return io.greptime.v1.Common.internal_static_greptime_v1_Decimal128Type_descriptor;
+        return io.greptime.v1.Common.internal_static_greptime_v1_DecimalTypeExtension_descriptor;
       }
 
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128Type getDefaultInstanceForType() {
-        return io.greptime.v1.Common.Decimal128Type.getDefaultInstance();
+      public io.greptime.v1.Common.DecimalTypeExtension getDefaultInstanceForType() {
+        return io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance();
       }
 
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128Type build() {
-        io.greptime.v1.Common.Decimal128Type result = buildPartial();
+      public io.greptime.v1.Common.DecimalTypeExtension build() {
+        io.greptime.v1.Common.DecimalTypeExtension result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -8510,8 +8370,8 @@ public final class Common {
       }
 
       @java.lang.Override
-      public io.greptime.v1.Common.Decimal128Type buildPartial() {
-        io.greptime.v1.Common.Decimal128Type result = new io.greptime.v1.Common.Decimal128Type(this);
+      public io.greptime.v1.Common.DecimalTypeExtension buildPartial() {
+        io.greptime.v1.Common.DecimalTypeExtension result = new io.greptime.v1.Common.DecimalTypeExtension(this);
         result.precision_ = precision_;
         result.scale_ = scale_;
         onBuilt();
@@ -8552,16 +8412,16 @@ public final class Common {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.greptime.v1.Common.Decimal128Type) {
-          return mergeFrom((io.greptime.v1.Common.Decimal128Type)other);
+        if (other instanceof io.greptime.v1.Common.DecimalTypeExtension) {
+          return mergeFrom((io.greptime.v1.Common.DecimalTypeExtension)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(io.greptime.v1.Common.Decimal128Type other) {
-        if (other == io.greptime.v1.Common.Decimal128Type.getDefaultInstance()) return this;
+      public Builder mergeFrom(io.greptime.v1.Common.DecimalTypeExtension other) {
+        if (other == io.greptime.v1.Common.DecimalTypeExtension.getDefaultInstance()) return this;
         if (other.getPrecision() != 0) {
           setPrecision(other.getPrecision());
         }
@@ -8583,11 +8443,11 @@ public final class Common {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        io.greptime.v1.Common.Decimal128Type parsedMessage = null;
+        io.greptime.v1.Common.DecimalTypeExtension parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.greptime.v1.Common.Decimal128Type) e.getUnfinishedMessage();
+          parsedMessage = (io.greptime.v1.Common.DecimalTypeExtension) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -8671,41 +8531,41 @@ public final class Common {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:greptime.v1.Decimal128Type)
+      // @@protoc_insertion_point(builder_scope:greptime.v1.DecimalTypeExtension)
     }
 
-    // @@protoc_insertion_point(class_scope:greptime.v1.Decimal128Type)
-    private static final io.greptime.v1.Common.Decimal128Type DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:greptime.v1.DecimalTypeExtension)
+    private static final io.greptime.v1.Common.DecimalTypeExtension DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new io.greptime.v1.Common.Decimal128Type();
+      DEFAULT_INSTANCE = new io.greptime.v1.Common.DecimalTypeExtension();
     }
 
-    public static io.greptime.v1.Common.Decimal128Type getDefaultInstance() {
+    public static io.greptime.v1.Common.DecimalTypeExtension getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Decimal128Type>
-        PARSER = new com.google.protobuf.AbstractParser<Decimal128Type>() {
+    private static final com.google.protobuf.Parser<DecimalTypeExtension>
+        PARSER = new com.google.protobuf.AbstractParser<DecimalTypeExtension>() {
       @java.lang.Override
-      public Decimal128Type parsePartialFrom(
+      public DecimalTypeExtension parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Decimal128Type(input, extensionRegistry);
+        return new DecimalTypeExtension(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Decimal128Type> parser() {
+    public static com.google.protobuf.Parser<DecimalTypeExtension> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Decimal128Type> getParserForType() {
+    public com.google.protobuf.Parser<DecimalTypeExtension> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public io.greptime.v1.Common.Decimal128Type getDefaultInstanceForType() {
+    public io.greptime.v1.Common.DecimalTypeExtension getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10025,10 +9885,10 @@ public final class Common {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_greptime_v1_DataTypeExtension_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_greptime_v1_Decimal128Type_descriptor;
+    internal_static_greptime_v1_DecimalTypeExtension_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_greptime_v1_Decimal128Type_fieldAccessorTable;
+      internal_static_greptime_v1_DecimalTypeExtension_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_greptime_v1_IntervalMonthDayNano_descriptor;
   private static final 
@@ -10062,36 +9922,35 @@ public final class Common {
       "\"\026\n\005Token\022\r\n\005token\030\001 \001(\t\"\035\n\014AffectedRows" +
       "\022\r\n\005value\030\001 \001(\r\"B\n\016FlightMetadata\0220\n\raff" +
       "ected_rows\030\001 \001(\0132\031.greptime.v1.AffectedR" +
-      "ows\"\231\001\n\016ColumnDataType\022=\n\023primitive_data" +
-      "_type\030\001 \001(\0162\036.greptime.v1.PrimitiveDataT" +
-      "ypeH\000\022;\n\021complex_data_type\030\002 \001(\0132\036.grept" +
-      "ime.v1.DataTypeExtensionH\000B\013\n\tdata_type\"" +
-      "]\n\021DataTypeExtension\0226\n\017decimal128_type\030" +
-      "\001 \001(\0132\033.greptime.v1.Decimal128TypeH\000B\020\n\016" +
-      "type_extension\"2\n\016Decimal128Type\022\021\n\tprec" +
-      "ision\030\001 \001(\005\022\r\n\005scale\030\002 \001(\005\"I\n\024IntervalMo" +
-      "nthDayNano\022\016\n\006months\030\001 \001(\005\022\014\n\004days\030\002 \001(\005" +
-      "\022\023\n\013nanoseconds\030\003 \001(\003\"A\n\nDecimal128\022\n\n\002h" +
-      "i\030\001 \001(\003\022\n\n\002lo\030\002 \001(\003\022\033\n\023precision_and_sca" +
-      "le\030\003 \001(\005*1\n\014SemanticType\022\007\n\003TAG\020\000\022\t\n\005FIE" +
-      "LD\020\001\022\r\n\tTIMESTAMP\020\002*\273\004\n\021PrimitiveDataTyp" +
-      "e\022\013\n\007BOOLEAN\020\000\022\010\n\004INT8\020\001\022\t\n\005INT16\020\002\022\t\n\005I" +
-      "NT32\020\003\022\t\n\005INT64\020\004\022\t\n\005UINT8\020\005\022\n\n\006UINT16\020\006" +
-      "\022\n\n\006UINT32\020\007\022\n\n\006UINT64\020\010\022\013\n\007FLOAT32\020\t\022\013\n" +
-      "\007FLOAT64\020\n\022\n\n\006BINARY\020\013\022\n\n\006STRING\020\014\022\010\n\004DA" +
-      "TE\020\r\022\014\n\010DATETIME\020\016\022\024\n\020TIMESTAMP_SECOND\020\017" +
-      "\022\031\n\025TIMESTAMP_MILLISECOND\020\020\022\031\n\025TIMESTAMP" +
-      "_MICROSECOND\020\021\022\030\n\024TIMESTAMP_NANOSECOND\020\022" +
-      "\022\017\n\013TIME_SECOND\020\023\022\024\n\020TIME_MILLISECOND\020\024\022" +
-      "\024\n\020TIME_MICROSECOND\020\025\022\023\n\017TIME_NANOSECOND" +
-      "\020\026\022\027\n\023INTERVAL_YEAR_MONTH\020\027\022\025\n\021INTERVAL_" +
-      "DAY_TIME\020\030\022\033\n\027INTERVAL_MONTH_DAY_NANO\020\031\022" +
-      "\023\n\017DURATION_SECOND\020\032\022\030\n\024DURATION_MILLISE" +
-      "COND\020\033\022\030\n\024DURATION_MICROSECOND\020\034\022\027\n\023DURA" +
-      "TION_NANOSECOND\020\035\022\016\n\nDECIMAL128\020\036BO\n\016io." +
-      "greptime.v1B\006CommonZ5github.com/Greptime" +
-      "Team/greptime-proto/go/greptime/v1b\006prot" +
-      "o3"
+      "ows\"r\n\016ColumnDataType\022(\n\tdata_type\030\001 \001(\016" +
+      "2\025.greptime.v1.DataType\0226\n\016type_extensio" +
+      "n\030\002 \001(\0132\036.greptime.v1.DataTypeExtension\"" +
+      "j\n\021DataTypeExtension\022C\n\026decimal_type_ext" +
+      "ension\030\001 \001(\0132!.greptime.v1.DecimalTypeEx" +
+      "tensionH\000B\020\n\016type_extension\"8\n\024DecimalTy" +
+      "peExtension\022\021\n\tprecision\030\001 \001(\005\022\r\n\005scale\030" +
+      "\002 \001(\005\"I\n\024IntervalMonthDayNano\022\016\n\006months\030" +
+      "\001 \001(\005\022\014\n\004days\030\002 \001(\005\022\023\n\013nanoseconds\030\003 \001(\003" +
+      "\"A\n\nDecimal128\022\n\n\002hi\030\001 \001(\003\022\n\n\002lo\030\002 \001(\003\022\033" +
+      "\n\023precision_and_scale\030\003 \001(\005*1\n\014SemanticT" +
+      "ype\022\007\n\003TAG\020\000\022\t\n\005FIELD\020\001\022\r\n\tTIMESTAMP\020\002*\262" +
+      "\004\n\010DataType\022\013\n\007BOOLEAN\020\000\022\010\n\004INT8\020\001\022\t\n\005IN" +
+      "T16\020\002\022\t\n\005INT32\020\003\022\t\n\005INT64\020\004\022\t\n\005UINT8\020\005\022\n" +
+      "\n\006UINT16\020\006\022\n\n\006UINT32\020\007\022\n\n\006UINT64\020\010\022\013\n\007FL" +
+      "OAT32\020\t\022\013\n\007FLOAT64\020\n\022\n\n\006BINARY\020\013\022\n\n\006STRI" +
+      "NG\020\014\022\010\n\004DATE\020\r\022\014\n\010DATETIME\020\016\022\024\n\020TIMESTAM" +
+      "P_SECOND\020\017\022\031\n\025TIMESTAMP_MILLISECOND\020\020\022\031\n" +
+      "\025TIMESTAMP_MICROSECOND\020\021\022\030\n\024TIMESTAMP_NA" +
+      "NOSECOND\020\022\022\017\n\013TIME_SECOND\020\023\022\024\n\020TIME_MILL" +
+      "ISECOND\020\024\022\024\n\020TIME_MICROSECOND\020\025\022\023\n\017TIME_" +
+      "NANOSECOND\020\026\022\027\n\023INTERVAL_YEAR_MONTH\020\027\022\025\n" +
+      "\021INTERVAL_DAY_TIME\020\030\022\033\n\027INTERVAL_MONTH_D" +
+      "AY_NANO\020\031\022\023\n\017DURATION_SECOND\020\032\022\030\n\024DURATI" +
+      "ON_MILLISECOND\020\033\022\030\n\024DURATION_MICROSECOND" +
+      "\020\034\022\027\n\023DURATION_NANOSECOND\020\035\022\016\n\nDECIMAL12" +
+      "8\020\036BO\n\016io.greptime.v1B\006CommonZ5github.co" +
+      "m/GreptimeTeam/greptime-proto/go/greptim" +
+      "e/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -10150,18 +10009,18 @@ public final class Common {
     internal_static_greptime_v1_ColumnDataType_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_ColumnDataType_descriptor,
-        new java.lang.String[] { "PrimitiveDataType", "ComplexDataType", "DataType", });
+        new java.lang.String[] { "DataType", "TypeExtension", });
     internal_static_greptime_v1_DataTypeExtension_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_greptime_v1_DataTypeExtension_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_DataTypeExtension_descriptor,
-        new java.lang.String[] { "Decimal128Type", "TypeExtension", });
-    internal_static_greptime_v1_Decimal128Type_descriptor =
+        new java.lang.String[] { "DecimalTypeExtension", "TypeExtension", });
+    internal_static_greptime_v1_DecimalTypeExtension_descriptor =
       getDescriptor().getMessageTypes().get(10);
-    internal_static_greptime_v1_Decimal128Type_fieldAccessorTable = new
+    internal_static_greptime_v1_DecimalTypeExtension_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_greptime_v1_Decimal128Type_descriptor,
+        internal_static_greptime_v1_DecimalTypeExtension_descriptor,
         new java.lang.String[] { "Precision", "Scale", });
     internal_static_greptime_v1_IntervalMonthDayNano_descriptor =
       getDescriptor().getMessageTypes().get(11);
