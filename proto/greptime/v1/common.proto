@@ -69,7 +69,7 @@ enum SemanticType {
 
 message ColumnDataType {
   DataType data_type = 1;
-  DataTypeExtension type_extension = 2;
+  oneof type_extension { DecimalTypeExtension decimal_type_extension = 2; }
 }
 
 enum DataType {
@@ -104,10 +104,6 @@ enum DataType {
   DURATION_MICROSECOND = 28;
   DURATION_NANOSECOND = 29;
   DECIMAL128 = 30;
-}
-
-message DataTypeExtension {
-  oneof type_extension { DecimalTypeExtension decimal_type_extension = 1; }
 }
 
 message DecimalTypeExtension {

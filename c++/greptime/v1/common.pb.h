@@ -59,9 +59,6 @@ extern BasicDefaultTypeInternal _Basic_default_instance_;
 class ColumnDataType;
 struct ColumnDataTypeDefaultTypeInternal;
 extern ColumnDataTypeDefaultTypeInternal _ColumnDataType_default_instance_;
-class DataTypeExtension;
-struct DataTypeExtensionDefaultTypeInternal;
-extern DataTypeExtensionDefaultTypeInternal _DataTypeExtension_default_instance_;
 class Decimal128;
 struct Decimal128DefaultTypeInternal;
 extern Decimal128DefaultTypeInternal _Decimal128_default_instance_;
@@ -93,7 +90,6 @@ template<> ::greptime::v1::AffectedRows* Arena::CreateMaybeMessage<::greptime::v
 template<> ::greptime::v1::AuthHeader* Arena::CreateMaybeMessage<::greptime::v1::AuthHeader>(Arena*);
 template<> ::greptime::v1::Basic* Arena::CreateMaybeMessage<::greptime::v1::Basic>(Arena*);
 template<> ::greptime::v1::ColumnDataType* Arena::CreateMaybeMessage<::greptime::v1::ColumnDataType>(Arena*);
-template<> ::greptime::v1::DataTypeExtension* Arena::CreateMaybeMessage<::greptime::v1::DataTypeExtension>(Arena*);
 template<> ::greptime::v1::Decimal128* Arena::CreateMaybeMessage<::greptime::v1::Decimal128>(Arena*);
 template<> ::greptime::v1::DecimalTypeExtension* Arena::CreateMaybeMessage<::greptime::v1::DecimalTypeExtension>(Arena*);
 template<> ::greptime::v1::FlightMetadata* Arena::CreateMaybeMessage<::greptime::v1::FlightMetadata>(Arena*);
@@ -1602,6 +1598,11 @@ class ColumnDataType final :
   static const ColumnDataType& default_instance() {
     return *internal_default_instance();
   }
+  enum TypeExtensionCase {
+    kDecimalTypeExtension = 2,
+    TYPE_EXTENSION_NOT_SET = 0,
+  };
+
   static inline const ColumnDataType* internal_default_instance() {
     return reinterpret_cast<const ColumnDataType*>(
                &_ColumnDataType_default_instance_);
@@ -1680,27 +1681,9 @@ class ColumnDataType final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTypeExtensionFieldNumber = 2,
     kDataTypeFieldNumber = 1,
+    kDecimalTypeExtensionFieldNumber = 2,
   };
-  // .greptime.v1.DataTypeExtension type_extension = 2;
-  bool has_type_extension() const;
-  private:
-  bool _internal_has_type_extension() const;
-  public:
-  void clear_type_extension();
-  const ::greptime::v1::DataTypeExtension& type_extension() const;
-  PROTOBUF_NODISCARD ::greptime::v1::DataTypeExtension* release_type_extension();
-  ::greptime::v1::DataTypeExtension* mutable_type_extension();
-  void set_allocated_type_extension(::greptime::v1::DataTypeExtension* type_extension);
-  private:
-  const ::greptime::v1::DataTypeExtension& _internal_type_extension() const;
-  ::greptime::v1::DataTypeExtension* _internal_mutable_type_extension();
-  public:
-  void unsafe_arena_set_allocated_type_extension(
-      ::greptime::v1::DataTypeExtension* type_extension);
-  ::greptime::v1::DataTypeExtension* unsafe_arena_release_type_extension();
-
   // .greptime.v1.DataType data_type = 1;
   void clear_data_type();
   ::greptime::v1::DataType data_type() const;
@@ -1710,152 +1693,7 @@ class ColumnDataType final :
   void _internal_set_data_type(::greptime::v1::DataType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:greptime.v1.ColumnDataType)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::greptime::v1::DataTypeExtension* type_extension_;
-    int data_type_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_greptime_2fv1_2fcommon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class DataTypeExtension final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.DataTypeExtension) */ {
- public:
-  inline DataTypeExtension() : DataTypeExtension(nullptr) {}
-  ~DataTypeExtension() override;
-  explicit PROTOBUF_CONSTEXPR DataTypeExtension(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DataTypeExtension(const DataTypeExtension& from);
-  DataTypeExtension(DataTypeExtension&& from) noexcept
-    : DataTypeExtension() {
-    *this = ::std::move(from);
-  }
-
-  inline DataTypeExtension& operator=(const DataTypeExtension& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DataTypeExtension& operator=(DataTypeExtension&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DataTypeExtension& default_instance() {
-    return *internal_default_instance();
-  }
-  enum TypeExtensionCase {
-    kDecimalTypeExtension = 1,
-    TYPE_EXTENSION_NOT_SET = 0,
-  };
-
-  static inline const DataTypeExtension* internal_default_instance() {
-    return reinterpret_cast<const DataTypeExtension*>(
-               &_DataTypeExtension_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    9;
-
-  friend void swap(DataTypeExtension& a, DataTypeExtension& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DataTypeExtension* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DataTypeExtension* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DataTypeExtension* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DataTypeExtension>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DataTypeExtension& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const DataTypeExtension& from) {
-    DataTypeExtension::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DataTypeExtension* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "greptime.v1.DataTypeExtension";
-  }
-  protected:
-  explicit DataTypeExtension(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kDecimalTypeExtensionFieldNumber = 1,
-  };
-  // .greptime.v1.DecimalTypeExtension decimal_type_extension = 1;
+  // .greptime.v1.DecimalTypeExtension decimal_type_extension = 2;
   bool has_decimal_type_extension() const;
   private:
   bool _internal_has_decimal_type_extension() const;
@@ -1875,7 +1713,7 @@ class DataTypeExtension final :
 
   void clear_type_extension();
   TypeExtensionCase type_extension_case() const;
-  // @@protoc_insertion_point(class_scope:greptime.v1.DataTypeExtension)
+  // @@protoc_insertion_point(class_scope:greptime.v1.ColumnDataType)
  private:
   class _Internal;
   void set_has_decimal_type_extension();
@@ -1887,6 +1725,7 @@ class DataTypeExtension final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    int data_type_;
     union TypeExtensionUnion {
       constexpr TypeExtensionUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -1949,7 +1788,7 @@ class DecimalTypeExtension final :
                &_DecimalTypeExtension_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    9;
 
   friend void swap(DecimalTypeExtension& a, DecimalTypeExtension& b) {
     a.Swap(&b);
@@ -2108,7 +1947,7 @@ class IntervalMonthDayNano final :
                &_IntervalMonthDayNano_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    10;
 
   friend void swap(IntervalMonthDayNano& a, IntervalMonthDayNano& b) {
     a.Swap(&b);
@@ -2278,7 +2117,7 @@ class Decimal128 final :
                &_Decimal128_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    11;
 
   friend void swap(Decimal128& a, Decimal128& b) {
     a.Swap(&b);
@@ -3318,111 +3157,17 @@ inline void ColumnDataType::set_data_type(::greptime::v1::DataType value) {
   // @@protoc_insertion_point(field_set:greptime.v1.ColumnDataType.data_type)
 }
 
-// .greptime.v1.DataTypeExtension type_extension = 2;
-inline bool ColumnDataType::_internal_has_type_extension() const {
-  return this != internal_default_instance() && _impl_.type_extension_ != nullptr;
-}
-inline bool ColumnDataType::has_type_extension() const {
-  return _internal_has_type_extension();
-}
-inline void ColumnDataType::clear_type_extension() {
-  if (GetArenaForAllocation() == nullptr && _impl_.type_extension_ != nullptr) {
-    delete _impl_.type_extension_;
-  }
-  _impl_.type_extension_ = nullptr;
-}
-inline const ::greptime::v1::DataTypeExtension& ColumnDataType::_internal_type_extension() const {
-  const ::greptime::v1::DataTypeExtension* p = _impl_.type_extension_;
-  return p != nullptr ? *p : reinterpret_cast<const ::greptime::v1::DataTypeExtension&>(
-      ::greptime::v1::_DataTypeExtension_default_instance_);
-}
-inline const ::greptime::v1::DataTypeExtension& ColumnDataType::type_extension() const {
-  // @@protoc_insertion_point(field_get:greptime.v1.ColumnDataType.type_extension)
-  return _internal_type_extension();
-}
-inline void ColumnDataType::unsafe_arena_set_allocated_type_extension(
-    ::greptime::v1::DataTypeExtension* type_extension) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.type_extension_);
-  }
-  _impl_.type_extension_ = type_extension;
-  if (type_extension) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.ColumnDataType.type_extension)
-}
-inline ::greptime::v1::DataTypeExtension* ColumnDataType::release_type_extension() {
-  
-  ::greptime::v1::DataTypeExtension* temp = _impl_.type_extension_;
-  _impl_.type_extension_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::greptime::v1::DataTypeExtension* ColumnDataType::unsafe_arena_release_type_extension() {
-  // @@protoc_insertion_point(field_release:greptime.v1.ColumnDataType.type_extension)
-  
-  ::greptime::v1::DataTypeExtension* temp = _impl_.type_extension_;
-  _impl_.type_extension_ = nullptr;
-  return temp;
-}
-inline ::greptime::v1::DataTypeExtension* ColumnDataType::_internal_mutable_type_extension() {
-  
-  if (_impl_.type_extension_ == nullptr) {
-    auto* p = CreateMaybeMessage<::greptime::v1::DataTypeExtension>(GetArenaForAllocation());
-    _impl_.type_extension_ = p;
-  }
-  return _impl_.type_extension_;
-}
-inline ::greptime::v1::DataTypeExtension* ColumnDataType::mutable_type_extension() {
-  ::greptime::v1::DataTypeExtension* _msg = _internal_mutable_type_extension();
-  // @@protoc_insertion_point(field_mutable:greptime.v1.ColumnDataType.type_extension)
-  return _msg;
-}
-inline void ColumnDataType::set_allocated_type_extension(::greptime::v1::DataTypeExtension* type_extension) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete _impl_.type_extension_;
-  }
-  if (type_extension) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(type_extension);
-    if (message_arena != submessage_arena) {
-      type_extension = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, type_extension, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.type_extension_ = type_extension;
-  // @@protoc_insertion_point(field_set_allocated:greptime.v1.ColumnDataType.type_extension)
-}
-
-// -------------------------------------------------------------------
-
-// DataTypeExtension
-
-// .greptime.v1.DecimalTypeExtension decimal_type_extension = 1;
-inline bool DataTypeExtension::_internal_has_decimal_type_extension() const {
+// .greptime.v1.DecimalTypeExtension decimal_type_extension = 2;
+inline bool ColumnDataType::_internal_has_decimal_type_extension() const {
   return type_extension_case() == kDecimalTypeExtension;
 }
-inline bool DataTypeExtension::has_decimal_type_extension() const {
+inline bool ColumnDataType::has_decimal_type_extension() const {
   return _internal_has_decimal_type_extension();
 }
-inline void DataTypeExtension::set_has_decimal_type_extension() {
+inline void ColumnDataType::set_has_decimal_type_extension() {
   _impl_._oneof_case_[0] = kDecimalTypeExtension;
 }
-inline void DataTypeExtension::clear_decimal_type_extension() {
+inline void ColumnDataType::clear_decimal_type_extension() {
   if (_internal_has_decimal_type_extension()) {
     if (GetArenaForAllocation() == nullptr) {
       delete _impl_.type_extension_.decimal_type_extension_;
@@ -3430,8 +3175,8 @@ inline void DataTypeExtension::clear_decimal_type_extension() {
     clear_has_type_extension();
   }
 }
-inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::release_decimal_type_extension() {
-  // @@protoc_insertion_point(field_release:greptime.v1.DataTypeExtension.decimal_type_extension)
+inline ::greptime::v1::DecimalTypeExtension* ColumnDataType::release_decimal_type_extension() {
+  // @@protoc_insertion_point(field_release:greptime.v1.ColumnDataType.decimal_type_extension)
   if (_internal_has_decimal_type_extension()) {
     clear_has_type_extension();
     ::greptime::v1::DecimalTypeExtension* temp = _impl_.type_extension_.decimal_type_extension_;
@@ -3444,17 +3189,17 @@ inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::release_decimal_
     return nullptr;
   }
 }
-inline const ::greptime::v1::DecimalTypeExtension& DataTypeExtension::_internal_decimal_type_extension() const {
+inline const ::greptime::v1::DecimalTypeExtension& ColumnDataType::_internal_decimal_type_extension() const {
   return _internal_has_decimal_type_extension()
       ? *_impl_.type_extension_.decimal_type_extension_
       : reinterpret_cast< ::greptime::v1::DecimalTypeExtension&>(::greptime::v1::_DecimalTypeExtension_default_instance_);
 }
-inline const ::greptime::v1::DecimalTypeExtension& DataTypeExtension::decimal_type_extension() const {
-  // @@protoc_insertion_point(field_get:greptime.v1.DataTypeExtension.decimal_type_extension)
+inline const ::greptime::v1::DecimalTypeExtension& ColumnDataType::decimal_type_extension() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.ColumnDataType.decimal_type_extension)
   return _internal_decimal_type_extension();
 }
-inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::unsafe_arena_release_decimal_type_extension() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.DataTypeExtension.decimal_type_extension)
+inline ::greptime::v1::DecimalTypeExtension* ColumnDataType::unsafe_arena_release_decimal_type_extension() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.ColumnDataType.decimal_type_extension)
   if (_internal_has_decimal_type_extension()) {
     clear_has_type_extension();
     ::greptime::v1::DecimalTypeExtension* temp = _impl_.type_extension_.decimal_type_extension_;
@@ -3464,15 +3209,15 @@ inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::unsafe_arena_rel
     return nullptr;
   }
 }
-inline void DataTypeExtension::unsafe_arena_set_allocated_decimal_type_extension(::greptime::v1::DecimalTypeExtension* decimal_type_extension) {
+inline void ColumnDataType::unsafe_arena_set_allocated_decimal_type_extension(::greptime::v1::DecimalTypeExtension* decimal_type_extension) {
   clear_type_extension();
   if (decimal_type_extension) {
     set_has_decimal_type_extension();
     _impl_.type_extension_.decimal_type_extension_ = decimal_type_extension;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.DataTypeExtension.decimal_type_extension)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.ColumnDataType.decimal_type_extension)
 }
-inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::_internal_mutable_decimal_type_extension() {
+inline ::greptime::v1::DecimalTypeExtension* ColumnDataType::_internal_mutable_decimal_type_extension() {
   if (!_internal_has_decimal_type_extension()) {
     clear_type_extension();
     set_has_decimal_type_extension();
@@ -3480,20 +3225,20 @@ inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::_internal_mutabl
   }
   return _impl_.type_extension_.decimal_type_extension_;
 }
-inline ::greptime::v1::DecimalTypeExtension* DataTypeExtension::mutable_decimal_type_extension() {
+inline ::greptime::v1::DecimalTypeExtension* ColumnDataType::mutable_decimal_type_extension() {
   ::greptime::v1::DecimalTypeExtension* _msg = _internal_mutable_decimal_type_extension();
-  // @@protoc_insertion_point(field_mutable:greptime.v1.DataTypeExtension.decimal_type_extension)
+  // @@protoc_insertion_point(field_mutable:greptime.v1.ColumnDataType.decimal_type_extension)
   return _msg;
 }
 
-inline bool DataTypeExtension::has_type_extension() const {
+inline bool ColumnDataType::has_type_extension() const {
   return type_extension_case() != TYPE_EXTENSION_NOT_SET;
 }
-inline void DataTypeExtension::clear_has_type_extension() {
+inline void ColumnDataType::clear_has_type_extension() {
   _impl_._oneof_case_[0] = TYPE_EXTENSION_NOT_SET;
 }
-inline DataTypeExtension::TypeExtensionCase DataTypeExtension::type_extension_case() const {
-  return DataTypeExtension::TypeExtensionCase(_impl_._oneof_case_[0]);
+inline ColumnDataType::TypeExtensionCase ColumnDataType::type_extension_case() const {
+  return ColumnDataType::TypeExtensionCase(_impl_._oneof_case_[0]);
 }
 // -------------------------------------------------------------------
 
@@ -3670,8 +3415,6 @@ inline void Decimal128::set_precision_and_scale(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
