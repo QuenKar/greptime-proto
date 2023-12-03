@@ -51,6 +51,10 @@ message TruncateTableTask {
     TruncateTableExpr truncate_table = 1;
 }
 
+message CreateDatabaseTask {
+    CreateDatabaseExpr create_database = 1;
+}
+
 message SubmitDdlTaskRequest {
     RequestHeader header = 1;
 
