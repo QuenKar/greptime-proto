@@ -63,6 +63,7 @@ message SubmitDdlTaskRequest {
         DropTableTask drop_table_task = 3;
         AlterTableTask alter_table_task = 4;
         TruncateTableTask truncate_table_task = 5;
+        CreateDatabaseTask create_database_task = 6;
      }
 }
 
