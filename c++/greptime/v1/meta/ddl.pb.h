@@ -54,6 +54,9 @@ namespace meta {
 class AlterTableTask;
 struct AlterTableTaskDefaultTypeInternal;
 extern AlterTableTaskDefaultTypeInternal _AlterTableTask_default_instance_;
+class CreateDatabaseTask;
+struct CreateDatabaseTaskDefaultTypeInternal;
+extern CreateDatabaseTaskDefaultTypeInternal _CreateDatabaseTask_default_instance_;
 class CreateTableTask;
 struct CreateTableTaskDefaultTypeInternal;
 extern CreateTableTaskDefaultTypeInternal _CreateTableTask_default_instance_;
@@ -74,6 +77,7 @@ extern TruncateTableTaskDefaultTypeInternal _TruncateTableTask_default_instance_
 }  // namespace greptime
 PROTOBUF_NAMESPACE_OPEN
 template<> ::greptime::v1::meta::AlterTableTask* Arena::CreateMaybeMessage<::greptime::v1::meta::AlterTableTask>(Arena*);
+template<> ::greptime::v1::meta::CreateDatabaseTask* Arena::CreateMaybeMessage<::greptime::v1::meta::CreateDatabaseTask>(Arena*);
 template<> ::greptime::v1::meta::CreateTableTask* Arena::CreateMaybeMessage<::greptime::v1::meta::CreateTableTask>(Arena*);
 template<> ::greptime::v1::meta::DropTableTask* Arena::CreateMaybeMessage<::greptime::v1::meta::DropTableTask>(Arena*);
 template<> ::greptime::v1::meta::SubmitDdlTaskRequest* Arena::CreateMaybeMessage<::greptime::v1::meta::SubmitDdlTaskRequest>(Arena*);
@@ -775,6 +779,163 @@ class TruncateTableTask final :
 };
 // -------------------------------------------------------------------
 
+class CreateDatabaseTask final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.meta.CreateDatabaseTask) */ {
+ public:
+  inline CreateDatabaseTask() : CreateDatabaseTask(nullptr) {}
+  ~CreateDatabaseTask() override;
+  explicit PROTOBUF_CONSTEXPR CreateDatabaseTask(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateDatabaseTask(const CreateDatabaseTask& from);
+  CreateDatabaseTask(CreateDatabaseTask&& from) noexcept
+    : CreateDatabaseTask() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateDatabaseTask& operator=(const CreateDatabaseTask& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateDatabaseTask& operator=(CreateDatabaseTask&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateDatabaseTask& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateDatabaseTask* internal_default_instance() {
+    return reinterpret_cast<const CreateDatabaseTask*>(
+               &_CreateDatabaseTask_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(CreateDatabaseTask& a, CreateDatabaseTask& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateDatabaseTask* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateDatabaseTask* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateDatabaseTask* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateDatabaseTask>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateDatabaseTask& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CreateDatabaseTask& from) {
+    CreateDatabaseTask::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateDatabaseTask* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "greptime.v1.meta.CreateDatabaseTask";
+  }
+  protected:
+  explicit CreateDatabaseTask(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCreateDatabaseFieldNumber = 1,
+  };
+  // .greptime.v1.CreateDatabaseExpr create_database = 1;
+  bool has_create_database() const;
+  private:
+  bool _internal_has_create_database() const;
+  public:
+  void clear_create_database();
+  const ::greptime::v1::CreateDatabaseExpr& create_database() const;
+  PROTOBUF_NODISCARD ::greptime::v1::CreateDatabaseExpr* release_create_database();
+  ::greptime::v1::CreateDatabaseExpr* mutable_create_database();
+  void set_allocated_create_database(::greptime::v1::CreateDatabaseExpr* create_database);
+  private:
+  const ::greptime::v1::CreateDatabaseExpr& _internal_create_database() const;
+  ::greptime::v1::CreateDatabaseExpr* _internal_mutable_create_database();
+  public:
+  void unsafe_arena_set_allocated_create_database(
+      ::greptime::v1::CreateDatabaseExpr* create_database);
+  ::greptime::v1::CreateDatabaseExpr* unsafe_arena_release_create_database();
+
+  // @@protoc_insertion_point(class_scope:greptime.v1.meta.CreateDatabaseTask)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::greptime::v1::CreateDatabaseExpr* create_database_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_greptime_2fv1_2fmeta_2fddl_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SubmitDdlTaskRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.meta.SubmitDdlTaskRequest) */ {
  public:
@@ -823,6 +984,7 @@ class SubmitDdlTaskRequest final :
     kDropTableTask = 3,
     kAlterTableTask = 4,
     kTruncateTableTask = 5,
+    kCreateDatabaseTask = 6,
     TASK_NOT_SET = 0,
   };
 
@@ -831,7 +993,7 @@ class SubmitDdlTaskRequest final :
                &_SubmitDdlTaskRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(SubmitDdlTaskRequest& a, SubmitDdlTaskRequest& b) {
     a.Swap(&b);
@@ -909,6 +1071,7 @@ class SubmitDdlTaskRequest final :
     kDropTableTaskFieldNumber = 3,
     kAlterTableTaskFieldNumber = 4,
     kTruncateTableTaskFieldNumber = 5,
+    kCreateDatabaseTaskFieldNumber = 6,
   };
   // .greptime.v1.meta.RequestHeader header = 1;
   bool has_header() const;
@@ -1000,6 +1163,24 @@ class SubmitDdlTaskRequest final :
       ::greptime::v1::meta::TruncateTableTask* truncate_table_task);
   ::greptime::v1::meta::TruncateTableTask* unsafe_arena_release_truncate_table_task();
 
+  // .greptime.v1.meta.CreateDatabaseTask create_database_task = 6;
+  bool has_create_database_task() const;
+  private:
+  bool _internal_has_create_database_task() const;
+  public:
+  void clear_create_database_task();
+  const ::greptime::v1::meta::CreateDatabaseTask& create_database_task() const;
+  PROTOBUF_NODISCARD ::greptime::v1::meta::CreateDatabaseTask* release_create_database_task();
+  ::greptime::v1::meta::CreateDatabaseTask* mutable_create_database_task();
+  void set_allocated_create_database_task(::greptime::v1::meta::CreateDatabaseTask* create_database_task);
+  private:
+  const ::greptime::v1::meta::CreateDatabaseTask& _internal_create_database_task() const;
+  ::greptime::v1::meta::CreateDatabaseTask* _internal_mutable_create_database_task();
+  public:
+  void unsafe_arena_set_allocated_create_database_task(
+      ::greptime::v1::meta::CreateDatabaseTask* create_database_task);
+  ::greptime::v1::meta::CreateDatabaseTask* unsafe_arena_release_create_database_task();
+
   void clear_task();
   TaskCase task_case() const;
   // @@protoc_insertion_point(class_scope:greptime.v1.meta.SubmitDdlTaskRequest)
@@ -1009,6 +1190,7 @@ class SubmitDdlTaskRequest final :
   void set_has_drop_table_task();
   void set_has_alter_table_task();
   void set_has_truncate_table_task();
+  void set_has_create_database_task();
 
   inline bool has_task() const;
   inline void clear_has_task();
@@ -1025,6 +1207,7 @@ class SubmitDdlTaskRequest final :
       ::greptime::v1::meta::DropTableTask* drop_table_task_;
       ::greptime::v1::meta::AlterTableTask* alter_table_task_;
       ::greptime::v1::meta::TruncateTableTask* truncate_table_task_;
+      ::greptime::v1::meta::CreateDatabaseTask* create_database_task_;
     } task_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     uint32_t _oneof_case_[1];
@@ -1083,7 +1266,7 @@ class SubmitDdlTaskResponse final :
                &_SubmitDdlTaskResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(SubmitDdlTaskResponse& a, SubmitDdlTaskResponse& b) {
     a.Swap(&b);
@@ -1678,6 +1861,95 @@ inline void TruncateTableTask::set_allocated_truncate_table(::greptime::v1::Trun
 
 // -------------------------------------------------------------------
 
+// CreateDatabaseTask
+
+// .greptime.v1.CreateDatabaseExpr create_database = 1;
+inline bool CreateDatabaseTask::_internal_has_create_database() const {
+  return this != internal_default_instance() && _impl_.create_database_ != nullptr;
+}
+inline bool CreateDatabaseTask::has_create_database() const {
+  return _internal_has_create_database();
+}
+inline const ::greptime::v1::CreateDatabaseExpr& CreateDatabaseTask::_internal_create_database() const {
+  const ::greptime::v1::CreateDatabaseExpr* p = _impl_.create_database_;
+  return p != nullptr ? *p : reinterpret_cast<const ::greptime::v1::CreateDatabaseExpr&>(
+      ::greptime::v1::_CreateDatabaseExpr_default_instance_);
+}
+inline const ::greptime::v1::CreateDatabaseExpr& CreateDatabaseTask::create_database() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.meta.CreateDatabaseTask.create_database)
+  return _internal_create_database();
+}
+inline void CreateDatabaseTask::unsafe_arena_set_allocated_create_database(
+    ::greptime::v1::CreateDatabaseExpr* create_database) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.create_database_);
+  }
+  _impl_.create_database_ = create_database;
+  if (create_database) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.meta.CreateDatabaseTask.create_database)
+}
+inline ::greptime::v1::CreateDatabaseExpr* CreateDatabaseTask::release_create_database() {
+  
+  ::greptime::v1::CreateDatabaseExpr* temp = _impl_.create_database_;
+  _impl_.create_database_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::greptime::v1::CreateDatabaseExpr* CreateDatabaseTask::unsafe_arena_release_create_database() {
+  // @@protoc_insertion_point(field_release:greptime.v1.meta.CreateDatabaseTask.create_database)
+  
+  ::greptime::v1::CreateDatabaseExpr* temp = _impl_.create_database_;
+  _impl_.create_database_ = nullptr;
+  return temp;
+}
+inline ::greptime::v1::CreateDatabaseExpr* CreateDatabaseTask::_internal_mutable_create_database() {
+  
+  if (_impl_.create_database_ == nullptr) {
+    auto* p = CreateMaybeMessage<::greptime::v1::CreateDatabaseExpr>(GetArenaForAllocation());
+    _impl_.create_database_ = p;
+  }
+  return _impl_.create_database_;
+}
+inline ::greptime::v1::CreateDatabaseExpr* CreateDatabaseTask::mutable_create_database() {
+  ::greptime::v1::CreateDatabaseExpr* _msg = _internal_mutable_create_database();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.meta.CreateDatabaseTask.create_database)
+  return _msg;
+}
+inline void CreateDatabaseTask::set_allocated_create_database(::greptime::v1::CreateDatabaseExpr* create_database) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.create_database_);
+  }
+  if (create_database) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(create_database));
+    if (message_arena != submessage_arena) {
+      create_database = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, create_database, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.create_database_ = create_database;
+  // @@protoc_insertion_point(field_set_allocated:greptime.v1.meta.CreateDatabaseTask.create_database)
+}
+
+// -------------------------------------------------------------------
+
 // SubmitDdlTaskRequest
 
 // .greptime.v1.meta.RequestHeader header = 1;
@@ -2061,6 +2333,80 @@ inline ::greptime::v1::meta::TruncateTableTask* SubmitDdlTaskRequest::mutable_tr
   return _msg;
 }
 
+// .greptime.v1.meta.CreateDatabaseTask create_database_task = 6;
+inline bool SubmitDdlTaskRequest::_internal_has_create_database_task() const {
+  return task_case() == kCreateDatabaseTask;
+}
+inline bool SubmitDdlTaskRequest::has_create_database_task() const {
+  return _internal_has_create_database_task();
+}
+inline void SubmitDdlTaskRequest::set_has_create_database_task() {
+  _impl_._oneof_case_[0] = kCreateDatabaseTask;
+}
+inline void SubmitDdlTaskRequest::clear_create_database_task() {
+  if (_internal_has_create_database_task()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.task_.create_database_task_;
+    }
+    clear_has_task();
+  }
+}
+inline ::greptime::v1::meta::CreateDatabaseTask* SubmitDdlTaskRequest::release_create_database_task() {
+  // @@protoc_insertion_point(field_release:greptime.v1.meta.SubmitDdlTaskRequest.create_database_task)
+  if (_internal_has_create_database_task()) {
+    clear_has_task();
+    ::greptime::v1::meta::CreateDatabaseTask* temp = _impl_.task_.create_database_task_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.task_.create_database_task_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::greptime::v1::meta::CreateDatabaseTask& SubmitDdlTaskRequest::_internal_create_database_task() const {
+  return _internal_has_create_database_task()
+      ? *_impl_.task_.create_database_task_
+      : reinterpret_cast< ::greptime::v1::meta::CreateDatabaseTask&>(::greptime::v1::meta::_CreateDatabaseTask_default_instance_);
+}
+inline const ::greptime::v1::meta::CreateDatabaseTask& SubmitDdlTaskRequest::create_database_task() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.meta.SubmitDdlTaskRequest.create_database_task)
+  return _internal_create_database_task();
+}
+inline ::greptime::v1::meta::CreateDatabaseTask* SubmitDdlTaskRequest::unsafe_arena_release_create_database_task() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:greptime.v1.meta.SubmitDdlTaskRequest.create_database_task)
+  if (_internal_has_create_database_task()) {
+    clear_has_task();
+    ::greptime::v1::meta::CreateDatabaseTask* temp = _impl_.task_.create_database_task_;
+    _impl_.task_.create_database_task_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void SubmitDdlTaskRequest::unsafe_arena_set_allocated_create_database_task(::greptime::v1::meta::CreateDatabaseTask* create_database_task) {
+  clear_task();
+  if (create_database_task) {
+    set_has_create_database_task();
+    _impl_.task_.create_database_task_ = create_database_task;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.meta.SubmitDdlTaskRequest.create_database_task)
+}
+inline ::greptime::v1::meta::CreateDatabaseTask* SubmitDdlTaskRequest::_internal_mutable_create_database_task() {
+  if (!_internal_has_create_database_task()) {
+    clear_task();
+    set_has_create_database_task();
+    _impl_.task_.create_database_task_ = CreateMaybeMessage< ::greptime::v1::meta::CreateDatabaseTask >(GetArenaForAllocation());
+  }
+  return _impl_.task_.create_database_task_;
+}
+inline ::greptime::v1::meta::CreateDatabaseTask* SubmitDdlTaskRequest::mutable_create_database_task() {
+  ::greptime::v1::meta::CreateDatabaseTask* _msg = _internal_mutable_create_database_task();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.meta.SubmitDdlTaskRequest.create_database_task)
+  return _msg;
+}
+
 inline bool SubmitDdlTaskRequest::has_task() const {
   return task_case() != TASK_NOT_SET;
 }
@@ -2297,6 +2643,8 @@ inline void SubmitDdlTaskResponse::set_allocated_table_id(::greptime::v1::meta::
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
