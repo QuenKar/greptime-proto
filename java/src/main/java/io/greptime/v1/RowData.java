@@ -3324,60 +3324,37 @@ public final class RowData {
     io.greptime.v1.Common.IntervalMonthDayNanoOrBuilder getIntervalMonthDayNanoValueOrBuilder();
 
     /**
-     * <code>int64 duration_second_value = 27;</code>
-     * @return Whether the durationSecondValue field is set.
-     */
-    boolean hasDurationSecondValue();
-    /**
-     * <code>int64 duration_second_value = 27;</code>
-     * @return The durationSecondValue.
-     */
-    long getDurationSecondValue();
-
-    /**
-     * <code>int64 duration_millisecond_value = 28;</code>
-     * @return Whether the durationMillisecondValue field is set.
-     */
-    boolean hasDurationMillisecondValue();
-    /**
-     * <code>int64 duration_millisecond_value = 28;</code>
-     * @return The durationMillisecondValue.
-     */
-    long getDurationMillisecondValue();
-
-    /**
-     * <code>int64 duration_microsecond_value = 29;</code>
-     * @return Whether the durationMicrosecondValue field is set.
-     */
-    boolean hasDurationMicrosecondValue();
-    /**
-     * <code>int64 duration_microsecond_value = 29;</code>
-     * @return The durationMicrosecondValue.
-     */
-    long getDurationMicrosecondValue();
-
-    /**
-     * <code>int64 duration_nanosecond_value = 30;</code>
-     * @return Whether the durationNanosecondValue field is set.
-     */
-    boolean hasDurationNanosecondValue();
-    /**
-     * <code>int64 duration_nanosecond_value = 30;</code>
-     * @return The durationNanosecondValue.
-     */
-    long getDurationNanosecondValue();
-
-    /**
+     * <pre>
+     * int64 duration_second_value = 27;
+     * int64 duration_millisecond_value = 28;
+     * int64 duration_microsecond_value = 29;
+     * int64 duration_nanosecond_value = 30;
+     * </pre>
+     *
      * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      * @return Whether the decimal128Value field is set.
      */
     boolean hasDecimal128Value();
     /**
+     * <pre>
+     * int64 duration_second_value = 27;
+     * int64 duration_millisecond_value = 28;
+     * int64 duration_microsecond_value = 29;
+     * int64 duration_nanosecond_value = 30;
+     * </pre>
+     *
      * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      * @return The decimal128Value.
      */
     io.greptime.v1.Common.Decimal128 getDecimal128Value();
     /**
+     * <pre>
+     * int64 duration_second_value = 27;
+     * int64 duration_millisecond_value = 28;
+     * int64 duration_microsecond_value = 29;
+     * int64 duration_nanosecond_value = 30;
+     * </pre>
+     *
      * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      */
     io.greptime.v1.Common.Decimal128OrBuilder getDecimal128ValueOrBuilder();
@@ -3569,26 +3546,6 @@ public final class RowData {
               valueDataCase_ = 26;
               break;
             }
-            case 216: {
-              valueData_ = input.readInt64();
-              valueDataCase_ = 27;
-              break;
-            }
-            case 224: {
-              valueData_ = input.readInt64();
-              valueDataCase_ = 28;
-              break;
-            }
-            case 232: {
-              valueData_ = input.readInt64();
-              valueDataCase_ = 29;
-              break;
-            }
-            case 240: {
-              valueData_ = input.readInt64();
-              valueDataCase_ = 30;
-              break;
-            }
             case 250: {
               io.greptime.v1.Common.Decimal128.Builder subBuilder = null;
               if (valueDataCase_ == 31) {
@@ -3668,10 +3625,6 @@ public final class RowData {
       INTERVAL_YEAR_MONTH_VALUE(24),
       INTERVAL_DAY_TIME_VALUE(25),
       INTERVAL_MONTH_DAY_NANO_VALUE(26),
-      DURATION_SECOND_VALUE(27),
-      DURATION_MILLISECOND_VALUE(28),
-      DURATION_MICROSECOND_VALUE(29),
-      DURATION_NANOSECOND_VALUE(30),
       DECIMAL128_VALUE(31),
       VALUEDATA_NOT_SET(0);
       private final int value;
@@ -3716,10 +3669,6 @@ public final class RowData {
           case 24: return INTERVAL_YEAR_MONTH_VALUE;
           case 25: return INTERVAL_DAY_TIME_VALUE;
           case 26: return INTERVAL_MONTH_DAY_NANO_VALUE;
-          case 27: return DURATION_SECOND_VALUE;
-          case 28: return DURATION_MILLISECOND_VALUE;
-          case 29: return DURATION_MICROSECOND_VALUE;
-          case 30: return DURATION_NANOSECOND_VALUE;
           case 31: return DECIMAL128_VALUE;
           case 0: return VALUEDATA_NOT_SET;
           default: return null;
@@ -4323,92 +4272,15 @@ public final class RowData {
       return io.greptime.v1.Common.IntervalMonthDayNano.getDefaultInstance();
     }
 
-    public static final int DURATION_SECOND_VALUE_FIELD_NUMBER = 27;
-    /**
-     * <code>int64 duration_second_value = 27;</code>
-     * @return Whether the durationSecondValue field is set.
-     */
-    @java.lang.Override
-    public boolean hasDurationSecondValue() {
-      return valueDataCase_ == 27;
-    }
-    /**
-     * <code>int64 duration_second_value = 27;</code>
-     * @return The durationSecondValue.
-     */
-    @java.lang.Override
-    public long getDurationSecondValue() {
-      if (valueDataCase_ == 27) {
-        return (java.lang.Long) valueData_;
-      }
-      return 0L;
-    }
-
-    public static final int DURATION_MILLISECOND_VALUE_FIELD_NUMBER = 28;
-    /**
-     * <code>int64 duration_millisecond_value = 28;</code>
-     * @return Whether the durationMillisecondValue field is set.
-     */
-    @java.lang.Override
-    public boolean hasDurationMillisecondValue() {
-      return valueDataCase_ == 28;
-    }
-    /**
-     * <code>int64 duration_millisecond_value = 28;</code>
-     * @return The durationMillisecondValue.
-     */
-    @java.lang.Override
-    public long getDurationMillisecondValue() {
-      if (valueDataCase_ == 28) {
-        return (java.lang.Long) valueData_;
-      }
-      return 0L;
-    }
-
-    public static final int DURATION_MICROSECOND_VALUE_FIELD_NUMBER = 29;
-    /**
-     * <code>int64 duration_microsecond_value = 29;</code>
-     * @return Whether the durationMicrosecondValue field is set.
-     */
-    @java.lang.Override
-    public boolean hasDurationMicrosecondValue() {
-      return valueDataCase_ == 29;
-    }
-    /**
-     * <code>int64 duration_microsecond_value = 29;</code>
-     * @return The durationMicrosecondValue.
-     */
-    @java.lang.Override
-    public long getDurationMicrosecondValue() {
-      if (valueDataCase_ == 29) {
-        return (java.lang.Long) valueData_;
-      }
-      return 0L;
-    }
-
-    public static final int DURATION_NANOSECOND_VALUE_FIELD_NUMBER = 30;
-    /**
-     * <code>int64 duration_nanosecond_value = 30;</code>
-     * @return Whether the durationNanosecondValue field is set.
-     */
-    @java.lang.Override
-    public boolean hasDurationNanosecondValue() {
-      return valueDataCase_ == 30;
-    }
-    /**
-     * <code>int64 duration_nanosecond_value = 30;</code>
-     * @return The durationNanosecondValue.
-     */
-    @java.lang.Override
-    public long getDurationNanosecondValue() {
-      if (valueDataCase_ == 30) {
-        return (java.lang.Long) valueData_;
-      }
-      return 0L;
-    }
-
     public static final int DECIMAL128_VALUE_FIELD_NUMBER = 31;
     /**
+     * <pre>
+     * int64 duration_second_value = 27;
+     * int64 duration_millisecond_value = 28;
+     * int64 duration_microsecond_value = 29;
+     * int64 duration_nanosecond_value = 30;
+     * </pre>
+     *
      * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      * @return Whether the decimal128Value field is set.
      */
@@ -4417,6 +4289,13 @@ public final class RowData {
       return valueDataCase_ == 31;
     }
     /**
+     * <pre>
+     * int64 duration_second_value = 27;
+     * int64 duration_millisecond_value = 28;
+     * int64 duration_microsecond_value = 29;
+     * int64 duration_nanosecond_value = 30;
+     * </pre>
+     *
      * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      * @return The decimal128Value.
      */
@@ -4428,6 +4307,13 @@ public final class RowData {
       return io.greptime.v1.Common.Decimal128.getDefaultInstance();
     }
     /**
+     * <pre>
+     * int64 duration_second_value = 27;
+     * int64 duration_millisecond_value = 28;
+     * int64 duration_microsecond_value = 29;
+     * int64 duration_nanosecond_value = 30;
+     * </pre>
+     *
      * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
      */
     @java.lang.Override
@@ -4553,22 +4439,6 @@ public final class RowData {
       }
       if (valueDataCase_ == 26) {
         output.writeMessage(26, (io.greptime.v1.Common.IntervalMonthDayNano) valueData_);
-      }
-      if (valueDataCase_ == 27) {
-        output.writeInt64(
-            27, (long)((java.lang.Long) valueData_));
-      }
-      if (valueDataCase_ == 28) {
-        output.writeInt64(
-            28, (long)((java.lang.Long) valueData_));
-      }
-      if (valueDataCase_ == 29) {
-        output.writeInt64(
-            29, (long)((java.lang.Long) valueData_));
-      }
-      if (valueDataCase_ == 30) {
-        output.writeInt64(
-            30, (long)((java.lang.Long) valueData_));
       }
       if (valueDataCase_ == 31) {
         output.writeMessage(31, (io.greptime.v1.Common.Decimal128) valueData_);
@@ -4709,26 +4579,6 @@ public final class RowData {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(26, (io.greptime.v1.Common.IntervalMonthDayNano) valueData_);
       }
-      if (valueDataCase_ == 27) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              27, (long)((java.lang.Long) valueData_));
-      }
-      if (valueDataCase_ == 28) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              28, (long)((java.lang.Long) valueData_));
-      }
-      if (valueDataCase_ == 29) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              29, (long)((java.lang.Long) valueData_));
-      }
-      if (valueDataCase_ == 30) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              30, (long)((java.lang.Long) valueData_));
-      }
       if (valueDataCase_ == 31) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(31, (io.greptime.v1.Common.Decimal128) valueData_);
@@ -4855,22 +4705,6 @@ public final class RowData {
         case 26:
           if (!getIntervalMonthDayNanoValue()
               .equals(other.getIntervalMonthDayNanoValue())) return false;
-          break;
-        case 27:
-          if (getDurationSecondValue()
-              != other.getDurationSecondValue()) return false;
-          break;
-        case 28:
-          if (getDurationMillisecondValue()
-              != other.getDurationMillisecondValue()) return false;
-          break;
-        case 29:
-          if (getDurationMicrosecondValue()
-              != other.getDurationMicrosecondValue()) return false;
-          break;
-        case 30:
-          if (getDurationNanosecondValue()
-              != other.getDurationNanosecondValue()) return false;
           break;
         case 31:
           if (!getDecimal128Value()
@@ -5009,26 +4843,6 @@ public final class RowData {
         case 26:
           hash = (37 * hash) + INTERVAL_MONTH_DAY_NANO_VALUE_FIELD_NUMBER;
           hash = (53 * hash) + getIntervalMonthDayNanoValue().hashCode();
-          break;
-        case 27:
-          hash = (37 * hash) + DURATION_SECOND_VALUE_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getDurationSecondValue());
-          break;
-        case 28:
-          hash = (37 * hash) + DURATION_MILLISECOND_VALUE_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getDurationMillisecondValue());
-          break;
-        case 29:
-          hash = (37 * hash) + DURATION_MICROSECOND_VALUE_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getDurationMicrosecondValue());
-          break;
-        case 30:
-          hash = (37 * hash) + DURATION_NANOSECOND_VALUE_FIELD_NUMBER;
-          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getDurationNanosecondValue());
           break;
         case 31:
           hash = (37 * hash) + DECIMAL128_VALUE_FIELD_NUMBER;
@@ -5280,18 +5094,6 @@ public final class RowData {
             result.valueData_ = intervalMonthDayNanoValueBuilder_.build();
           }
         }
-        if (valueDataCase_ == 27) {
-          result.valueData_ = valueData_;
-        }
-        if (valueDataCase_ == 28) {
-          result.valueData_ = valueData_;
-        }
-        if (valueDataCase_ == 29) {
-          result.valueData_ = valueData_;
-        }
-        if (valueDataCase_ == 30) {
-          result.valueData_ = valueData_;
-        }
         if (valueDataCase_ == 31) {
           if (decimal128ValueBuilder_ == null) {
             result.valueData_ = valueData_;
@@ -5453,22 +5255,6 @@ public final class RowData {
           }
           case INTERVAL_MONTH_DAY_NANO_VALUE: {
             mergeIntervalMonthDayNanoValue(other.getIntervalMonthDayNanoValue());
-            break;
-          }
-          case DURATION_SECOND_VALUE: {
-            setDurationSecondValue(other.getDurationSecondValue());
-            break;
-          }
-          case DURATION_MILLISECOND_VALUE: {
-            setDurationMillisecondValue(other.getDurationMillisecondValue());
-            break;
-          }
-          case DURATION_MICROSECOND_VALUE: {
-            setDurationMicrosecondValue(other.getDurationMicrosecondValue());
-            break;
-          }
-          case DURATION_NANOSECOND_VALUE: {
-            setDurationNanosecondValue(other.getDurationNanosecondValue());
             break;
           }
           case DECIMAL128_VALUE: {
@@ -6749,173 +6535,16 @@ public final class RowData {
         return intervalMonthDayNanoValueBuilder_;
       }
 
-      /**
-       * <code>int64 duration_second_value = 27;</code>
-       * @return Whether the durationSecondValue field is set.
-       */
-      public boolean hasDurationSecondValue() {
-        return valueDataCase_ == 27;
-      }
-      /**
-       * <code>int64 duration_second_value = 27;</code>
-       * @return The durationSecondValue.
-       */
-      public long getDurationSecondValue() {
-        if (valueDataCase_ == 27) {
-          return (java.lang.Long) valueData_;
-        }
-        return 0L;
-      }
-      /**
-       * <code>int64 duration_second_value = 27;</code>
-       * @param value The durationSecondValue to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDurationSecondValue(long value) {
-        valueDataCase_ = 27;
-        valueData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 duration_second_value = 27;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDurationSecondValue() {
-        if (valueDataCase_ == 27) {
-          valueDataCase_ = 0;
-          valueData_ = null;
-          onChanged();
-        }
-        return this;
-      }
-
-      /**
-       * <code>int64 duration_millisecond_value = 28;</code>
-       * @return Whether the durationMillisecondValue field is set.
-       */
-      public boolean hasDurationMillisecondValue() {
-        return valueDataCase_ == 28;
-      }
-      /**
-       * <code>int64 duration_millisecond_value = 28;</code>
-       * @return The durationMillisecondValue.
-       */
-      public long getDurationMillisecondValue() {
-        if (valueDataCase_ == 28) {
-          return (java.lang.Long) valueData_;
-        }
-        return 0L;
-      }
-      /**
-       * <code>int64 duration_millisecond_value = 28;</code>
-       * @param value The durationMillisecondValue to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDurationMillisecondValue(long value) {
-        valueDataCase_ = 28;
-        valueData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 duration_millisecond_value = 28;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDurationMillisecondValue() {
-        if (valueDataCase_ == 28) {
-          valueDataCase_ = 0;
-          valueData_ = null;
-          onChanged();
-        }
-        return this;
-      }
-
-      /**
-       * <code>int64 duration_microsecond_value = 29;</code>
-       * @return Whether the durationMicrosecondValue field is set.
-       */
-      public boolean hasDurationMicrosecondValue() {
-        return valueDataCase_ == 29;
-      }
-      /**
-       * <code>int64 duration_microsecond_value = 29;</code>
-       * @return The durationMicrosecondValue.
-       */
-      public long getDurationMicrosecondValue() {
-        if (valueDataCase_ == 29) {
-          return (java.lang.Long) valueData_;
-        }
-        return 0L;
-      }
-      /**
-       * <code>int64 duration_microsecond_value = 29;</code>
-       * @param value The durationMicrosecondValue to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDurationMicrosecondValue(long value) {
-        valueDataCase_ = 29;
-        valueData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 duration_microsecond_value = 29;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDurationMicrosecondValue() {
-        if (valueDataCase_ == 29) {
-          valueDataCase_ = 0;
-          valueData_ = null;
-          onChanged();
-        }
-        return this;
-      }
-
-      /**
-       * <code>int64 duration_nanosecond_value = 30;</code>
-       * @return Whether the durationNanosecondValue field is set.
-       */
-      public boolean hasDurationNanosecondValue() {
-        return valueDataCase_ == 30;
-      }
-      /**
-       * <code>int64 duration_nanosecond_value = 30;</code>
-       * @return The durationNanosecondValue.
-       */
-      public long getDurationNanosecondValue() {
-        if (valueDataCase_ == 30) {
-          return (java.lang.Long) valueData_;
-        }
-        return 0L;
-      }
-      /**
-       * <code>int64 duration_nanosecond_value = 30;</code>
-       * @param value The durationNanosecondValue to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDurationNanosecondValue(long value) {
-        valueDataCase_ = 30;
-        valueData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 duration_nanosecond_value = 30;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDurationNanosecondValue() {
-        if (valueDataCase_ == 30) {
-          valueDataCase_ = 0;
-          valueData_ = null;
-          onChanged();
-        }
-        return this;
-      }
-
       private com.google.protobuf.SingleFieldBuilderV3<
           io.greptime.v1.Common.Decimal128, io.greptime.v1.Common.Decimal128.Builder, io.greptime.v1.Common.Decimal128OrBuilder> decimal128ValueBuilder_;
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        * @return Whether the decimal128Value field is set.
        */
@@ -6924,6 +6553,13 @@ public final class RowData {
         return valueDataCase_ == 31;
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        * @return The decimal128Value.
        */
@@ -6942,6 +6578,13 @@ public final class RowData {
         }
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       public Builder setDecimal128Value(io.greptime.v1.Common.Decimal128 value) {
@@ -6958,6 +6601,13 @@ public final class RowData {
         return this;
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       public Builder setDecimal128Value(
@@ -6972,6 +6622,13 @@ public final class RowData {
         return this;
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       public Builder mergeDecimal128Value(io.greptime.v1.Common.Decimal128 value) {
@@ -6995,6 +6652,13 @@ public final class RowData {
         return this;
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       public Builder clearDecimal128Value() {
@@ -7014,12 +6678,26 @@ public final class RowData {
         return this;
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       public io.greptime.v1.Common.Decimal128.Builder getDecimal128ValueBuilder() {
         return getDecimal128ValueFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       @java.lang.Override
@@ -7034,6 +6712,13 @@ public final class RowData {
         }
       }
       /**
+       * <pre>
+       * int64 duration_second_value = 27;
+       * int64 duration_millisecond_value = 28;
+       * int64 duration_microsecond_value = 29;
+       * int64 duration_nanosecond_value = 30;
+       * </pre>
+       *
        * <code>.greptime.v1.Decimal128 decimal128_value = 31;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -7145,7 +6830,7 @@ public final class RowData {
       "ic_type\030\003 \001(\0162\031.greptime.v1.SemanticType" +
       "\022@\n\022datatype_extension\030\004 \001(\0132$.greptime." +
       "v1.ColumnDataTypeExtension\")\n\003Row\022\"\n\006val" +
-      "ues\030\001 \003(\0132\022.greptime.v1.Value\"\316\007\n\005Value\022" +
+      "ues\030\001 \003(\0132\022.greptime.v1.Value\"\274\006\n\005Value\022" +
       "\022\n\010i8_value\030\001 \001(\005H\000\022\023\n\ti16_value\030\002 \001(\005H\000" +
       "\022\023\n\ti32_value\030\003 \001(\005H\000\022\023\n\ti64_value\030\004 \001(\003" +
       "H\000\022\022\n\010u8_value\030\005 \001(\rH\000\022\023\n\tu16_value\030\006 \001(" +
@@ -7164,15 +6849,11 @@ public final class RowData {
       "\001(\003H\000\022#\n\031interval_year_month_value\030\030 \001(\005" +
       "H\000\022!\n\027interval_day_time_value\030\031 \001(\003H\000\022J\n" +
       "\035interval_month_day_nano_value\030\032 \001(\0132!.g" +
-      "reptime.v1.IntervalMonthDayNanoH\000\022\037\n\025dur" +
-      "ation_second_value\030\033 \001(\003H\000\022$\n\032duration_m" +
-      "illisecond_value\030\034 \001(\003H\000\022$\n\032duration_mic" +
-      "rosecond_value\030\035 \001(\003H\000\022#\n\031duration_nanos" +
-      "econd_value\030\036 \001(\003H\000\0223\n\020decimal128_value\030" +
-      "\037 \001(\0132\027.greptime.v1.Decimal128H\000B\014\n\nvalu" +
-      "e_dataBP\n\016io.greptime.v1B\007RowDataZ5githu" +
-      "b.com/GreptimeTeam/greptime-proto/go/gre" +
-      "ptime/v1b\006proto3"
+      "reptime.v1.IntervalMonthDayNanoH\000\0223\n\020dec" +
+      "imal128_value\030\037 \001(\0132\027.greptime.v1.Decima" +
+      "l128H\000B\014\n\nvalue_dataBP\n\016io.greptime.v1B\007" +
+      "RowDataZ5github.com/GreptimeTeam/greptim" +
+      "e-proto/go/greptime/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7202,7 +6883,7 @@ public final class RowData {
     internal_static_greptime_v1_Value_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_Value_descriptor,
-        new java.lang.String[] { "I8Value", "I16Value", "I32Value", "I64Value", "U8Value", "U16Value", "U32Value", "U64Value", "F32Value", "F64Value", "BoolValue", "BinaryValue", "StringValue", "DateValue", "DatetimeValue", "TimestampSecondValue", "TimestampMillisecondValue", "TimestampMicrosecondValue", "TimestampNanosecondValue", "TimeSecondValue", "TimeMillisecondValue", "TimeMicrosecondValue", "TimeNanosecondValue", "IntervalYearMonthValue", "IntervalDayTimeValue", "IntervalMonthDayNanoValue", "DurationSecondValue", "DurationMillisecondValue", "DurationMicrosecondValue", "DurationNanosecondValue", "Decimal128Value", "ValueData", });
+        new java.lang.String[] { "I8Value", "I16Value", "I32Value", "I64Value", "U8Value", "U16Value", "U32Value", "U64Value", "F32Value", "F64Value", "BoolValue", "BinaryValue", "StringValue", "DateValue", "DatetimeValue", "TimestampSecondValue", "TimestampMillisecondValue", "TimestampMicrosecondValue", "TimestampNanosecondValue", "TimeSecondValue", "TimeMillisecondValue", "TimeMicrosecondValue", "TimeNanosecondValue", "IntervalYearMonthValue", "IntervalDayTimeValue", "IntervalMonthDayNanoValue", "Decimal128Value", "ValueData", });
     io.greptime.v1.Common.getDescriptor();
   }
 
